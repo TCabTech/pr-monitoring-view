@@ -2,6 +2,9 @@
 
 const mediaArticles = {
  '峰飞航空': {
+  '上海证券报': 'https://m.cnstock.com/commonDetail/789040',
+  '中国证券报·中证网': 'https://www.cs.com.cn/ssgs/01/2026/09/11/detail_2026091110038606.html',
+  '界面新闻': 'https://www.jiemian.com/article/15085665.html',
   '低空经济网': 'https://www.dikongjingji.com.cn/tt/7083.html',
   '人民网': 'https://paper.people.com.cn/rmrb/pc/content/202610/22/content_30187036.html',
   '新华财经': 'https://www.cnfin.com/gs-lb/detail/20260911/4468902_1.html',
@@ -17,6 +20,8 @@ const mediaArticles = {
   'The Star': 'https://www.thestar.com.my/business/business-news/2026/10/21/sunway-taps-global-mobility-partners'
  },
  '沃飞长空': {
+  '界面新闻 · AE200 安全解析': 'https://www.jiemian.com/article/15149563.html',
+  '央广网 · 成都未来产业先导区': 'http://sc.cnr.cn/scpd/hygc/20260901/t20260901_527800762.shtml',
   '中国行业信息网': 'http://www.zghangyexinxi.nancai.top/archives/20709.html',
   '自动化网': 'https://www.zidonghua.com.cn/CECTF/ShowInME/377466.html',
   '红星新闻': 'https://static.cdsb.com/micropub/Articles/202610/d69c7cae9cf1eb031695ec1cb217912b.html',
@@ -24,6 +29,8 @@ const mediaArticles = {
   '财富中文网': 'https://www.fortunechina.com/shangye/c/2026-10/22/content_477568.htm'
  },
  '沃兰特': {
+  '安徽日报 · 世界制造业大会四川馆': 'http://fbh.anhuinews.com/waixuanxx/202609/t20260920_9600704.html',
+  '自贡日报 · 整机制造': 'https://dp.zgm.cn/show/46398',
   '自贡网': 'https://www.zgm.cn/content/6a992fe1866e5',
   '人民网': 'http://sc.people.com.cn/n2/2026/1112/c345167-41749007.html',
   '中国航空报': 'https://news.qq.com/rain/a/20261016A05TPF00',
@@ -38,6 +45,10 @@ const mediaArticles = {
   'Yahoo Finance': 'https://finance.yahoo.com/technology/articles/volant-aerotech-secures-firm-order-041900778.html'
  },
  '时的科技': {
+  '中国航空工业集团 / 看航空 · E20 航电审查': 'https://m.weibo.cn/detail/5338337411859047',
+  '界面新闻 · 马来西亚低空经济': 'https://www.jiemian.com/article/15150184.html',
+  '上观新闻 · 闵行航空航天': 'http://m.toutiao.com/group/7690817791221334564/',
+  '上观新闻 · 原文': 'https://www.shobserver.com/sgh/detail?id=4065953',
   '人民网': 'http://ah.people.com.cn/n2/2026/0920/c375162-41701681.html',
   '新华网': 'http://ah.news.cn/20260903/ecb804332247406389802815633eef96/c.html',
   '太平洋科技': 'https://zhikeji.pconline.com.cn/article/1651440',

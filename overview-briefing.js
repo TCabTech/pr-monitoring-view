@@ -3,15 +3,15 @@
 const briefingDetails = {
  'texas-eipp': [
   '美国交通部于 9 月 10 日宣布得州启动联邦 eVTOL 整合试点。Joby 在达拉斯–沃思堡地区安排约一周的飞行演示，覆盖区域机场及城市节点。',
-  '演示检验电动垂直起降飞机如何与机场运行、空域管理和地面保障配合。公开飞行提供了观察试点的机会，后续还需跟踪运营和监管安排。'
+  '演示检验电动垂直起降飞机如何与机场运行、空域管理和地面保障配合。演示覆盖机场和企业园区，涉及既有机场运行与非传统起降场景的协调。'
  ],
  'autoflight-order': [
   '峰飞航空、零界航空和皖江金租达成三方合作，采购协议涉及 30 架 V2000CG 凯瑞鸥货运 eVTOL，由皖江金租提供融资租赁服务。',
-  '协议披露时，首批计划在年内交付 5 架，其中 2 架计划于 9 月交付。采购规模、计划交付数量与实际交付进度应分别跟踪。'
+  '协议披露时，首批计划在年内交付 5 架，其中 2 架计划于 9 月交付。三方安排中，零界航空作为使用方，皖江金租提供融资租赁，峰飞负责飞机交付。公开材料列出的应用包括物流、应急救援和医疗转运。'
  ],
  'china-malaysia-mou': [
   '中国民航局副局长胡振江会见马来西亚交通部部长陆兆福。双方就航空运输联系、双边合作与低空经济交换意见，随后见签两国民航部门的民用航空安全合作备忘录。',
-  '公开通报确认的是两国民航部门的合作安排。具体机型的适航验证及市场准入仍需跟踪监管部门的后续公开文件。'
+  '合作范围覆盖航空器适航、航空组织认证、人员执照、运行监管及合规结论和证书相互认可。备忘录为两国监管部门开展协调提供框架，具体机型在当地取得批准属于单独程序。'
  ],
  'malaysia-ioi': [
   'E20 在布城 IOI City Mall 首次面向马来西亚公众静态展示。活动由时的科技、SIDEC 和 IOI City Mall 联合举办，展期从 10 月 9 日至 11 月 9 日。',
@@ -19,7 +19,7 @@ const briefingDetails = {
  ],
  'beta-faa': [
   'FAA 公布向 BETA 的 ALIA A250 颁发市场调研特别适航证，允许飞机在授权范围内开展市场调研飞行，包括与潜在客户和合作方共同飞行。',
-  '据 BETA 披露，首架获授权飞机于 10 月 20 日完成许可后的首次飞行。后续可分别跟踪市场调研飞行、型号审定和商业运营的进展。'
+  '据 BETA 披露，首架获授权飞机于 10 月 20 日完成许可后的首次飞行。该证书的权限对应特定用途的市场调研飞行，常规商业载客运营另有审批要求。'
  ]
 };
 
@@ -241,8 +241,8 @@ function resolveBriefEvent(id, original=findBriefEvent(id)) {
  const note = eventDetailNotes[id];
  return original ?? (record && {
   id, date:record.date, region:record.scope==='国际'?'海外':record.scope, topic:record.category,
-  title:record.summary.match(/<strong>([^<]+)<\/strong>/)?.[1] || `${record.scope==='国际'?'海外':record.scope} · ${record.category}`,
-  summary:record.summary.replace(/<[^>]+>/g,''), details:note?[note]:[], sources:[]
+  title:eventDetailTitles[id] || record.summary.match(/<strong>([^<]+)<\/strong>/)?.[1] || `${record.scope==='国际'?'海外':record.scope} · ${record.category}`,
+  summary:record.summary.replace(/<[^>]+>/g,''), details:typeof note==='string'?[note]:note||[], sources:[]
  });
 }
 
@@ -293,9 +293,41 @@ function reportOverview(d) {
   '<section class="report-highlights"><h2>本月重点事件</h2>'+highlights+'</section>';
 }
 
+const briefAdditionalSources = {
+ "2026-10|Joby|10月|品牌传播": [
+  [
+   "TIME 年度最佳发明",
+   "榜单原文",
+   "https://time.com/collection/best-inventions/2026/joby-aviation-aircraft/"
+  ],
+  [
+   "加州大学",
+   "同届入选项目",
+   "https://www.universityofcalifornia.edu/news/uc-innovations-among-times-best-inventions-2026"
+  ]
+ ],
+ "2026-09|峰飞航空|09.10|订单与合作": [
+  [
+   "上海证券报",
+   "媒体报道",
+   "https://m.cnstock.com/commonDetail/789040"
+  ],
+  [
+   "中国证券报·中证网",
+   "媒体报道",
+   "https://www.cs.com.cn/ssgs/01/2026/09/11/detail_2026091110038606.html"
+  ],
+  [
+   "界面新闻",
+   "媒体报道",
+   "https://m.jiemian.com/article/15087402.html"
+  ]
+ ]
+};
+
 function briefSources(event,key) {
  const sources = new Map();
- for (const [name,type,url] of event.sources) {
+ for (const [name,type,url] of [...event.sources,...(briefAdditionalSources[key]||[])]) {
   if (!sources.has(url)) sources.set(url,[name,type]);
  }
  const defaultSource = eventSources[key];
@@ -353,7 +385,7 @@ function showBriefEvent(id) {
  const details = briefEventDetails(event);
  const sources = briefSourceList(event,key);
  $('brief-detail-content').innerHTML = '<p class="brief-meta">'+esc(event.date)+' · '+esc(event.region)+' <span>'+esc(event.topic || '融资')+'</span></p>'+
-  '<p class="brief-detail-summary">'+esc(event.summary)+'</p>'+(visual?'<div class="brief-detail-photo">'+visual+'</div>':'')+
+  (details.length&&eventDetailTitles[key]?'':'<p class="brief-detail-summary">'+esc(event.summary)+'</p>')+(visual?'<div class="brief-detail-photo">'+visual+'</div>':'')+
   (details.length?'<section><h3>事件要点</h3>'+details.map(copy=>'<p>'+esc(copy)+'</p>').join('')+'</section>':'')+funding+
   '<section><h3>参考资料</h3>'+(sources?'<ul class="brief-sources">'+sources+'</ul>':'')+'</section>';
  if (!dialog.open) dialog.showModal();

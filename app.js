@@ -86,10 +86,9 @@ for (const [key, additional] of Object.entries(archiveAdditions)) {
  }
 }
 const companies={domestic:['时的科技','沃飞长空','峰飞航空','沃兰特','亿航智能'],overseas:['Joby','Archer','Vertical','BETA'],others:['齐飞航空','广汽高域','追梦空天','览翌航空','零重力','奇瑞','蓝霄航空','蓝色向量','御风未来','小鹏汇天','亿维特','华羽先翔']};
-const overseasBrands = d => [
- ...companies.overseas,
- ...Object.keys(d.events).filter(brand => !Object.values(companies).flat().includes(brand))
-];
+const overseasOtherBrands = d => Object.keys(d.events).filter(brand =>
+ d.events[brand].length && !Object.values(companies).some(brands => brands.includes(brand))
+);
 const order=['适航与技术','试飞进展','订单与合作','海外进展','品牌传播','资本与经营'];
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -97,7 +96,7 @@ const empty=t=>'<p class="empty">'+esc(t)+'</p>';
 const requestedMonth = new URLSearchParams(location.search).get('month');
 const initialMonth = /^\d{4}-(0[1-9]|1[0-2])$/.test(requestedMonth ?? '') ? requestedMonth.split('-') : ['2026',Object.keys(data).sort().at(-1)];
 const monitorAnchors=['#voice','#press','#social'];
-let year=Number(initialMonth[0]), month=initialMonth[1], page=monitorAnchors.includes(location.hash)?'monitor':'overview', region='all', group='overseas', company=companies.overseas[0], otherFilter='all', domesticTier='domestic';
+let year=Number(initialMonth[0]), month=initialMonth[1], page=monitorAnchors.includes(location.hash)?'monitor':'overview', region='all', group='overseas', company=companies.overseas[0], otherFilter='all', domesticTier='domestic', overseasTier='overseas';
 const btn=(label,act,value,cls='link')=>'<button class="'+cls+'" data-action="'+act+'" data-value="'+esc(value)+'">'+esc(label)+'</button>';
 function segmented(label, action, all, selected) {
  return '<div class="segments" role="group" aria-label="'+esc(label)+'">'+Object.entries(all).map(([key,value])=>'<button data-action="'+action+'" data-value="'+key+'" aria-pressed="'+(key===selected)+'">'+value+'</button>').join('')+'</div>';
@@ -293,17 +292,23 @@ function brandProgress(d,brand,interactive=false){
   (grouped.map(([title,list])=>eventGroup(title,list)).join('')||empty('本月暂无该品牌的动态。'))+'</section>';
 }
 function companyPage(d){
- const activeSection=group==='overseas'?'overseas':'domestic';
+ const isOverseas=group==='overseas'||group==='overseas-other';
+ const activeSection=isOverseas?'overseas':'domestic';
+ const overseasOthers=overseasOtherBrands(d);
+ if(isOverseas&&!overseasOthers.length){group='overseas';overseasTier='overseas'}
  const sections='<div class="company-tabs" role="group" aria-label="竞品动态视图">'+
   Object.entries({overseas:'海外动态',domestic:'国内动态'}).map(([key,label])=>
    '<button type="button" data-action="company-section" data-value="'+key+'" aria-pressed="'+(activeSection===key)+'">'+label+'</button>'
   ).join('')+'</div>';
- const header=heading('竞品动态')+sections;
- const domesticNav=group==='overseas'?'':'<div class="company-scope">'+segmented('国内竞品范围','company-tier',{domestic:'第一梯队竞品',others:'其他竞品'},group)+'</div>';
- if(group==='others')return header+domesticNav+otherCompanyPage(d);
- const brands=group==='overseas'?overseasBrands(d):companies[group];
+ const tiers=isOverseas?
+  {overseas:'主要竞品',...(overseasOthers.length?{'overseas-other':'其他竞品'}:{})}:
+  {domestic:'主要竞品',others:'其他竞品'};
+ const header=heading('竞品动态')+sections+'<div class="company-scope">'+
+  segmented(isOverseas?'海外竞品范围':'国内竞品范围','company-tier',tiers,group)+'</div>';
+ if(group==='others')return header+otherCompanyPage(d);
+ const brands=group==='overseas-other'?overseasOthers:companies[group];
  if(!brands.includes(company))company=brands[0];
- return header+domesticNav+brandCards(brands)+brandProgress(d,company,true);
+ return header+brandCards(brands)+brandProgress(d,company,true);
 }
 const monitoringReports = {
  '2026-09': [['时的科技','tcab'],['沃飞长空','aerofugia'],['峰飞航空','autoflight'],['沃兰特','volant']]
@@ -321,7 +326,7 @@ function reports(){
    const attachments=monitoringReports[key]||[];
    return '<section class="history-row"><div class="history-month"><h3>'+label+'</h3>'+
     '<div class="report-actions">'+btn('查看月报','report-month',m,'button report-view')+
-    reportPdfLink('下载月报 PDF',key+'.pdf?v=illustrated-flow','button upload-button report-download',key+'-舆情月报.pdf')+'</div></div>'+
+    reportPdfLink('下载月报 PDF',key+'.pdf?v=detail-refresh','button upload-button report-download',key+'-舆情月报.pdf')+'</div></div>'+
     '<details class="monitoring-archive"><summary>新浪舆情通原始报告</summary>'+
     (attachments.length?'<ul>'+attachments.map(([brand,slug])=>{
      const path='yqt/'+key+'/'+slug+'.pdf';
@@ -355,7 +360,7 @@ function render(){
 }
 function navigate(next){
  if(next==='tCab'){next='companies';group='domestic';domesticTier='domestic';company='时的科技'}
- if(next==='competitorEvents'){next='companies';group='overseas';company=companies.overseas[0]}
+ if(next==='competitorEvents'){next='companies';group='overseas';overseasTier='overseas';company=companies.overseas[0]}
  if(location.hash){
   const url=new URL(location.href);
   url.hash='';
@@ -365,11 +370,13 @@ function navigate(next){
 }
 
 function monthlyReport(d){
+ const overseasOthers=overseasOtherBrands(d);
  const section=(title,copy)=>'<section class="report-chapter">'+heading(title)+copy+'</section>';
  return reportOverview(d)+
   '<section class="report-chapter">'+industry(d,'all',false)+'</section>'+
-  section('竞品动态','<h2>海外竞品动态</h2>'+overseasBrands(d).map(brand=>brandProgress(d,brand)).join('')+
-   '<h2>国内竞品动态</h2>'+companies.domestic.map(brand=>brandProgress(d,brand)).join('')+otherCompanyPage(d,'all',false))+
+  section('竞品动态','<h2>海外主要竞品</h2>'+companies.overseas.map(brand=>brandProgress(d,brand)).join('')+
+   (overseasOthers.length?'<h2>海外其他竞品</h2>'+overseasOthers.map(brand=>brandProgress(d,brand)).join(''):'')+
+   '<h2>国内主要竞品</h2>'+companies.domestic.map(brand=>brandProgress(d,brand)).join('')+otherCompanyPage(d,'all',false))+
   section('传播监测',propagation(d));
 }
 
@@ -382,7 +389,7 @@ function renderEventPhoto(key,brand,source,detail){
 }
 function eventPhotoMarkup(key,alt=''){
  const photo=eventPhotos[key];
- if(photo?.file){
+ if(photo?.file&&!photo.alt?.endsWith('资料卡')&&!photo.alt?.endsWith('标识')){
   const description=photo.alt||alt;
   const caption=description.endsWith('资料图')?'<small class="event-photo-caption">资料图</small>':'';
   return '<img src="'+esc(photo.file)+'" data-photo-key="'+esc(key)+'" width="320" height="180" alt="'+esc(description)+'" loading="lazy" decoding="async">'+caption;
@@ -390,8 +397,17 @@ function eventPhotoMarkup(key,alt=''){
  return eventCoverCard(key);
 }
 function eventCoverCard(key){
- const [,scope,date,category]=key.split('|');
+ const [period,scope,date,category]=key.split('|');
  const label=eventSources[key]?.label||'舆情工作台';
+ const isIndustry=scope==='国际'||scope==='国内';
+ if(isIndustry){
+  const summary=eventSourceIndex.get(key)?.summary ?? '';
+  const title=eventDetailTitles[key] || summary.match(/<strong>([^<]+)<\/strong>/)?.[1] || category;
+  const [coverYear,coverMonth]=period.split('-');
+  return '<span class="event-cover-card industry-cover-card"><span class="industry-cover-sheet">'+
+   '<small>资料卡 / '+esc(date)+'</small><small>'+esc(scope==='国际'?'海外行业':'国内行业')+' · '+esc(category)+'</small>'+
+   '<b>'+esc(title)+'</b><small>'+esc(coverYear+' 年 '+Number(coverMonth)+' 月 / 舆情工作台')+'</small></span></span>';
+ }
  return '<span class="event-cover-card" aria-label="资料卡 · '+esc(scope)+'"><small>资料卡　'+esc(date)+'</small>'+
   '<b>'+esc(scope==='国际'?'海外行业':scope==='国内'?'国内行业':scope)+'</b><span>'+esc(category)+'</span><small>'+esc(label)+'</small></span>';
 }
@@ -438,10 +454,16 @@ document.addEventListener('click',e=>{
  if(action==='region')region=value;
  else if(action==='select-brand'){company=value;render();$('brand-focus').focus();return}
  else if(action==='company-section'){
-  const nextGroup=value==='overseas'?'overseas':domesticTier;
-  if(nextGroup!==group){group=nextGroup;company=companies[group][0]}
+  const nextGroup=value==='overseas'?overseasTier:domesticTier;
+  if(nextGroup!==group){group=nextGroup;company=companies[group]?.[0]}
  }
- else if(action==='company-tier'){group=value;domesticTier=value;company=companies[group][0];otherFilter='all'}
+ else if(action==='company-tier'){
+  group=value;
+  if(value==='overseas'||value==='overseas-other')overseasTier=value;
+  else domesticTier=value;
+  company=companies[group]?.[0];
+  otherFilter='all';
+ }
  else return;
  render();document.querySelector('[data-action="'+action+'"][data-value="'+CSS.escape(value)+'"]')?.focus();
 });
