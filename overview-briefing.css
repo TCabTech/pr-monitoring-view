@@ -79,11 +79,14 @@
 .brief-lead h2 { color: var(--brief-ink); margin: 7px 0 14px; font-size: clamp(1.35rem, 2.4vw, 2rem); line-height: 1.36; }
 .brief-lead ul { list-style: none; padding: 0; margin: 0; }
 .brief-lead li { color: var(--text); margin: 0; font-size: .94rem; line-height: 1.65; }
+.brief-judgment { display: grid; gap: 12px; }
+.brief-judgment h3 { margin: 0 0 4px; font-size: 1rem; color: var(--brief-accent); }
+.brief-judgment section + section { border-top: 1px solid var(--brief-line); padding-top: 10px; }
 .brief-lead li + li { margin-top: 7px; }
 .brief-lead li strong { color: var(--brief-ink); font-weight: 700; margin-right: .55em; }
 .brief-lead figure { position: relative; margin: 0; min-width: 0; }
 .brief-lead figure::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, var(--lead-edge), transparent 64%); }
-.brief-lead figure img { display: block; width: 100%; height: 100%; position: absolute; object-fit: cover; object-position: 60% 50%; }
+.brief-lead figure img { display: block; width: 100%; height: 100%; position: absolute; object-fit: contain; object-position: center; }
 .brief-lead figcaption { position: absolute; right: 10px; bottom: 10px; z-index: 1; background: var(--brief-paper); padding: 2px 8px; border-radius: 4px; font-size: .8rem; }
 .brief-lead figcaption a { color: var(--brief-ink); }
 .brief-columns { display: grid; grid-template-columns: minmax(0, 2.15fr) minmax(245px, 1fr); gap: clamp(20px, 4vw, 44px); align-items: start; margin-top: 23px; }
@@ -123,8 +126,37 @@
 #brief-detail-content section { margin-top: 18px; }
 #brief-detail-content h3 { margin: 0 0 6px; font-size: 1.08rem; }
 #brief-detail-content p { margin: 0 0 8px; }
-.brief-detail-photo { max-width: 480px; margin: 14px auto 0; }
-.brief-detail-photo .event-photo { width: 100%; margin: 0; }
+.brief-detail-photo { width: 100%; min-width: 0; margin: 14px auto 0; }
+.brief-detail-photo .detail-media {
+  width: 100%;
+  margin: 0;
+  aspect-ratio: auto;
+  min-height: 0;
+  background: transparent;
+}
+.brief-detail-photo .detail-media img {
+  height: auto;
+  max-width: 100%;
+  max-height: min(62svh, 520px);
+  object-fit: contain;
+}
+.brief-detail-photo .industry-cover-card {
+  height: auto;
+  padding: 7px;
+}
+.brief-detail-photo .industry-cover-sheet {
+  gap: 4px;
+  padding: 8px 10px;
+}
+.brief-detail-photo .industry-cover-card small { font-size: .75rem; }
+.brief-detail-photo .industry-cover-card b {
+  display: block;
+  overflow: visible;
+  font-size: 1rem;
+  overflow-wrap: anywhere;
+}
+.brief-detail-photo .industry-cover-card small:last-child { margin-top: 4px; }
+.brief-detail-photo .event-cover-card:not(.industry-cover-card) { min-height: 100px; }
 .brief-source-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px; }
 .brief-history, .brief-sources { list-style: none; margin: 0; padding: 0; }
 .brief-sources li { border-bottom: 1px solid var(--brief-line); padding: 7px 0; }

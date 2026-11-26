@@ -18,22 +18,22 @@ const data={
   ],
   voiceSummary:'10月，时的科技国内全网品牌声量为2,082条，较9月环比下降18.1%。<strong>本月主要曝光集中在海外媒体，由于舆情通监测范围仅限国内，因此在数据上难以体现。</strong>',
   industry:[
-   ['10.26','国内','监管政策','中国民航局<strong>就低空飞行服务专业人员管理及培训办法征求意见</strong>，两份征求意见稿分别明确飞行服务人员管理要求和培训机构、培训实施相关要求，补充低空飞行服务的人才管理制度。'],
-   ['10.09','国内','中央政策','中央印发《关于发展新质生产力的意见》，提出<strong>在确保安全的前提下推动低空经济健康有序发展</strong>，并强调因地制宜，避免「内卷式」竞争。'],
-   ['10.07','国际','监管试点','美国eVTOL整合试点（eIPP）继续推进。BETA在犹他州完成为期五天的试飞，与当地交通部门和运营商验证<strong>时效敏感的医疗货物运输</strong>。'],
-   ['10.22','国际','监管标准','美国联邦航空局（FAA）发布<strong>垂直起降设施设计标准更新草案</strong>，覆盖直升机、动力升力航空器和其他VTOL飞行器的起降设施，供机场运营方、开发商和设施供应商规划设计。FAA预计于2027年夏季发布最终指导文件。']
+   ['10.26','国内','监管政策','中国民航局就<strong>低空飞行服务专业人员管理及培训办法</strong>公开征求意见。'],
+   ['10.09','国内','中央政策','中央发布《关于发展新质生产力的意见》，提出<strong>在确保安全的前提下发展低空经济</strong>。'],
+   ['10.07','国际','监管试点','美国 eVTOL 整合试点（eIPP）在犹他州验证<strong>时效敏感的医疗货物运输</strong>。'],
+   ['10.22','国际','监管标准','美国联邦航空局（FAA）发布<strong>垂直起降设施设计标准更新草案</strong>，覆盖直升机、动力升力航空器和其他 VTOL 飞行器的起降设施。']
   ],
   events:{
-   '时的科技':[['10.09','海外进展','<strong>E20在马来西亚IOI City Mall开展静态展示</strong>，展出持续至11月9日。发布会上，时的科技与雪兰莪州资讯科技及数码经济机构SIDEC交换合作备忘录，并宣布将<strong>在马来西亚建设东南亚业务中心</strong>。']],
-   '沃兰特':[['10.15','适航与技术','沃兰特披露，8月下线的VE25-100首架适航机AC102已完成<strong>首飞及无人全转换飞行</strong>。'],['10.14','订单与合作','沃兰特与川航低空在自贡签署50架VE25-100「天行」采购协议，<strong>其中20架为确认订单，30架为意向订单</strong>。']],
-   '峰飞航空':[['10.15','订单与合作','峰飞披露与新加坡JC航空签署合作备忘录，<strong>初始确认订购2架V2000CG凯瑞鸥和1艘SUNSHIP水上机场</strong>。协议另列五年拟采购计划，包括<strong>260架eVTOL及10艘零碳水上机场</strong>，涉及VE2000EM盛世龙、V2000CG凯瑞鸥和V2000CGF消防版，初步面向印度和巴西市场。']],
-   '沃飞长空':[['10.14','品牌传播','沃飞长空在自贡低空经济产业发展大会展出AE200全尺寸样机，并发布<strong>《巴蜀低空文旅走廊落地实践报告》</strong>。']],
-   '亿航智能':[['10.30','海外进展','亿航宣布<strong>在泰国设立海外区域枢纽</strong>，以支持东南亚项目部署，并计划在当地首批部署<strong>25架EH216-S</strong>。']],
-   'BETA':[['10.21','适航与技术','BETA宣布，美国联邦航空局向ALIA VTOL（A250）授予<strong>市场调研特别适航证</strong>，允许其与潜在运营商等开展飞行测试。此前ALIA固定翼版本已获同类证书，A250于10.20完成获授权后的首次飞行。'],['10.07','试飞进展','BETA与Alpine Air Express等合作方在犹他州完成为期五天的飞行演示，验证时效敏感的医疗货物运输。']],
-   'Joby':[['10.30','试飞进展','Joby在佛罗里达州<strong>从圣彼得堡市中心跨越坦帕湾飞往坦帕国际机场</strong>，开启为期一周的公开演示飞行。']],
-   'Archer':[['10.05','海外进展','阿联酋民航局再次赴Archer总部开展为期一周以上的工作坊与评审会，讨论<strong>Midnight在阿联酋的认证路径</strong>。']],
-   'Vertical':[['10.21','适航与技术','Vertical首席执行官称，预计在圣诞节前完成<strong>飞机级关键设计评审</strong>。认证工作由英国民航局主导，与欧洲航空安全局并行推进，同时与美国联邦航空局保持联系。']],
-   '小鹏汇天':[['10.20','海外进展','阿联酋拉斯海玛酋长率团到访小鹏汇天广州量产工厂，为陆地航母飞行器下线揭幕，并现场接收<strong>首架用于阿联酋低空监管示范区的X3-F试验用机</strong>。']]
+   '时的科技':[['10.09','海外进展','时的科技在马来西亚 IOI City Mall<strong>静态展示 E20</strong>，并与 SIDEC 交换合作备忘录。']],
+   '沃兰特':[['10.15','适航与技术','沃兰特披露<strong>VE25-100 首架适航机 AC102 完成首飞及无人全转换飞行</strong>。'],['10.14','订单与合作','沃兰特与川航低空签署<strong>50 架 VE25-100 采购协议</strong>，含 20 架确认订单。']],
+   '峰飞航空':[['10.15','订单与合作','峰飞与新加坡 JC 航空签署合作备忘录，首批确认订购<strong>2 架凯瑞鸥和 1 艘水上机场</strong>。']],
+   '沃飞长空':[['10.14','品牌传播','沃飞长空在自贡展示 AE200，并发布<strong>《巴蜀低空文旅走廊落地实践报告》</strong>。']],
+   '亿航智能':[['10.30','海外进展','亿航宣布<strong>在泰国设立海外区域枢纽</strong>，计划在当地首批部署 25 架 EH216-S。']],
+   'BETA':[['10.21','适航与技术','BETA 的 ALIA A250 获 FAA <strong>市场调研特别适航证</strong>。'],['10.07','试飞进展','BETA 联合 Alpine Air Express 等合作方，在犹他州演示<strong>医疗急件空运</strong>。']],
+   'Joby':[['10.30','试飞进展','Joby 完成<strong>跨坦帕湾公开演示飞行</strong>，航段连接圣彼得堡市中心与坦帕国际机场。']],
+   'Archer':[['10.05','海外进展','阿联酋民航局到访 Archer 总部，讨论<strong>Midnight 在阿联酋的认证路径</strong>。']],
+   'Vertical':[['10.21','适航与技术','Vertical 预计在圣诞节前完成<strong>飞机级关键设计评审</strong>。']],
+   '小鹏汇天':[['10.20','海外进展','阿联酋拉斯海玛代表团到访小鹏汇天，接收<strong>监管示范用 X3-F 试验机</strong>。']]
   },
   stats:[['时的科技','2,082','1,009','−18.1%','8.0%','401','163'],['峰飞航空','10,580','3,096','+60.5%','40.8%','3,106','611'],['沃飞长空','8,010','3,000','+49.8%','30.9%','2,267','959'],['沃兰特','5,244','2,206','+139.9%','20.2%','1,524','551']]
  },
@@ -54,21 +54,21 @@ const data={
   ],
   voiceSummary:'9月，时的科技全网品牌声量（国内）较上月环比增长<strong>10.6%</strong>。声量主要来自芜湖低空经济发展大会披露制造基地及总装产线，以及中马民航安全合作谅解备忘录的通稿传播。',
   industry:[
-   ['09.02','国际','监管试点','美国交通部与FAA主导的<strong>eVTOL整合试点（eIPP）</strong>进入航线验证阶段，Elroy Air于09.02披露完成首批获授权的无人自主试飞。该试点在多个州推进，BETA、Joby、Archer、Wisk等参与方在实际运行场景中验证有人驾驶或无人驾驶方案，并收集运营数据。'],
-   ['09.28','国内','中央政策','七部门公开发布《新型电池产业发展“十五五”规划》，提出<strong>提升低空装备电池供给能力</strong>，重点关注航空级安全、高能量和功率密度、轻量化，并推动相关标准协同。'],
-   ['09.24','国内','地方政策','广州市天河区发改局为落实公平竞争审查，<strong>暂停实施《加快推动低空经济与航空航天高质量发展的若干政策措施》</strong>，后续将启动修订。'],
-   ['09.08','国内','地方政策','杭州市财政局就<strong>拟废止《杭州市支持低空经济高质量发展的若干措施》（「低空21条」）</strong>公开征求意见，涉及规范性文件清理及公平竞争审查衔接，征求意见截至10.07。'],
-   ['09.21','国际','国际合作','中国民航局副局长胡振江会见马来西亚交通部部长陆兆福后，双方见签<strong>民用航空安全领域合作谅解备忘录</strong>。合作涉及适航、航空组织认证、人员执照、运行监管及合规结论和证书相互认可。中马另签署更广泛的交通运输合作备忘录，覆盖陆运、铁路、海运、航空及物流。']
+   ['09.02','国际','监管试点','美国 eVTOL 整合试点（eIPP）下，Elroy Air 完成<strong>获授权的无人自主试飞</strong>。'],
+   ['09.28','国内','中央政策','七部门发布《新型电池产业发展“十五五”规划》，提出<strong>提升低空装备电池供给能力</strong>。'],
+   ['09.24','国内','地方政策','广州天河<strong>暂停实施低空经济与航空航天产业扶持措施</strong>。'],
+   ['09.08','国内','地方政策','杭州就<strong>拟废止低空经济扶持措施「低空 21 条」</strong>公开征求意见。'],
+   ['09.21','国际','国际合作','中国与马来西亚民航部门签署<strong>民用航空安全合作备忘录</strong>。']
   ],
   events:{
-   '时的科技':[['09.03–09.05','品牌传播','时的科技亮相芜湖低空经济发展大会，展示<strong>E20总装产线沙盘</strong>，披露首个eVTOL制造基地计划年内竣工、拟建设两条总装产线。']],
-   '峰飞航空':[['09.10','订单与合作','峰飞与零界航空、皖江金租签署<strong>30架V2000CG凯瑞鸥采购及融资租赁合作</strong>，当时披露计划年内交付首批5架，包括计划9月交付的2架。']],
-   '亿航智能':[['09.29','海外进展','亿航宣布将<strong>Global Fast Track计划扩展至越南</strong>。当地合作伙伴HungViet与河内市科学技术厅签署合作备忘录，拟申请EH216-S监管沙盒测试。']],
-   'BETA':[['09.24','试飞进展','BETA于9月24日披露，已与Metro Aviation及得州华盛顿县急救机构开展ALIA CTOL飞行演示，验证急救设备及灾害响应物资运输。'],['09.25–09.27','品牌传播','BETA的ALIA CX300在<strong>美国Miramar航展开展飞行展示</strong>，成为首架在该军事航展上飞行展示的电动飞机。混合动力多任务机型MV250同期静态展出。']],
-   'Joby':[['09.10','试飞进展','得克萨斯州启动联邦eVTOL整合试点（eIPP）。Joby开展<strong>为期一周的演示飞行</strong>，覆盖AFW机场、沃斯堡机场和丰田北美总部等站点。']],
-   'Archer':[['09.22','试飞进展','Archer在Salinas航展开展多日有人驾驶演示飞行。']],
-   'Vertical':[['09.25','海外进展','Vertical在英国Cotswold机场<strong>启用Valo总装中心</strong>，与试飞中心相邻，用于符合审定构型的飞机、混动验证机和早期交付飞机的制造。公司规划年产25架，计划于2027年第四季度开始总装首架符合性飞机，并预计于2029年取得英国型号合格证。']],
-   '齐飞航空':[['09.01','适航与技术','齐飞航空载人复合翼机型W280的<strong>型号合格证申请获民航华东管理局受理</strong>。']]
+   '时的科技':[['09.03–09.05','品牌传播','时的科技在芜湖低空经济发展大会<strong>展示 E20 总装产线沙盘</strong>。']],
+   '峰飞航空':[['09.10','订单与合作','峰飞、零界航空与皖江金租达成<strong>30 架 V2000CG 凯瑞鸥采购及融资租赁合作</strong>。']],
+   '亿航智能':[['09.29','海外进展','亿航宣布将 <strong>Global Fast Track 计划扩展至越南</strong>。']],
+   'BETA':[['09.24','试飞进展','BETA 在得州以 ALIA CTOL 演示<strong>应急物资空中运输</strong>。'],['09.25–09.27','品牌传播','BETA 的 <strong>ALIA CX300 在美国 Miramar 航展开展飞行展示</strong>。']],
+   'Joby':[['09.10','试飞进展','Joby 在得州参加联邦 eVTOL 整合试点，开展<strong>为期一周的演示飞行</strong>。']],
+   'Archer':[['09.22','试飞进展','Archer 在美国 Salinas 航展开展<strong>有人驾驶飞行演示</strong>。']],
+   'Vertical':[['09.25','海外进展','Vertical 在英国 Cotswold 机场<strong>启用 Valo 总装中心</strong>。']],
+   '齐飞航空':[['09.01','适航与技术','齐飞航空 W280 <strong>型号合格证申请获民航华东管理局受理</strong>。']]
   },
   stats:[['时的科技','2,542','1,111','+10.6%','15.3%','532','62'],['峰飞航空','6,592','2,434','−7.1%','39.6%','2,118','318'],['沃飞长空','5,348','2,294','−22.7%','32.1%','1,365','277'],['沃兰特','2,186','949','−40.5%','13.1%','599','204']]
  }
@@ -117,7 +117,7 @@ function eventRow(date, html, category, scope, brand='', interactive=true){
  eventSourceIndex.set(key,{scope,date,category,summary:html});
  const dateLabel=/^\d{2}\.\d{2}$/.test(date)?'<time datetime="'+year+'-'+date.replace('.','-')+'">'+esc(date)+'</time>':'<span class="event-date">'+esc(date)+'</span>';
  const detail=november2026.detailBySource[key]||key;
- const photo=interactive?renderEventPhoto(key,scope,source,detail):reportEventPhoto(key);
+ const photo=interactive?renderEventPhoto(key,scope,detail):reportEventPhoto(key);
  return '<li'+(photo?' class="with-photo"':'')+'>'+photo+dateLabel+'<p>'+(brand?'<span class="event-brand">'+esc(brand)+'</span>':'')+
  eventDescription(html,source,interactive?detail:'')+'</p>'+
  (interactive?(source?btn('来源','source',key):''):reportEventDetails(resolveBriefEvent(detail),key))+'</li>';
@@ -174,11 +174,15 @@ function articleLink(label,url,css=''){
  return '<a'+(css?' class="'+css+'"':'')+' href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">'+esc(label)+'</a>';
 }
 const monitoredBrands = new Set(['时的科技','沃飞长空','峰飞航空','沃兰特']);
+function mediaLabel(name){
+ return name.split(' · ')[0].split('（')[0];
+}
 function coverage(reportMonth){
  const cards=monthlyMedia[reportMonth].filter(([brand])=>monitoredBrands.has(brand)).map(([brand,names,copy])=>{
   const chips=list=>list.map(item=>{
    const [name,url]=Array.isArray(item)?item:[item,mediaArticles[brand]?.[item]];
-   return url?articleLink(name,url):'<span>'+esc(name)+'</span>';
+   const label=mediaLabel(name);
+   return url?articleLink(label,url):'<span>'+esc(label)+'</span>';
   }).join('');
   return '<article class="coverage-card"><h3>'+esc(brand)+'</h3><p>'+esc(copy)+'</p><div class="media-chips">'+chips(names.slice(0,5))+'</div>'+
    (names.length>5?'<details><summary>更多媒体</summary><div class="media-chips">'+chips(names.slice(5))+'</div></details>':'')+'</article>';
@@ -326,7 +330,7 @@ function reports(){
    const attachments=monitoringReports[key]||[];
    return '<section class="history-row"><div class="history-month"><h3>'+label+'</h3>'+
     '<div class="report-actions">'+btn('查看月报','report-month',m,'button report-view')+
-    reportPdfLink('下载月报 PDF',key+'.pdf?v=detail-refresh','button upload-button report-download',key+'-舆情月报.pdf')+'</div></div>'+
+    reportPdfLink('下载月报 PDF',key+'.pdf?v=editorial-depth','button upload-button report-download',key+'-舆情月报.pdf')+'</div></div>'+
     '<details class="monitoring-archive"><summary>新浪舆情通原始报告</summary>'+
     (attachments.length?'<ul>'+attachments.map(([brand,slug])=>{
      const path='yqt/'+key+'/'+slug+'.pdf';
@@ -380,12 +384,13 @@ function monthlyReport(d){
   section('传播监测',propagation(d));
 }
 
-function renderEventPhoto(key,brand,source,detail){
- const photo=eventPhotos[key];
+function renderEventPhoto(key,brand,detail){
  const visual=eventPhotoMarkup(key,brand);
  if(detail)return '<button type="button" class="event-photo" data-action="brief-event" data-value="'+esc(detail)+'" aria-label="'+esc(brand)+' · 查看事件详情">'+visual+'</button>';
- const url=photo?.article||source?.url;
- return url?'<a class="event-photo" href="'+esc(url)+'" target="_blank" rel="noopener noreferrer" aria-label="'+esc(brand)+' · 查看原文">'+visual+'</a>':'<div class="event-photo">'+visual+'</div>';
+ const isImage=visual.startsWith('<img');
+ const imageUrl=isImage?eventPhotos[key]?.file:null;
+ return imageUrl?'<a class="event-photo detail-media" href="'+esc(imageUrl)+'" target="_blank" rel="noopener noreferrer" aria-label="'+esc(brand)+' · 查看原图">'+visual+'</a>':
+  '<div class="event-photo detail-media">'+visual+'</div>';
 }
 function eventPhotoMarkup(key,alt=''){
  const photo=eventPhotos[key];
@@ -418,7 +423,10 @@ document.addEventListener('error',({target})=>{
  if(!target.dataset?.photoKey)return;
  const caption=target.nextElementSibling;
  if(caption?.classList.contains('event-photo-caption'))caption.remove();
- target.outerHTML=eventCoverCard(target.dataset.photoKey);
+ const fallback=eventCoverCard(target.dataset.photoKey);
+ const media=target.closest('a.detail-media');
+ if(media)media.outerHTML='<div class="event-photo detail-media">'+fallback+'</div>';
+ else target.outerHTML=fallback;
 },true);
 let currentSourceKey='';
 function readSource(key){

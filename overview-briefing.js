@@ -15,7 +15,7 @@ const briefingDetails = {
  ],
  'malaysia-ioi': [
   'E20 在布城 IOI City Mall 首次面向马来西亚公众静态展示。活动由时的科技、SIDEC 和 IOI City Mall 联合举办，展期从 10 月 9 日至 11 月 9 日。',
-  '开幕当天，时的科技与 SIDEC 交换合作备忘录，探索 E20 在当地的商业化路径。Bernama 从本地合作切入，AWANI Review 随后通过创始人访谈讨论公众信任和商业可行性。'
+  '开幕当天，时的科技与雪兰莪州资讯科技及数码经济机构 SIDEC 交换合作备忘录，并宣布计划在马来西亚设立东南亚业务中心。Bernama 从本地合作切入，AWANI Review 随后通过创始人访谈讨论公众信任和商业可行性。'
  ],
  'beta-faa': [
   'FAA 公布向 BETA 的 ALIA A250 颁发市场调研特别适航证，允许飞机在授权范围内开展市场调研飞行，包括与潜在客户和合作方共同飞行。',
@@ -84,20 +84,66 @@ const briefingFunding = {
 };
 
 const monthlyJudgments = {
- '09': {
-  headline:'空域管理收紧，融资与订单交付并行',
-  points:[
-   ['海外','试点逐步进入真实航线和机场场景，跨境民航安全合作也延伸至适航和运行监管。'],
-   ['国内','多地收紧无人机飞行管理，部分低空奖补政策进入调整期。'],
-   ['企业','主机厂融资披露较集中，资金多投向研发、取证和产能建设。订单披露开始同步明确首批交付安排。']
+ "09": {
+  "headline": "地方奖补调整，峰飞货运订单引入融资租赁",
+  "regions": [
+   [
+    "海外",
+    [
+     [
+      "试飞",
+      "美国 eIPP 同期出现 Elroy Air 无人货运试飞和 Joby 得州载人演示，分别为货运和机场接驳提供运行样本。"
+     ],
+     [
+      "制造",
+      "Vertical 将 Valo 总装中心设在 Cotswold 试飞基地，为验证机与早期量产安排同址装配和测试。"
+     ]
+    ]
+   ],
+   [
+    "国内",
+    [
+     [
+      "政策",
+      "杭州拟废止「低空 21 条」，广州天河暂停相关扶持措施，两项调整均涉及公平竞争审查。"
+     ],
+     [
+      "订单",
+      "峰飞与零界航空签署 30 架货运机采购协议，皖江金租参与融资租赁，将制造商、使用方和融资方接入同一笔交易。"
+     ]
+    ]
+   ]
   ]
  },
- '10': {
-  headline:'适航与采购齐推进，品牌传播持续加码',
-  points:[
-   ['海外','适航与运营验证同步推进，试点进一步验证机场接驳和特定运输需求。'],
-   ['国内','监管细化到飞行服务人员及培训。主机厂继续推进适航验证、采购合作与海外示范。'],
-   ['传播','国内主机厂继续通过展会、行业活动、跨界联名及榜单奖项扩大曝光。']
+ "10": {
+  "headline": "FAA 整合起降设施标准，峰飞成为广交会传播焦点",
+  "regions": [
+   [
+    "海外",
+    [
+     [
+      "监管",
+      "FAA 拟把直升机场和垂直起降场的设计指南合在一起，连机场接入、屋顶选址和充电都纳入同一份草案。"
+     ],
+     [
+      "市场",
+      "Archer 公布休斯敦、达拉斯和奥斯汀的网络规划，又与 ITA Airways 签约。得州披露的是选定城市，意大利披露的是航空公司合作伙伴。"
+     ]
+    ]
+   ],
+   [
+    "国内",
+    [
+     [
+      "传播",
+      "李强与张雪先后到访峰飞广交会展台。前者带来政策与产业报道，张雪谈增程器合作的视频又把话题带入机车圈。峰飞 10 月监测声量居四家首位。"
+     ],
+     [
+      "订单",
+      "沃兰特与川航低空的 50 架协议中，20 架为确认订单、30 架为意向；峰飞与新加坡 JC 航空的首批确认订购同时包括货运机和水上机场。"
+     ]
+    ]
+   ]
   ]
  }
 };
@@ -239,10 +285,11 @@ function findBriefEvent(id) {
 function resolveBriefEvent(id, original=findBriefEvent(id)) {
  const record = eventSourceIndex.get(id);
  const note = eventDetailNotes[id];
+ const headline=record?.summary?.replace(/<[^>]+>/g,'').replaceAll('&amp;','&').replace(/。$/,'');
  return original ?? (record && {
   id, date:record.date, region:record.scope==='国际'?'海外':record.scope, topic:record.category,
-  title:eventDetailTitles[id] || record.summary.match(/<strong>([^<]+)<\/strong>/)?.[1] || `${record.scope==='国际'?'海外':record.scope} · ${record.category}`,
-  summary:record.summary.replace(/<[^>]+>/g,''), details:typeof note==='string'?[note]:note||[], sources:[]
+  title:eventDetailTitles[id] || headline || `${record.scope==='国际'?'海外':record.scope} · ${record.category}`,
+  summary:'', details:typeof note==='string'?[note]:note||[], sources:[]
  });
 }
 
@@ -253,7 +300,7 @@ function briefEventDetails(event) {
 function briefEventPhoto(event) {
  const [scope,category,date=event.date] = briefEventRecords[event.id];
  const key = sourceKey(scope,date,category);
- return renderEventPhoto(key,event.title,readSource(key),event.id);
+ return renderEventPhoto(key,event.title,event.id);
 }
 
 function overviewBriefing(d) {
@@ -266,7 +313,9 @@ function overviewBriefing(d) {
   '<p class="brief-note"><strong>值得关注</strong> '+esc(event.summary)+'</p></article></li>').join('');
  return '<div class="briefing-overview"><div class="brief-heading"><h1>'+Number(month)+'月舆情概览</h1>'+(d.cutoff?'<small class="muted">'+esc(d.cutoff)+'</small>':'')+'</div>'+
   '<section class="brief-lead" aria-labelledby="brief-lead-title"><div class="brief-lead-copy"><p class="brief-lead-label">本月判断</p><h2 id="brief-lead-title">'+esc(judgment.headline)+'</h2>'+
-  '<ul>'+judgment.points.map(([label,copy])=>'<li><strong>'+esc(label)+'</strong>'+esc(copy)+'</li>').join('')+'</ul></div>'+
+  '<div class="brief-judgment">'+judgment.regions.map(([region,points])=>
+   '<section><h3>'+esc(region)+'</h3><ul>'+points.map(([label,copy])=>
+    '<li><strong>'+esc(label)+'</strong>'+esc(copy)+'</li>').join('')+'</ul></section>').join('')+'</div></div>'+
   '<figure><img src="event-photos/'+esc(edition.photo)+'" alt="'+esc(edition.photoAlt)+'" width="640" height="360"><figcaption>'+articleLink('图源 · '+edition.photoCredit,edition.photoUrl)+'</figcaption></figure></section>'+
   '<div class="brief-columns"><section class="brief-events"><h2>本月重点事件</h2><ul>'+items+'</ul></section>'+
   '<section class="brief-metrics"><h2>时的科技数据表现</h2><dl>'+d.metrics.map(([name,value,_,label])=>'<div><dt>'+esc(name)+(label?'<small>（'+esc(label)+'）</small>':'')+'</dt><dd>'+esc(value)+'</dd></div>').join('')+'</dl>'+(d.stats.length?'<p>数据来源：新浪舆情通</p>':'')+'</section></div></div>';
@@ -287,13 +336,22 @@ function reportOverview(d) {
    reportEventDetails(event,key)+'</div>';
  }).join('');
  return '<h1>'+Number(month)+'月舆情概览</h1><p class="report-period">'+esc(edition.period)+'</p>'+
-  '<div class="report-lead"><h2>'+esc(judgment.headline)+'</h2>'+judgment.points.map(([name,copy])=>'<p><strong>'+esc(name)+'</strong>　'+esc(copy)+'</p>').join('')+'</div>'+
+  '<div class="report-lead"><h2>'+esc(judgment.headline)+'</h2>'+judgment.regions.map(([region,points])=>'<h3>'+esc(region)+'</h3>'+points.map(([name,copy])=>'<p><strong>'+esc(name)+'</strong>　'+esc(copy)+'</p>').join('')).join('')+'</div>'+
   '<div class="report-cover"><img src="event-photos/'+esc(edition.photo)+'" width="450" alt="'+esc(edition.photoAlt)+'"><p>'+articleLink('图源 · '+edition.photoCredit,edition.photoUrl)+'</p></div>'+
   '<section><h2>时的科技数据表现</h2><table class="report-metrics" width="100%"><tbody>'+metrics+'</tbody></table></section>'+
   '<section class="report-highlights"><h2>本月重点事件</h2>'+highlights+'</section>';
 }
 
 const briefAdditionalSources = {
+ "2026-10|国际|10.22|监管标准": [
+  ["FAA 草案 AC 150/5390-4","标准草案","https://www.faa.gov/airports/resources/advisory_circulars/index.cfm/go/document.information/documentID/1045778"]
+ ],
+ "2026-11|Archer|11.12|品牌传播": [
+  ["Formula 1","合作公告","https://corp.formula1.com/archer-partners-with-formula-1-as-official-supporter/"]
+ ],
+ "2026-10|峰飞航空|10月中旬|品牌传播": [
+  ["IT之家","媒体报道","https://www.ithome.com/1/014/694.htm"]
+ ],
  "2026-10|Joby|10月|品牌传播": [
   [
    "TIME 年度最佳发明",
@@ -328,7 +386,7 @@ const briefAdditionalSources = {
 function briefSources(event,key) {
  const sources = new Map();
  for (const [name,type,url] of [...event.sources,...(briefAdditionalSources[key]||[])]) {
-  if (!sources.has(url)) sources.set(url,[name,type]);
+  if (!sources.has(url)) sources.set(url,[type==='媒体报道'?mediaLabel(name):name,type]);
  }
  const defaultSource = eventSources[key];
  if (defaultSource && !sources.has(defaultSource.url)) sources.set(defaultSource.url,[defaultSource.label,'事件来源']);
@@ -339,7 +397,7 @@ function briefSources(event,key) {
   const [brand,...names] = media;
   for (const name of names) {
    const url = mediaArticles[brand][name];
-   if (url && !sources.has(url)) sources.set(url,[name,'媒体报道']);
+   if (url && !sources.has(url)) sources.set(url,[mediaLabel(name),'媒体报道']);
   }
  }
  return [...sources];
@@ -381,11 +439,11 @@ function showBriefEvent(id) {
  eventSourceIndex.set(key,{...eventSourceIndex.get(key),scope,date,category});
  $('brief-detail-heading').textContent = event.title;
  const funding = event.funding ? fundingTimeline(event.funding) : '';
- const visual = renderEventPhoto(key,scope,readSource(key));
+ const visual = renderEventPhoto(key,scope);
  const details = briefEventDetails(event);
  const sources = briefSourceList(event,key);
  $('brief-detail-content').innerHTML = '<p class="brief-meta">'+esc(event.date)+' · '+esc(event.region)+' <span>'+esc(event.topic || '融资')+'</span></p>'+
-  (details.length&&eventDetailTitles[key]?'':'<p class="brief-detail-summary">'+esc(event.summary)+'</p>')+(visual?'<div class="brief-detail-photo">'+visual+'</div>':'')+
+  (event.summary?'<p class="brief-detail-summary">'+esc(event.summary)+'</p>':'')+(visual?'<div class="brief-detail-photo">'+visual+'</div>':'')+
   (details.length?'<section><h3>事件要点</h3>'+details.map(copy=>'<p>'+esc(copy)+'</p>').join('')+'</section>':'')+funding+
   '<section><h3>参考资料</h3>'+(sources?'<ul class="brief-sources">'+sources+'</ul>':'')+'</section>';
  if (!dialog.open) dialog.showModal();

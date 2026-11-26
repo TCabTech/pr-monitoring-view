@@ -105,13 +105,13 @@ const november2026 = (() => {
 
  const media = [
   ['时的科技',[
-   ['马来西亚《东方日报》','https://www.orientaldaily.com.my/news/central/2026/11/18/863890'],
+   ['东方日报','https://www.orientaldaily.com.my/news/central/2026/11/18/863890'],
    ['Media Selangor',links.selangor],
-   ['星洲日报·百格（11.09）','https://pocketimes.sinchew.com.my/news/20261109/pocketimes/8050446']
-  ],'马来西亚《东方日报》和 Media Selangor 报道雪兰莪州行政议员介绍与时的科技的合作，聚焦 E20 商业化探索和东南亚业务布局。'],
+   ['星洲日报','https://pocketimes.sinchew.com.my/news/20261109/pocketimes/8050446']
+  ],'东方日报和 Media Selangor 报道雪兰莪州行政议员介绍与时的科技的合作，聚焦 E20 商业化探索和东南亚业务布局。'],
   ['沃飞长空',[
    ['川观新闻',links.aerofugia],
-   ['搜狐（11.13，援引华夏时报）','https://news.sohu.com/a/1101259437_122438197']
+   ['华夏时报','https://news.sohu.com/a/1101259437_122438197']
   ],'川观新闻报道郭亮获四川省杰出青年科学技术创新奖，并介绍 AE200 研发和试飞进展。进博会低空专题报道提及沃飞长空参展。'],
   ['峰飞航空',[
    ['央视网（11.09）','https://5g.cctv.com/2026/11/09/ARTI8oZ5DbFIIRqLh5KxXAOh261109.shtml'],
@@ -121,7 +121,7 @@ const november2026 = (() => {
    ['新浪财经（11.20，谢嘉发言）','https://finance.sina.com.cn/jjxw/2026-11-20/doc-inizkyww7116448.shtml'],
    ['中国经营网','http://www.cb.com.cn/index/show/jr/cv/cv135278482418'],
    ['上海证券报（东方财富转载）','https://finance.eastmoney.com/a/202611043921923029.html'],
-   ['新浪科技／新浪财经（11.05）','https://finance.sina.com.cn/tech/shenji/2026-11-05/doc-inixsezu8876804.shtml'],
+   ['新浪科技','https://finance.sina.com.cn/tech/shenji/2026-11-05/doc-inixsezu8876804.shtml'],
    ['美通社（峰飞航空通稿）','https://www.prnewswire.com/apac/zh/news-releases/evtol-302930403.html']
   ],'央视网、财经媒体和航空专业媒体报道昆山五机编队，关注多机型、跨吨级协同飞行。另有报道聚焦峰飞航空谢嘉谈大型 eVTOL 和全球化布局。'],
   ['沃兰特',[
@@ -137,13 +137,36 @@ const november2026 = (() => {
  ];
 
  const judgment = {
-  headline:'适航与运营准备并进，国内竞品推进关键试飞',
-  points:[
-   ['海外','欧洲细化适航符合性方法，美国主机厂通过专项许可推进市场调研，迪拜继续完善商业运营所需的起降设施。'],
-   ['国内','整机验证推进至倾转过渡与多机协同，产业配套延伸至航空电池适航验证和运力服务，融资租赁模式受到资本关注。'],
-   ['传播','展会与行业活动持续带来曝光，关键试飞画面和消防等具体应用场景为品牌传播提供了更鲜明的内容。']
+  "headline": "迪拜再添获证起降场，航空电池合作密集披露",
+  "regions": [
+    [
+      "海外",
+      [
+        [
+          "运营",
+          "迪拜 Marina 成为当地网络第二个完工并获 GCAA 认证的站点，公告给出年吞吐量上限 8.4 万人次，可用于衡量起降场的设计容量。"
+        ],
+        [
+          "传播",
+          "Archer 借 F1 接触赛事所在市场的潜在乘客，合作提到专用上下客点，并探索将空中接驳纳入票务与贵宾服务。"
+        ]
+      ]
+    ],
+    [
+      "国内",
+      [
+        [
+          "供应链",
+          "宁德时代当月分别披露蓝色向量 SKYLA V30 定制电池、亿维特载人及载物机型独家供货，并与中国民航大学共建电池适航实验室。"
+        ],
+        [
+          "试飞",
+          "峰飞在昆山以三种机型做五机编队演示，小鹏汇天 A868 完成全倾转过渡，分别展示不同机型协同与单机模式转换。"
+        ]
+      ]
+    ]
   ]
- };
+};
 
  const highlights = [
   {
@@ -321,7 +344,7 @@ const november2026 = (() => {
   report:{
    cutoff:'截至 11.25',
    metrics:[['国内品牌声量','—',''],['品牌声量占比','—','','时的、沃飞、峰飞、沃兰特'],['媒体报道数量','—',''],['中性/敏感信息量','—','']],
-   summaries:[['行业','industry',judgment.points.slice(0,2)],['竞品','competitorEvents',[judgment.points[2]]]],
+   summaries:judgment.regions.map(([region,points])=>[region,region==='海外'?'industry':'competitorEvents',points]),
    industry, events, stats:[]
   },
   media,social,judgment,highlights,earnings,detailedEvents,detailBySource,eventSources,
