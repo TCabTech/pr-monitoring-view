@@ -330,7 +330,7 @@ function reports(){
    const attachments=monitoringReports[key]||[];
    return '<section class="history-row"><div class="history-month"><h3>'+label+'</h3>'+
     '<div class="report-actions">'+btn('查看月报','report-month',m,'button report-view')+
-    reportPdfLink('下载月报 PDF',key+'.pdf?v=editorial-depth','button upload-button report-download',key+'-舆情月报.pdf')+'</div></div>'+
+    reportPdfLink('下载月报 PDF',key+'.pdf?v=inline-judgment-photo','button upload-button report-download',key+'-舆情月报.pdf')+'</div></div>'+
     '<details class="monitoring-archive"><summary>新浪舆情通原始报告</summary>'+
     (attachments.length?'<ul>'+attachments.map(([brand,slug])=>{
      const path='yqt/'+key+'/'+slug+'.pdf';

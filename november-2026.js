@@ -137,28 +137,12 @@ const november2026 = (() => {
  ];
 
  const judgment = {
-  "headline": "海外聚焦适航与运营，国内航空电池合作增多",
-  "regions": [
-    [
-      "海外",
-      [
-        [
-          "适航与运营",
-          "欧洲适航文件细化整机验证方法，迪拜的进展则在地面配套，获证起降场为商业运营提供了具体条件。"
-        ]
-      ]
-    ],
-    [
-      "国内",
-      [
-        [
-          "供应链",
-          "试飞之外，航空电池合作集中披露。宁德时代的合作既有机型定制配套，也有适航测试。"
-        ]
-      ]
-    ]
+  headline:'海外聚焦适航与运营，国内试飞和电池合作活跃',
+  regions:[
+   ['海外','欧洲和澳大利亚的监管机构推进 eVTOL 适航文件，泰国开展 AAM 运营监管准备。迪拜 Marina 垂直起降场完工，成为当地空中出租车网络第二个获证站点。'],
+   ['国内','主机厂频繁披露试飞进展，峰飞五机自主编队演示与小鹏汇天全倾转过渡试飞受到行业关注。试飞之外，航空动力电池合作集中披露，以宁德时代的配套与适航合作为代表。']
   ]
-};
+ };
 
  const highlights = [
   {
@@ -336,7 +320,7 @@ const november2026 = (() => {
   report:{
    cutoff:'截至 11.25',
    metrics:[['国内品牌声量','—',''],['品牌声量占比','—','','时的、沃飞、峰飞、沃兰特'],['媒体报道数量','—',''],['中性/敏感信息量','—','']],
-   summaries:judgment.regions.map(([region,points])=>[region,region==='海外'?'industry':'competitorEvents',points]),
+   summaries:judgment.regions.map(([region,copy])=>[region,region==='海外'?'industry':'competitorEvents',[['',copy]]]),
    industry, events, stats:[]
   },
   media,social,judgment,highlights,earnings,detailedEvents,detailBySource,eventSources,

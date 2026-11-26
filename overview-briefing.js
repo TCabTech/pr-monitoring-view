@@ -84,50 +84,18 @@ const briefingFunding = {
 };
 
 const monthlyJudgments = {
- "09": {
-  "headline": "空域管理收紧，国内融资与订单活跃",
-  "regions": [
-   [
-    "海外",
-    [
-     [
-      "试飞",
-      "美国试点把飞行验证放到实际航线上，覆盖无人货运和载人机场接驳。"
-     ]
-    ]
-   ],
-   [
-    "国内",
-    [
-     [
-      "政策与订单",
-      "多地收紧无人机飞行管理，部分地方奖补政策进入调整期。峰飞货运订单中的融资租赁，是本月交易方式上的亮点。"
-     ]
-    ]
-   ]
+ '09': {
+  headline:'空域管理收紧，国内融资与订单活跃',
+  regions:[
+   ['海外','美国试点把飞行验证放到实际航线上，覆盖无人货运和载人机场接驳。'],
+   ['国内','多地收紧空域管理，部分地方奖补政策进入调整期。多家主机厂披露融资进展和订单，其中峰飞的融资租赁交易获得较多媒体关注。']
   ]
  },
- "10": {
-  "headline": "海外试点瞄准实际用途，国内展会带来跨圈曝光",
-  "regions": [
-   [
-    "海外",
-    [
-     [
-      "运营验证",
-      "医疗急件运输和机场接驳是海外试点的两个重点，考验飞行与既有地面服务能否衔接。"
-     ]
-    ]
-   ],
-   [
-    "国内",
-    [
-     [
-      "传播",
-      "展会仍是主机厂的主要传播窗口。张雪到访峰飞广交会展台，也让这场原本面向产业受众的展示走进了机车圈。"
-     ]
-    ]
-   ]
+ '10': {
+  headline:'海外试点瞄准实际用途，国内展会带来跨圈曝光',
+  regions:[
+   ['海外','美国 eIPP 试点继续开展飞行验证，医疗急件运输和机场接驳是当前的重点场景。'],
+   ['国内','展会仍是主机厂投入的重要传播窗口。国务院总理李强巡馆期间到访峰飞广交会展台，受到媒体关注。张雪随后到访，也让展会话题传到了机车圈。']
   ]
  }
 };
@@ -287,6 +255,10 @@ function briefEventPhoto(event) {
  return renderEventPhoto(key,event.title,event.id);
 }
 
+function judgmentParagraphs(judgment){
+ return judgment.regions.map(([region,copy])=>'<p><strong>'+esc(region)+'</strong> '+esc(copy)+'</p>').join('');
+}
+
 function overviewBriefing(d) {
  const edition = year === 2026 ? editions[month] : undefined;
  if (!edition) return overview(d);
@@ -297,9 +269,7 @@ function overviewBriefing(d) {
   '<p class="brief-note"><strong>值得关注</strong> '+esc(event.summary)+'</p></article></li>').join('');
  return '<div class="briefing-overview"><div class="brief-heading"><h1>'+Number(month)+'月舆情概览</h1>'+(d.cutoff?'<small class="muted">'+esc(d.cutoff)+'</small>':'')+'</div>'+
   '<section class="brief-lead" aria-labelledby="brief-lead-title"><div class="brief-lead-copy"><p class="brief-lead-label">本月判断</p><h2 id="brief-lead-title">'+esc(judgment.headline)+'</h2>'+
-  '<div class="brief-judgment">'+judgment.regions.map(([region,points])=>
-   '<section><h3>'+esc(region)+'</h3><ul>'+points.map(([label,copy])=>
-    '<li><strong>'+esc(label)+'</strong>'+esc(copy)+'</li>').join('')+'</ul></section>').join('')+'</div></div>'+
+  '<div class="brief-judgment">'+judgmentParagraphs(judgment)+'</div></div>'+
   '<figure><img src="event-photos/'+esc(edition.photo)+'" alt="'+esc(edition.photoAlt)+'" width="640" height="360"><figcaption>'+articleLink('图源 · '+edition.photoCredit,edition.photoUrl)+'</figcaption></figure></section>'+
   '<div class="brief-columns"><section class="brief-events"><h2>本月重点事件</h2><ul>'+items+'</ul></section>'+
   '<section class="brief-metrics"><h2>时的科技数据表现</h2><dl>'+d.metrics.map(([name,value,_,label])=>'<div><dt>'+esc(name)+(label?'<small>（'+esc(label)+'）</small>':'')+'</dt><dd>'+esc(value)+'</dd></div>').join('')+'</dl>'+(d.stats.length?'<p>数据来源：新浪舆情通</p>':'')+'</section></div></div>';
@@ -320,7 +290,7 @@ function reportOverview(d) {
    reportEventDetails(event,key)+'</div>';
  }).join('');
  return '<h1>'+Number(month)+'月舆情概览</h1><p class="report-period">'+esc(edition.period)+'</p>'+
-  '<div class="report-lead"><h2>'+esc(judgment.headline)+'</h2>'+judgment.regions.map(([region,points])=>'<h3>'+esc(region)+'</h3>'+points.map(([name,copy])=>'<p><strong>'+esc(name)+'</strong>　'+esc(copy)+'</p>').join('')).join('')+'</div>'+
+  '<div class="report-lead"><h2>'+esc(judgment.headline)+'</h2>'+judgmentParagraphs(judgment)+'</div>'+
   '<div class="report-cover"><img src="event-photos/'+esc(edition.photo)+'" width="450" alt="'+esc(edition.photoAlt)+'"><p>'+articleLink('图源 · '+edition.photoCredit,edition.photoUrl)+'</p></div>'+
   '<section><h2>时的科技数据表现</h2><table class="report-metrics" width="100%"><tbody>'+metrics+'</tbody></table></section>'+
   '<section class="report-highlights"><h2>本月重点事件</h2>'+highlights+'</section>';
