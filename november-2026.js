@@ -76,13 +76,13 @@ const november2026 = (() => {
   SkyDrive:[['11.17','海外进展','与<strong>澳大利亚黄金海岸市</strong>签署谅解备忘录，研究起降场选址、示范飞行与本地运行条件，目标于 2028 年启动商业服务。','SkyDrive',links.skydrive]],
   Ascendance:[['11.19','适航与技术','在法国图卢兹发布首架<strong>全尺寸 ATEA 混合动力垂直起降样机</strong>，展示与自研 Sterna 系统的整机集成。','Aviation International News',links.ascendance]],
   '时的科技':[
-   ['11.09','品牌传播','时的科技参与 <strong>UniKL MIAT 和 JobGiga</strong> 联办的航空职业交流，与学生探讨航空行业机会和职业发展。','时的科技活动资料','social-samples/november-2026/tcab-talent.webp'],
-   ['11.23','品牌传播','时的科技以云顶高原、梳邦机场、吉隆坡国际机场和马六甲为例，展示 <strong>E20 在马来西亚的潜在机场接驳和文旅出行场景</strong>。','时的科技活动资料','social-samples/november-2026/tcab-routes.webp']
+   ['11.09','品牌传播','时的科技参与 <strong>UniKL MIAT 和 JobGiga</strong> 联办的航空职业交流，与学生探讨航空行业机会和职业发展。','时的科技活动资料','/social-samples/november-2026/tcab-talent.webp'],
+   ['11.23','品牌传播','时的科技以云顶高原、梳邦机场、吉隆坡国际机场和马六甲为例，展示 <strong>E20 在马来西亚的潜在机场接驳和文旅出行场景</strong>。','时的科技活动资料','/social-samples/november-2026/tcab-routes.webp']
   ],
   '沃飞长空':[
    ['11.03','品牌传播','CEO 兼首席科学家郭亮获<strong>四川省杰出青年科学技术创新奖</strong>。','川观新闻',links.aerofugia],
    ['11.05–11.10','品牌传播','<strong>AE200 系列亮相第九届进博会中国馆</strong>，展示倾转旋翼 eVTOL 的产品构型。','太平洋科技',links.ae200],
-   ['11.18','品牌传播','沃飞长空参与<strong>清华大学产教融合交流</strong>，围绕航空行业实践和人才培养展开讨论。','沃飞长空活动资料','social-samples/november-2026/aerofugia-wechat.webp']
+   ['11.18','品牌传播','沃飞长空参与<strong>清华大学产教融合交流</strong>，围绕航空行业实践和人才培养展开讨论。','沃飞长空活动资料','/social-samples/november-2026/aerofugia-wechat.webp']
   ],
   '峰飞航空':[
    ['11.01','试飞进展','峰飞在昆山完成<strong>跨吨级、跨机型的五机自主编队演示</strong>，由 1 架 5 吨级和 4 架 2 吨级航空器组成，涵盖三种机型。编队飞行<strong>47 分钟、超过 133 公里</strong>。','峰飞航空',links.formation],
@@ -90,7 +90,7 @@ const november2026 = (() => {
   ],
   '沃兰特':[['11.12','品牌传播','<strong>沃兰特自贡研发团队</strong>介绍了天行 VE25-100 的研制工作。','人民网四川频道',links.volant]],
   '亿航智能':[
-   ['11.03–11.05','品牌传播','<strong>EH216-S</strong>亮相巴塞罗那全球智慧城市大会，展示城市空中交通应用。','亿航智能活动资料','social-samples/november-2026/ehang-barcelona.webp'],
+   ['11.03–11.05','品牌传播','<strong>EH216-S</strong>亮相巴塞罗那全球智慧城市大会，展示城市空中交通应用。','亿航智能活动资料','/social-samples/november-2026/ehang-barcelona.webp'],
    ['11.04','适航与技术','亿航发布<strong>EH216-EK 大载重消防 eVTOL</strong>，首批航空器在浙江文成完成组装下线，并开展现场消防演示。','亿航智能',links.fire],
    ['11.06','订单与合作','亿航披露与<strong>环天国际救援</strong>签署框架协议，探索 eVTOL、直升机与地面医疗资源协同。','亿航智能',links.rescue],
    ['11.11','试飞进展','<strong>EH216-S</strong>在斯里兰卡科伦坡港口城完成当地首次载人演示飞行。','亿航智能',links.sriLanka],
@@ -235,6 +235,7 @@ const november2026 = (() => {
    summary:'全尺寸样机由垂直起降状态转换至高速平飞，完成全倾转构型的关键飞行验证。',
    details:[
     '小鹏汇天于 11 月 22 日公布，A868 全尺寸样机近日成功完成倾转过渡试飞，从垂直起降状态完整转换至高速平飞。该机于 2025 年 11 月完成首次起降试飞，此次验证把试飞范围推进到了两种飞行状态之间的转换。',
+    '小鹏汇天的对外宣传口径为“中国第一家完成全尺寸样机倾转过渡飞行的企业。意味着中国在该技术领域，正式跨入全球第一梯队。”',
     'A868 采用全倾转构型，全部旋翼均可转动，分别为垂直起降和水平飞行提供所需动力。过渡阶段需要倾转机构与飞控协同工作，以维持航空器姿态和升力。',
     'A868 面向多人、中长途商务出行，与面向个人飞行体验的分体式「陆地航母」对应不同应用场景。本次试飞验证的是倾转过渡，试验性质处于型号研制阶段。'
    ],
@@ -297,7 +298,7 @@ const november2026 = (() => {
     '2026 年 APEC 工商领导人峰会于 11 月 17 日至 18 日在深圳前海国际会议中心举行。亿航智能中国区总经理李晓娜率队参会，与亚太政商界代表交流低空科技发展与跨区域合作。',
     '亿航 EH216-S 载人 eVTOL 出现在峰会主宣传片中。峰会的粤港澳大湾区专题研讨也以亿航为案例，讨论低空交通在文旅与出行场景中的应用。'
    ],
-   sources:[['亿航智能参会报道','活动报道',links.ehangApec],['亿航智能活动资料','公众号截图','social-samples/november-2026/ehang-wechat.webp']]
+   sources:[['亿航智能参会报道','活动报道',links.ehangApec],['亿航智能活动资料','公众号截图','/social-samples/november-2026/ehang-wechat.webp']]
   }
  ];
 
