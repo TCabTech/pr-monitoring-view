@@ -99,7 +99,8 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const empty=t=>'<p class="empty">'+esc(t)+'</p>';
 const requestedMonth = new URLSearchParams(location.search).get('month');
 const initialMonth = /^\d{4}-(0[1-9]|1[0-2])$/.test(requestedMonth ?? '') ? requestedMonth.split('-') : ['2026',Object.keys(data).sort().at(-1)];
-const monitorAnchors=['#voice','#press','#social','#monthly-monitor','#ioi'];
+const monitorAnchors=['#voice','#press','#social','#monthly-monitor','#ioi','#geo'];
+let activeMonitorSection=(location.hash??'').slice(1);
 let year=Number(initialMonth[0]), month=initialMonth[1], page=monitorAnchors.includes(location.hash)?'monitor':'overview', region='all', group='overseas', company=companies.overseas[0], otherFilter='all', domesticTier='domestic', overseasTier='overseas';
 const btn=(label,act,value,cls='link')=>'<button class="'+cls+'" data-action="'+act+'" data-value="'+esc(value)+'">'+esc(label)+'</button>';
 function segmented(label, action, all, selected) {
@@ -263,13 +264,19 @@ function propagation(d){
  return d===blankMonth ? '<section class="card">'+empty('所选月份暂无传播数据。')+'</section>' : (month==='10'?'<section id="monthly-monitor"><h2>月度监测</h2>'+comparison(d)+coverage(month)+socialCoverage(month)+'</section>'+octoberIoiMonitor():comparison(d)+coverage(month)+socialCoverage(month)+(month==='08'?augustGeo():''));
 }
 function monitorPage(d){
- const sections=[['voice','声量对比'],['press','媒体报道'],['social','社媒发文']];
- if(month==='10')sections.unshift(['monthly-monitor','月度监测']);
- if(month==='10')sections.push(['ioi','IOI 活动专题']);
- const shortcuts='<div class="monitor-sections" role="group" aria-label="传播监测栏目">'+sections.map(([id,label])=>
-  '<a href="#'+id+'">'+label+'</a>'
- ).join('')+'</div>';
- return heading('传播监测')+(d===blankMonth?'':shortcuts)+propagation(d);
+ const title=heading('传播监测');
+ if(d===blankMonth)return title+propagation(d);
+ const sections=[
+  ['voice','品牌声量',()=>comparison(d)],
+  ['press','媒体报道',()=>coverage(month)],
+  ['social','社媒发文',()=>socialCoverage(month)]
+ ];
+ if(month==='10'&&typeof octoberIoiMonitor==='function')sections.push(['ioi','IOI 活动专题监测',octoberIoiMonitor]);
+ if(month==='08')sections.push(['geo','GEO 监测',augustGeo]);
+ const selection=sections.find(([id])=>id===activeMonitorSection)??sections[0];
+ const tabs='<div class="company-tabs" role="group" aria-label="传播监测视图">'+
+  sections.map(([id,label])=>'<button type="button" data-action="monitor-section" data-value="'+id+'" aria-pressed="'+(id===selection[0])+'">'+label+'</button>').join('')+'</div>';
+ return title+tabs+selection[2]();
 }
 function sortDate(rows){
  return [...rows].sort((a,b)=>{
@@ -475,7 +482,13 @@ document.addEventListener('click',e=>{
  if(action==='brief-event'){showBriefEvent(value);return}
  if(action==='source'){openSource(value);return}
  if(action==='report-month'){setMonth(2026,value);navigate('overview');return}
- if(action==='region')region=value;
+ if(action==='monitor-section'){
+  activeMonitorSection=value;
+  const url=new URL(location.href);
+  url.hash=value;
+  history.replaceState(null,'',url);
+ }
+ else if(action==='region')region=value;
  else if(action==='select-brand'){company=value;render();$('brand-focus').focus();return}
  else if(action==='company-section'){
   const nextGroup=value==='overseas'?overseasTier:domesticTier;
