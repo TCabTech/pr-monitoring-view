@@ -4,6 +4,9 @@ const august2026 = (() => {
  const items = [
   ['archer','08.10','Archer','资本与经营','Archer 宣布拟收购 Wisk、SkyGrid 和 Insitu','交易采用股票对价，涉及自主飞行与数字空域管理。','Archer 于 8 月 9 日签署协议，次日披露。本次交易涵盖 Wisk 的自主飞行技术与 SkyGrid 的空域集成能力，波音拟通过交易成为 Archer 的股东。','SEC','https://www.sec.gov/Archives/edgar/data/1824502/000110465926093056/tm2622394d1_8k.htm'],
   ['joby','08.11','Joby','资本与经营','Joby 宣布拟以约 5 亿美元收购 Resonant Sciences','Joby 将通过此次交易扩展国防业务。','Resonant Sciences 已为美国国防客户提供技术与制造服务。Joby 在公告中表示，原有电动空中出租车业务继续推进取证及商业化。','Joby','https://www.jobyaviation.com/news/joby-aviation-to-scale-defense-business-through-acquisition-of-resonant-sciences'],
+  ['joby-atoms','08.04','Joby','订单与合作','Joby 携手 Atoms 推进美国垂直起降场网络','双方计划收购并开发多模式交通枢纽，首批市场覆盖佛罗里达州、纽约州、得克萨斯州与加州。','Atoms 由 Uber 联合创始人 Travis Kalanick 创办。合作拟把空中出租车、自动驾驶汽车、网约车和充电设施接入同一枢纽。佛罗里达、纽约和得克萨斯也是 Joby 参与 eIPP 的早期市场。','Joby','https://www.jobyaviation.com/news/atoms-and-joby-aviation-form-strategic-partnership-to-build-americas-vertiport-network'],
+  ['joby-q2','08.05','Joby','资本与经营','Joby 二季度财报披露 FAA 最终阶段进展','公司称这是 FAA 型号合格证第五阶段进度最快的一个季度，已有 5 架飞机在飞、12 架在产。','在产飞机包括首架 FAA 符合性试验飞机。公司当时计划 9 月在得州启动 eIPP 飞行、争取 2026 年内载客，后来 Q3 披露将美国载客重心转向 2027 年。与丰田成立合资企业为规模化生产做准备。Blade 贡献 3,620 万美元营收，全年营收指引上调至 1.15 亿–1.25 亿美元。截至 6 月底现金及短期投资约 23 亿美元，下半年现金消耗指引为 3.85 亿–4.15 亿美元。','Joby','https://www.jobyaviation.com/news/joby-reports-second-quarter-2026-financial-results'],
+  ['archer-lalive','08.24','Archer','订单与合作','Archer 与 AEG 拟建洛杉矶市中心首座垂直起降场','双方宣布在 L.A. LIVE 开发垂直起降场，项目纳入 Archer 面向洛杉矶 2028 年奥运会的规划网络。','AEG 旗下的 L.A. LIVE 紧邻洛杉矶会议中心和 Crypto.com Arena。协议指定 Archer 为该园区的独家空中出租车合作伙伴。','L.A. LIVE／AEG','https://www.lalive.com/news/detail/aeg_archer_26'],
   ['eve-test','08.03','Eve','试飞进展','Eve 全尺寸验证机完成首次部分过渡飞行','试验开始验证由悬停向翼载飞行的转换过程。','试飞使用全尺寸工程验证机，测试了部分过渡阶段。该阶段可用于评估构型变化时的飞控响应，并为扩大飞行包线积累数据。','Eve Air Mobility','https://www.eveairmobility.com/eve-air-mobility-achieves-first-transition-flight-milestone-advancing-evtol-program-toward-wing-borne-flight/'],
   ['eve-thai','08.17','Eve','海外进展','Eve 与 RV Connex 推进泰国城市空中交通合作','双方签署谅解备忘录，合作范围包括监管框架及运营准备。','Eve 提供城市空中交通和运营体系经验，RV Connex 参与泰国本地项目对接。','RV Connex','https://www.rvconnex.com/en/newsroom/news-and-events/257/eve-air-mobility-and-rv-connex-sign-mou-to-advance-urban-air-mobility-regulatory-framework-in-thailand'],
   ['policy','08.07','国内','中央政策','三部门印发《民用航空发展“十五五”规划》','规划提出推动低空民用航空安全发展，构建自主可控的创新支撑体系。','中国民航局、国家发展改革委、交通运输部联合印发规划。文件把安全发展作为底线，并将低空民用航空纳入民航系统的设施、运营和产业发展安排。','中国民航局','https://www.caac.gov.cn/XWZX/MHYW/202608/t20260807_231452.html'],
@@ -14,7 +17,7 @@ const august2026 = (() => {
   ['battery','08.17','峰飞航空','适航与技术','峰飞披露盛世龙配套电池完成相邻双电芯热失控不扩散验证','宁德时代为载人机型开发的电池系统采用 350 Wh/kg 方壳电芯。','相邻两颗电芯发生热失控时，试验验证热失控能否被限制在指定范围。该项验证属于 V2000EM 型号符合性验证的一部分。','IT之家','https://m.ithome.com/html/987585.htm','autoflight-battery'],
   ['af-kz','08.04','峰飞航空','海外进展','峰飞盛世龙亮相阿斯塔纳未来运动会','峰飞在哈萨克斯坦展示载人 eVTOL。','阿斯塔纳的活动为峰飞提供面向中亚市场的公开展示场景。',null,null,'autoflight-kazakhstan'],
   ['af-ca','08.23','峰飞航空','海外进展','泰国民航局代表团到访峰飞航空','双方围绕 eVTOL 技术及合作交流。','来访交流涉及 eVTOL 产业及应用，属于与当地监管部门建立沟通的活动。','峰飞航空','https://www.autoflight.com/zh/news/thai/','autoflight-visit'],
-  ['eh-q2','8月','亿航智能','资本与经营','亿航发布 2026 年第二季度财报','营收环比增长 203.5%，同比下降 31.3%，公司撤回全年 6 亿元营收指引。','财报说明监管和落地时间仍有不确定性。管理层短期聚焦海外市场及非载人应用。','亿航投资者关系','https://ir.ehang.com/news-releases/news-release-details/ehang-reports-second-quarter-2026-unaudited-financial-results/'],
+  ['eh-q2','08.25','亿航智能','资本与经营','亿航发布 2026 年第二季度财报','营收环比增长 203.5%，同比下降 31.3%，公司撤回全年 6 亿元营收指引。','财报说明监管和落地时间仍有不确定性。管理层短期聚焦海外市场及非载人应用。','亿航投资者关系','https://ir.ehang.com/news-releases/news-release-details/ehang-reports-second-quarter-2026-unaudited-financial-results/'],
   ['eh-hk','08.28','亿航智能','试飞进展','亿航 EH216-S 完成香港首次公开飞行','项目完成香港「监管沙盒 X」首阶段飞行验证。','此次飞行用于验证本地运行条件和流程，为监管沙盒项目提供实际飞行数据。','亿航智能','https://www.ehang.com/cn/news/1386.html','ehang-hong-kong'],
   ['eh-sri','08.19','亿航智能','海外进展','斯里兰卡成为亿航全球 Fast Track 首个市场','计划在科伦坡港口城开展沙盒验证。','亿航与当地民航部门以项目方式推进市场准入，计划在约四个月内验证，并以监管、安全与运营评估为商业化前提。','亿航智能','https://www.ehang.com/cn/news/1381.html','ehang-sri-lanka'],
   ['eh-cscec','08.20','亿航智能','订单与合作','亿航与中建六局达成战略合作意向','海南临高跨海低空走廊作为合作框架下的首个工程。','合作覆盖低空基础设施及跨海场景，临高段项目用于推进双方在起降设施与场景建设上的配合。','亿航智能','https://www.ehang.com/cn/news/1383.html','ehang-cscec'],
@@ -39,12 +42,20 @@ const august2026 = (() => {
   ['aridge','08.20','小鹏汇天','试飞进展','小鹏汇天在深圳演示「陆地航母」','展示包括自动分离结合和有人驾驶飞行，约旦国王现场参观。','演示集中呈现车辆与飞行体的分离、结合及飞行操作。','太平洋科技','https://g.pconline.com.cn/x/2180/21807032.html'],
   ['aridge-show','8月','小鹏汇天','品牌传播','「陆地航母」亮相成都车展和珠海东澳岛','两场活动分别面向车展观众和海岛文旅场景。','传播围绕分体式飞行汽车展示及低空文旅应用展开。']
  ];
- const articlePhotos=['joby', 'eve-test', 'eve-thai', 'industry', 'tcab-soi'];
+ const articlePhotos=['archer-lalive', 'joby', 'eve-test', 'eve-thai', 'industry', 'tcab-soi'];
  const eventSources={}, eventPhotos={}, detailBySource={}, events={}, industry=[];
+ const supplementalSources={
+  'joby-atoms':[['Flying','媒体报道','https://www.flyingmag.com/joby-ex-uber-ceo-electric-air-taxi-vertiports/']],
+  'joby-q2':[
+   ['Joby 股东信','PDF','https://cdn.sanity.io/files/h5mp19kq/production/82d946860e0adebf49ea181a8d19463a98c412a9.pdf'],
+   ['美国证交会 8-K 附件','监管披露','https://www.sec.gov/Archives/edgar/data/1819848/000181984826000432/joby-8kx20260805xexx99_2.htm'],
+   ['AeroTime','媒体报道','https://www.aerotime.aero/articles/joby-targets-september-first-us-evtol-pilot-flights']],
+  'archer-lalive':[['Aviation Week','专题索引','https://aviationweek.com/taxonomy/term/156326']]
+ };
  const detailedEvents=items.map(([slug,date,scope,category,title,summary,detail,name,url,photo])=>{
   const id='aug-'+slug;
   const key=['2026-08',scope,date,category].join('|');
-  const sources=url?[[name,'事件来源',url]]:[];
+  const sources=(url?[[name,'事件来源',url]]:[]).concat(supplementalSources[slug]||[]);
   if(url)eventSources[key]={label:name,url};
   if(photo||articlePhotos.includes(slug))eventPhotos[key]={file:'event-photos/august-'+(photo||slug)+'.webp',alt:title,article:slug==='tcab-soi'?'https://www.sohu.com/a/1066828341_115926':url};
   detailBySource[key]=id;
@@ -64,12 +75,169 @@ const august2026 = (() => {
   voiceSummary:'亿航智能以 44.2% 的份额居首，峰飞航空和沃飞长空份额接近。时的科技声量主要来自 E20 配套交付与系统适航进展。',
   stats:[['亿航智能','15,834','44.2%','4,370','27.6%','1,690'],['峰飞航空','7,103','19.8%','1,833','25.8%','366'],['沃飞长空','6,912','19.3%','1,438','20.8%','264'],['沃兰特','3,674','10.3%','1,000','27.2%','218'],['时的科技','2,298','6.4%','532','23.1%','174']]},
   media:[
-   ['亿航智能',[['亿航投资者关系','https://ir.ehang.com/news-releases/news-release-details/ehang-reports-second-quarter-2026-unaudited-financial-results/'],'央视网','新华财经','界面新闻','钛媒体','GlobeNewswire'],'报道覆盖财报、国际市场计划和香港飞行。'],
-   ['峰飞航空',[['界面新闻',eventSources['2026-08|峰飞航空|08.12|订单与合作'].url],['证券时报','https://finance.sina.com.cn/roll/2026-08-13/doc-inincnuy3430161.shtml'],'人民财讯','中国经营报',['卓乎','https://mp.weixin.qq.com/s/PtltUbucDns6KjPwc2D3fA']],'印尼框架采购和电池安全验证是主要议题。'],
-   ['沃飞长空',[['经济参考报','https://finance.sina.com.cn/tech/roll/2026-08-06/doc-inimivfr3990016.shtml'],['成都发布','https://mp.weixin.qq.com/s/3tVA2ItqTjvTiGDyK4kSTQ'],['卓乎','https://mp.weixin.qq.com/s/5G5Uu3fBR05AydmYlBtr9Q'],'证券时报','每日经济新闻','中国经营报'],'媒体关注 AE200、创始团队和成都低空产业发展。'],
-   ['沃兰特',[['中国经营报','http://www.cb.com.cn/index/show/gs1/cv/cv12548708138'],['低空头部','https://mp.weixin.qq.com/s/PtltUbucDns6KjPwc2D3fA']],'报道讨论安全、经济性与商业化阶段。'],
-   ['时的科技',['经济参考报','中国航空报',['中国航空工业集团',eventSources['2026-08|时的科技|08.24|适航与技术'].url]],'E20 航电审查与 AP340 配套交付构成主要技术报道。']
+  [
+    "亿航智能",
+    [
+      [
+        "亿航投资者关系｜新闻稿列表",
+        "https://ir.ehang.com/news-releases/"
+      ],
+      [
+        "亿航投资者关系｜08.25 二季度财报 PDF",
+        "https://ir.ehang.com/static-files/ade3ff1e-c16a-463e-9b55-db55ef452d07"
+      ],
+      [
+        "GlobeNewswire｜08.25 二季度财报",
+        "https://www.globenewswire.com/news-release/2026/08/25/3350237/0/en/ehang-reports-second-quarter-2026-unaudited-financial-results.html"
+      ],
+      [
+        "GlobeNewswire｜08.28 香港公开首飞",
+        "https://www.globenewswire.com/news-release/2026/08/28/3352829/0/en/ehang-eh216-s-completes-first-public-flight-in-hong-kong-advancing-regulatory-sandbox-x-project-with-hksar-government.html"
+      ],
+      [
+        "GlobeNewswire｜08.20 与中建六局合作",
+        "https://www.globenewswire.com/news-release/2026/08/20/3348113/0/en/ehang-partners-with-cscec-sixth-engineering-bureau-on-low-altitude-infrastructure-with-hainan-lingao-corridor-project-underway.html"
+      ],
+      [
+        "亿航官网｜08.28 香港公开首飞",
+        "https://www.ehang.com/cn/news/1386.html"
+      ],
+      [
+        "亿航官网｜08.19 全球快速通道计划",
+        "https://www.ehang.com/cn/news/1381.html"
+      ],
+      [
+        "新华财经｜08.26 二季度财报",
+        "https://www.cnfin.com/gs-lb/detail/20260826/4460459_1.html"
+      ],
+      [
+        "澎湃新闻｜08.26 营收与全年指引",
+        "https://www.thepaper.cn/newsDetail_forward_33852161"
+      ],
+      [
+        "21财经｜08.28 海外市场",
+        "https://m.21jingji.com/article/20260828/c5516f93373ba3be2acb4696f3bf4f8c.html"
+      ],
+      [
+        "上海证券报｜08.26 营收指引，新浪转载",
+        "https://finance.sina.com.cn/roll/2026-08-26/doc-inipsezp9177399.shtml"
+      ]
+    ],
+    "二季度财报、泰国沙盒、全球快速通道及香港数码港公开首飞。"
   ],
+  [
+    "峰飞航空",
+    [
+      [
+        "证券时报网／人民财讯｜08.13 印尼采购",
+        "https://stcn.com/article/detail/4072666.html"
+      ],
+      [
+        "界面新闻｜08.14 印尼采购",
+        "https://www.jiemian.com/article/14920774.html"
+      ],
+      [
+        "中国航空新闻网｜08.18 电池验证",
+        "https://www.chinaerospace.com/article/117484"
+      ],
+      [
+        "IT之家｜08.09 电池验证",
+        "https://www.ithome.com/0/987/585.htm"
+      ],
+      [
+        "东南网／海峡网｜08.10 电池验证",
+        "http://www.hxnews.com/news/fj/nd/202608/10/2265303.shtml"
+      ],
+      [
+        "卓乎｜此前提供入口",
+        "https://mp.weixin.qq.com/s/PtltUbucDns6KjPwc2D3fA"
+      ]
+    ],
+    "印尼 Whitesky 框架采购、盛世龙 350 Wh/kg 电池验证。"
+  ],
+  [
+    "沃飞长空",
+    [
+      [
+        "经济参考报｜08.06 原文",
+        "https://www.jjckb.cn/20260806/48c4fc9f3cec43fca88ecdbdb5362dea/c.html"
+      ],
+      [
+        "经济参考报｜新浪转载",
+        "https://finance.sina.com.cn/tech/roll/2026-08-06/doc-inimivfr3990016.shtml"
+      ],
+      [
+        "成都发布｜此前提供入口",
+        "https://mp.weixin.qq.com/s/3tVA2ItqTjvTiGDyK4kSTQ"
+      ],
+      [
+        "卓乎｜此前提供入口",
+        "https://mp.weixin.qq.com/s/5G5Uu3fBR05AydmYlBtr9Q"
+      ]
+    ],
+    "AE200 适航、郭亮及团队、成都低空产业与总部基地。"
+  ],
+  [
+    "沃兰特",
+    [
+      [
+        "中国经营网｜董明专访",
+        "http://www.cb.com.cn/index/show/gs1/cv/cv12548708138"
+      ],
+      [
+        "中国经营报｜08.12 专访，网易转载",
+        "https://www.163.com/dy/article/L451JSSH05199NHJ.html"
+      ],
+      [
+        "中国经营报｜08.12 专访，东方财富转载",
+        "https://finance.eastmoney.com/a/202608123839143859.html"
+      ],
+      [
+        "中国经营报｜08.24 股改数字报",
+        "http://dianzibao.cb.com.cn/html/2026-08/24/content_341212.htm?div=-1"
+      ],
+      [
+        "中国经营报｜08.24 股改版面 PDF",
+        "http://dianzibao.cb.com.cn/images/2026-08/24/15/B11BJYB20260824.pdf"
+      ],
+      [
+        "低空头部｜此前提供入口，与峰飞卓乎同址",
+        "https://mp.weixin.qq.com/s/PtltUbucDns6KjPwc2D3fA"
+      ]
+    ],
+    "设计安全、经济性验证与股改。"
+  ],
+  [
+    "时的科技",
+    [
+      [
+        "中国航空报｜新浪入口",
+        "https://www.sina.cn/news/detail/5339020156734929.html"
+      ],
+      [
+        "中国航空报｜AP340 首台交付，民航资讯网转载",
+        "https://www.ccaonline.cn/zhizao/hkhot/1231259.html"
+      ],
+      [
+        "航空工业／中国航空新闻网｜08.24 AP340 首台交付",
+        "https://www.chinaerospace.com/index.php/article/117837"
+      ],
+      [
+        "航空工业计算所／中国航空新闻网｜08.24 SOI#1 审查",
+        "https://www.chinaerospace.com/article/117838"
+      ],
+      [
+        "中国航空报｜SOI#1 审查，新浪转载",
+        "https://k.sina.cn/article_5953466437_162dab0450670bax1e.html"
+      ],
+      [
+        "中国航空工业集团｜此前收录",
+        "https://m.weibo.cn/detail/5338337411859047"
+      ]
+    ],
+    "E20 飞控电子与综合航电系统通过 SOI#1 审查，AP340 首台总装下线交付。"
+  ]
+],
   social:[
    ['亿航智能',9,4,5,4,null,'海外飞行、市场准入与合作'],
    ['峰飞航空',4,1,6,0,4,'印尼采购合作、电池安全和国际交流'],

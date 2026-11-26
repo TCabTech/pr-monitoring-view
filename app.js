@@ -99,7 +99,7 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const empty=t=>'<p class="empty">'+esc(t)+'</p>';
 const requestedMonth = new URLSearchParams(location.search).get('month');
 const initialMonth = /^\d{4}-(0[1-9]|1[0-2])$/.test(requestedMonth ?? '') ? requestedMonth.split('-') : ['2026',Object.keys(data).sort().at(-1)];
-const monitorAnchors=['#voice','#press','#social'];
+const monitorAnchors=['#voice','#press','#social','#monthly-monitor','#ioi'];
 let year=Number(initialMonth[0]), month=initialMonth[1], page=monitorAnchors.includes(location.hash)?'monitor':'overview', region='all', group='overseas', company=companies.overseas[0], otherFilter='all', domesticTier='domestic', overseasTier='overseas';
 const btn=(label,act,value,cls='link')=>'<button class="'+cls+'" data-action="'+act+'" data-value="'+esc(value)+'">'+esc(label)+'</button>';
 function segmented(label, action, all, selected) {
@@ -260,10 +260,12 @@ function augustGeo(){
 }
 
 function propagation(d){
- return d===blankMonth ? '<section class="card">'+empty('所选月份暂无传播数据。')+'</section>' : comparison(d)+coverage(month)+socialCoverage(month)+(month==='08'?augustGeo():'');
+ return d===blankMonth ? '<section class="card">'+empty('所选月份暂无传播数据。')+'</section>' : (month==='10'?'<section id="monthly-monitor"><h2>月度监测</h2>'+comparison(d)+coverage(month)+socialCoverage(month)+'</section>'+octoberIoiMonitor():comparison(d)+coverage(month)+socialCoverage(month)+(month==='08'?augustGeo():''));
 }
 function monitorPage(d){
  const sections=[['voice','声量对比'],['press','媒体报道'],['social','社媒发文']];
+ if(month==='10')sections.unshift(['monthly-monitor','月度监测']);
+ if(month==='10')sections.push(['ioi','IOI 活动专题']);
  const shortcuts='<div class="monitor-sections" role="group" aria-label="传播监测栏目">'+sections.map(([id,label])=>
   '<a href="#'+id+'">'+label+'</a>'
  ).join('')+'</div>';
@@ -342,7 +344,7 @@ function reports(){
    const attachments=monitoringReports[key]||[];
    return '<section class="history-row"><div class="history-month"><h3>'+label+'</h3>'+
     '<div class="report-actions">'+btn('查看月报','report-month',m,'button report-view')+
-    reportPdfLink('下载月报 PDF',key+'.pdf?v='+(key==='2026-11'?'a868-statement':'competitor-cards'),'button upload-button report-download',key+'-舆情月报.pdf')+'</div></div>'+
+    reportPdfLink('下载月报 PDF',key+'.pdf?v='+(key==='2026-11'?'a868-statement':key==='2026-08'||key==='2026-10'?'ioi-august-supplement':'competitor-cards'),'button upload-button report-download',key+'-舆情月报.pdf')+'</div></div>'+
     '<details class="monitoring-archive"><summary>新浪舆情通原始报告</summary>'+
     (attachments.length?'<ul>'+attachments.map(([brand,slug])=>{
      const path='yqt/'+key+'/'+slug+'.pdf';
