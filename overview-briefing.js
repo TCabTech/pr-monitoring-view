@@ -204,6 +204,10 @@ const briefEventOrder = {
   'aridge-uae-handover','wefly-funding','malaysia-ioi']
 };
 
+editions['08'] = august2026.edition;
+monthlyJudgments['08'] = august2026.judgment;
+for(const event of august2026.detailedEvents)briefEventRecords[event.id]=[event.scope,event.category];
+Object.assign(eventPhotos,august2026.eventPhotos);
 editions['11'] = november2026.edition;
 monthlyJudgments['11'] = november2026.judgment;
 for (const event of november2026.detailedEvents) {
@@ -226,7 +230,7 @@ function getBriefEvents(edition) {
 function findBriefEvent(id) {
  const edition = year === 2026 ? editions[month] : undefined;
  if (!edition) return;
- const events = edition === november2026.edition ? november2026.detailedEvents : getBriefEvents(edition);
+ const events = month==='08'?august2026.detailedEvents:edition===november2026.edition?november2026.detailedEvents:getBriefEvents(edition);
  return events.find(event=>{
   if(event.id===id)return true;
   const [scope,category,date=event.date]=briefEventRecords[event.id];
@@ -259,7 +263,8 @@ function judgmentParagraphs(judgment){
  return judgment.regions.map(([region,copy])=>'<p><strong>'+esc(region)+'</strong> '+esc(copy)+'</p>').join('');
 }
 
-function overviewMetricsNote(hasData) {
+function overviewMetricsNote(hasData, edition) {
+ if(edition==='08')return '数据来源：新浪舆情通<br>备注：品牌声量占比以时的科技、亿航智能、沃飞长空、峰飞航空和沃兰特五家品牌的总声量为分母。';
  return (hasData?'数据来源：新浪舆情通<br>':'')+'备注：品牌声量占比以时的科技、沃飞长空、峰飞航空和沃兰特四家品牌的总声量为分母。';
 }
 
@@ -276,7 +281,7 @@ function overviewBriefing(d) {
   '<div class="brief-judgment">'+judgmentParagraphs(judgment)+'</div></div>'+
   '<figure><img src="event-photos/'+esc(edition.photo)+'" alt="'+esc(edition.photoAlt)+'" width="640" height="360"><figcaption>'+articleLink('图源 · '+edition.photoCredit,edition.photoUrl)+'</figcaption></figure></section>'+
   '<div class="brief-columns"><section class="brief-events"><h2>本月重点事件</h2><ul>'+items+'</ul></section>'+
-  '<section class="brief-metrics"><h2>时的科技数据表现</h2><dl>'+d.metrics.map(([name,value])=>'<div><dt>'+esc(name)+'</dt><dd>'+esc(value)+'</dd></div>').join('')+'</dl>'+'<p>'+overviewMetricsNote(d.stats.length)+'</p>'+'</section></div></div>';
+  '<section class="brief-metrics"><h2>时的科技数据表现</h2><dl>'+d.metrics.map(([name,value])=>'<div><dt>'+esc(name)+'</dt><dd>'+esc(value)+'</dd></div>').join('')+'</dl>'+'<p>'+overviewMetricsNote(d.stats.length,month)+'</p>'+'</section></div></div>';
 }
 
 function reportOverview(d) {
@@ -296,7 +301,7 @@ function reportOverview(d) {
  return '<h1>'+Number(month)+'月舆情概览</h1><p class="report-period">'+esc(edition.period)+'</p>'+
   '<div class="report-lead"><h2>'+esc(judgment.headline)+'</h2>'+judgmentParagraphs(judgment)+'</div>'+
   '<div class="report-cover"><img src="event-photos/'+esc(edition.photo)+'" width="450" alt="'+esc(edition.photoAlt)+'"><p>'+articleLink('图源 · '+edition.photoCredit,edition.photoUrl)+'</p></div>'+
-  '<section><h2>时的科技数据表现</h2><table class="report-metrics" width="100%"><tbody>'+metrics+'</tbody></table></section>'+
+  '<section><h2>时的科技数据表现</h2><table class="report-metrics" width="100%"><tbody>'+metrics+'</tbody></table>'+(month==='08'?'<p>'+overviewMetricsNote(true,month)+'</p>':'')+'</section>'+
   '<section class="report-highlights"><h2>本月重点事件</h2>'+highlights+'</section>';
 }
 
@@ -343,6 +348,8 @@ const briefAdditionalSources = {
 
 function briefSources(event,key) {
  const sources = new Map();
+ const custom = readSource(key);
+ if (custom?.label === '自定义链接') sources.set(custom.url,[custom.label,'']);
  for (const [name,type,url] of [...event.sources,...(briefAdditionalSources[key]||[])]) {
   if (!sources.has(url)) sources.set(url,[type==='媒体报道'?mediaLabel(name):name,type]);
  }
@@ -394,7 +401,7 @@ function showBriefEvent(id) {
  activeBriefEvent=event.id;
  const [scope,category,date=event.date] = original?briefEventRecords[original.id]:[record.scope,record.category,record.date];
  const key = original?sourceKey(scope,date,category):id;
- eventSourceIndex.set(key,{...eventSourceIndex.get(key),scope,date,category});
+ eventSourceIndex.set(key,{...eventSourceIndex.get(key),scope,date,category,showPhoto:true});
  $('brief-detail-heading').textContent = event.title;
  const funding = event.funding ? fundingTimeline(event.funding) : '';
  const visual = renderEventPhoto(key,scope);
@@ -403,7 +410,22 @@ function showBriefEvent(id) {
  $('brief-detail-content').innerHTML = '<p class="brief-meta">'+esc(event.date)+' · '+esc(event.region)+' <span>'+esc(event.topic || '融资')+'</span></p>'+
   (event.summary?'<p class="brief-detail-summary">'+esc(event.summary)+'</p>':'')+(visual?'<div class="brief-detail-photo">'+visual+'</div>':'')+
   (details.length?'<section><h3>事件要点</h3>'+details.map(copy=>'<p>'+esc(copy)+'</p>').join('')+'</section>':'')+funding+
-  '<section><h3>参考资料</h3>'+(sources?'<ul class="brief-sources">'+sources+'</ul>':'')+'</section>';
+  '<section><div class="brief-source-head"><h3>参考资料</h3>'+btn('编辑链接或图片','source',key)+'</div>'+(sources?'<ul class="brief-sources">'+sources+'</ul>':'')+'</section>';
  if (!dialog.open) dialog.showModal();
  dialog.scrollTop=scrollTop;
 }
+
+document.getElementById('source').addEventListener('close',()=>{
+ if ($('brief-detail').open && activeBriefEvent) {
+  showBriefEvent(activeBriefEvent);
+  const row = document.querySelector('.brief-event[data-event-id="'+CSS.escape(activeBriefEvent)+'"]');
+  if (row) {
+   const event = findBriefEvent(activeBriefEvent);
+   const current = row.querySelector('.event-photo');
+   const photo = briefEventPhoto(event);
+   if (current) current.outerHTML = photo;
+   else if (photo) row.insertAdjacentHTML('afterbegin',photo);
+  }
+  $('brief-detail-content').querySelector('[data-action="source"]')?.focus({preventScroll:true});
+ }
+});

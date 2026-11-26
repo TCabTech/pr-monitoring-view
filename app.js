@@ -73,6 +73,10 @@ const data={
   stats:[['时的科技','2,542','1,111','+10.6%','15.3%','532','62'],['峰飞航空','6,592','2,434','−7.1%','39.6%','2,118','318'],['沃飞长空','5,348','2,294','−22.7%','32.1%','1,365','277'],['沃兰特','2,186','949','−40.5%','13.1%','599','204']]
  }
 };
+data['08'] = august2026.report;
+monthlyMedia['08'] = august2026.media;
+monthlySocial['08'] = august2026.social;
+Object.assign(eventSources, august2026.eventSources);
 data['11'] = november2026.report;
 monthlyMedia['11'] = november2026.media;
 monthlySocial['11'] = november2026.social;
@@ -85,7 +89,7 @@ for (const [key, additional] of Object.entries(archiveAdditions)) {
   (report.events[brand] ??= []).push(...rows);
  }
 }
-const companies={domestic:['时的科技','沃飞长空','峰飞航空','沃兰特','亿航智能'],overseas:['Joby','Archer','Vertical','BETA'],others:['齐飞航空','广汽高域','追梦空天','览翌航空','零重力','奇瑞','蓝霄航空','蓝色向量','御风未来','小鹏汇天','亿维特','华羽先翔']};
+const companies={domestic:['时的科技','沃飞长空','峰飞航空','沃兰特','亿航智能'],overseas:['Joby','Archer','Vertical','BETA'],others:['齐飞航空','广汽高域','追梦空天','览翌航空','零重力','奇瑞','蓝霄航空','蓝色向量','御风未来','小鹏汇天','亿维特','华羽先翔','倍飞智航']};
 const overseasOtherBrands = d => Object.keys(d.events).filter(brand =>
  d.events[brand].length && !Object.values(companies).some(brands => brands.includes(brand))
 );
@@ -116,7 +120,7 @@ function eventRow(date, html, category, scope, brand='', interactive=true){
  const source=readSource(key);
  eventSourceIndex.set(key,{scope,date,category,summary:html});
  const dateLabel=/^\d{2}\.\d{2}$/.test(date)?'<time datetime="'+year+'-'+date.replace('.','-')+'">'+esc(date)+'</time>':'<span class="event-date">'+esc(date)+'</span>';
- const detail=november2026.detailBySource[key]||key;
+ const detail=august2026.detailBySource[key]||november2026.detailBySource[key]||key;
  const photo=interactive?renderEventPhoto(key,scope,detail):reportEventPhoto(key);
  return '<li'+(photo?' class="with-photo"':'')+'>'+photo+dateLabel+'<p>'+(brand?'<span class="event-brand">'+esc(brand)+'</span>':'')+
  eventDescription(html,source,interactive?detail:'')+'</p>'+
@@ -128,7 +132,7 @@ function eventGroup(title, rows) {
 
 function overview(d){
  return '<div class="report-heading"><h1>'+Number(month)+'月舆情概览</h1><small>'+year+' 年 '+Number(month)+' 月'+(d.cutoff?' · '+esc(d.cutoff):'')+'</small></div>'+
- '<section class="overview-metrics" aria-labelledby="performance-heading"><h2 id="performance-heading">时的科技数据表现</h2><div class="metrics">'+d.metrics.map(([name,val,foot])=>'<article class="metric"><span>'+esc(name)+'</span><b>'+val+'</b><small>'+esc(foot)+'</small></article>').join('')+'</div>'+'<p class="footnote">'+overviewMetricsNote(d.stats.length)+'</p>'+'</section>'+overviewSummaries(d);
+ '<section class="overview-metrics" aria-labelledby="performance-heading"><h2 id="performance-heading">时的科技数据表现</h2><div class="metrics">'+d.metrics.map(([name,val,foot])=>'<article class="metric"><span>'+esc(name)+'</span><b>'+val+'</b><small>'+esc(foot)+'</small></article>').join('')+'</div>'+'<p class="footnote">'+overviewMetricsNote(d.stats.length,month)+'</p>'+'</section>'+overviewSummaries(d);
 }
 function overviewSummaries(d){
  return '<div class="summary-grid">'+(d.summaries.length?d.summaries.map(([label,destination,paragraphs])=>
@@ -154,20 +158,21 @@ const brandLogos={'时的科技':'tcab','亿航智能':'ehang','峰飞航空':'a
 const numeric = value => Number(value.replaceAll(',','').replace('%','').replace('−','-'));
 function comparison(d){
  if (!d.stats.length) return '<section class="card monitor-block" id="voice"><div class="card-head"><h2>声量对比</h2><span class="muted">—</span></div></section>';
- const rows=d.stats.filter(([brand])=>monitoredBrands.has(brand)).sort((a,b)=>numeric(b[4])-numeric(a[4]));
- const largestChange=Math.max(...Object.values(data).flatMap(report=>report.stats.map(row=>Math.abs(numeric(row[3])))));
+ const isAugust=month==='08';
+ const rows=(isAugust?d.stats.map(([brand,total,share])=>[brand,total,'','',share]):d.stats.filter(([brand])=>monitoredBrands.has(brand))).sort((a,b)=>numeric(b[4])-numeric(a[4]));
+ const largestChange=Math.max(...Object.entries(data).filter(([edition])=>edition!=='08').flatMap(([,report])=>report.stats.map(row=>Math.abs(numeric(row[3])))));
  const limit=Math.ceil(largestChange/25)*25 || 25;
  const axis=(labels)=>'<div class="chart-axis" aria-hidden="true"><div>'+labels.map(label=>'<span>'+label+'</span>').join('')+'</div></div>';
  const shareRows=rows.map(row=>'<div class="bar-row'+(row[0]==='时的科技'?' own':'')+'"><span>'+esc(row[0])+'</span><div class="bar-track" aria-hidden="true"><i style="width:'+numeric(row[4])+'%"></i></div><strong>'+esc(row[4])+'</strong></div>').join('');
- const growthRows=rows.map(row=>{
+ const growthRows=(isAugust?[]:rows).map(row=>{
   const value=numeric(row[3]);
   const width=Math.abs(value)/limit*50;
   return '<div class="bar-row"><span>'+esc(row[0])+'</span><div class="growth-track" aria-hidden="true"><i class="'+(value<0?'negative':'positive')+'" style="width:'+width+'%"></i></div><strong class="'+(value<0?'negative-text':'positive-text')+'">'+esc(row[3])+'</strong></div>';
  }).join('');
- return '<section class="card monitor-block" id="voice"><div class="card-head"><h2>声量对比</h2><span class="muted">国内四品牌</span></div>'+
+ return '<section class="card monitor-block" id="voice"><div class="card-head"><h2>声量对比</h2><span class="muted">'+(isAugust?'国内五品牌':'国内四品牌')+'</span></div>'+
  '<p class="voice-summary">'+d.voiceSummary+'</p>'+
- '<div class="voice-charts"><figure><figcaption>声量份额</figcaption>'+shareRows+axis(['0%','50%','100%'])+'</figure><figure><figcaption>内容量环比</figcaption>'+growthRows+axis(['−'+limit+'%','0%','+'+limit+'%'])+'</figure></div>'+
- '<details class="coverage"><summary>查看数据明细</summary>'+table(['品牌','监测内容量','相似文章合并后','环比','四家声量份额','媒体内容量','中性／敏感信息量'],rows)+'</details>'+
+ '<div class="voice-charts'+(isAugust?' voice-charts-single':'')+'"><figure><figcaption>声量份额</figcaption>'+shareRows+axis(['0%','50%','100%'])+'</figure>'+(isAugust?'':'<figure><figcaption>内容量环比</figcaption>'+growthRows+axis(['−'+limit+'%','0%','+'+limit+'%'])+'</figure>')+'</div>'+
+ '<details class="coverage"><summary>查看数据明细</summary>'+(isAugust?table(['品牌','监测内容量','声量份额','媒体内容量','媒体占全网内容量','敏感信息量'],d.stats):table(['品牌','监测内容量','相似文章合并后','环比','四家声量份额','媒体内容量','中性／敏感信息量'],rows))+'</details>'+
  '<p class="footnote">数据来源：新浪舆情通</p></section>';
 }
 function articleLink(label,url,css=''){
@@ -178,7 +183,7 @@ function mediaLabel(name){
  return name.split(' · ')[0].split('（')[0];
 }
 function coverage(reportMonth){
- const cards=monthlyMedia[reportMonth].filter(([brand])=>monitoredBrands.has(brand)).map(([brand,names,copy])=>{
+ const cards=monthlyMedia[reportMonth].filter(([brand])=>reportMonth==='08'||monitoredBrands.has(brand)).map(([brand,names,copy])=>{
   const chips=list=>list.map(item=>{
    const [name,url]=Array.isArray(item)?item:[item,mediaArticles[brand]?.[item]];
    const label=mediaLabel(name);
@@ -237,7 +242,7 @@ function autoflightLinkedInGallery(reportMonth){
   }).join('')+'</div></details>';
 }
 function socialCoverage(reportMonth){
- const social=monthlySocial[reportMonth].filter(([brand])=>monitoredBrands.has(brand));
+ const social=monthlySocial[reportMonth].filter(([brand])=>reportMonth==='08'||monitoredBrands.has(brand));
  const columns=['品牌','公众号','视频号','领英','抖音','小红书','主要内容'];
  const max=Math.max(1,...social.flatMap(row=>row.slice(1,6).map(x=>Number(x)||0)));
  const rows=social.map(([brand,...fields])=>{
@@ -247,8 +252,15 @@ function socialCoverage(reportMonth){
  return '<section class="card monitor-block" id="social"><div class="card-head"><h2>社媒发文</h2><span class="muted">2026 年 '+Number(reportMonth)+' 月</span></div>'+
   '<div class="table-wrap" tabindex="0" role="region" aria-label="社媒发文数据"><table class="social-table"><thead><tr>'+columns.map(label=>'<th scope="col">'+esc(label)+'</th>').join('')+'</tr></thead><tbody>'+rows+'</tbody></table></div>'+(reportMonth==='11'?'':'<p class="footnote">— 表示无发文或暂无统计。主要内容根据当月品牌动态归纳。</p>')+socialSamples(reportMonth)+autoflightLinkedInGallery(reportMonth)+'</section>';
 }
+function augustGeo(){
+ const rows=[['提及率','37.50%','66.18%'],['平均排名','6.60','4.71'],['Top 1','0%','13.24%'],['Top 3','5%','30.88%'],['Top 10','32.50%','61.76%']];
+ return '<section class="card monitor-block" id="geo"><h2>GEO 监测</h2>'+
+  table(['时的科技','优化前','优化后'],rows)+
+  '<p>本月内容覆盖 E20 供应链、商业化进展、上海低空产业布局、订单生态、适航审定与商业载人场景。</p></section>';
+}
+
 function propagation(d){
- return d===blankMonth ? '<section class="card">'+empty('所选月份暂无传播数据。')+'</section>' : comparison(d)+coverage(month)+socialCoverage(month);
+ return d===blankMonth ? '<section class="card">'+empty('所选月份暂无传播数据。')+'</section>' : comparison(d)+coverage(month)+socialCoverage(month)+(month==='08'?augustGeo():'');
 }
 function monitorPage(d){
  const sections=[['voice','声量对比'],['press','媒体报道'],['social','社媒发文']];

@@ -515,3 +515,5 @@ img[src$="november-easa-moc.webp"] { object-view-box: inset(14.95% 5.35% 10.65% 
 .social-sample-grid img[src$="autoflight-apec.webp"] { object-view-box: inset(0 0 0 2.35%); }
 .social-sample-grid img[src$="tcab-routes.webp"] { object-view-box: inset(0 0 .95%); }
 .linkedin-samples small { display: block; }
+
+.voice-charts.voice-charts-single { grid-template-columns: minmax(0, 1fr); }
