@@ -67,6 +67,5 @@ function octoberIoiMonitor(){
   '<dl class="ioi-metrics">'+[['海外媒体','30+ 家'],['海外媒体报道','50+ 条'],['政企相关方','8 家'],['相关方报道及推文','20+ 条']].map(([label,value])=>'<div><dt>'+label+'</dt><dd>'+value+'</dd></div>').join('')+
   '</dl><p>传播覆盖马来西亚主要中文、英文和马来文媒体。</p><h3>媒体报道与相关方传播</h3><ul class="ioi-media">'+coverage+'</ul>'+
   '<h3>KOL 投放与评论反馈</h3><div class="ioi-creators">'+cards+'</div>'+
-  '<p class="footnote">评论情感比例沿用原稿。Pandulaju 的 Facebook／Instagram 三项比例合计为 117%，原稿未注明统计口径差异。</p>'+
   '<details class="ioi-archive"><summary>查看原始汇报页和链接登记截图</summary><div class="ioi-slides">'+slides+'</div></details></section>';
 }
