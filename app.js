@@ -261,7 +261,7 @@ function augustGeo(){
 }
 
 function propagation(d){
- return d===blankMonth ? '<section class="card">'+empty('所选月份暂无传播数据。')+'</section>' : (month==='10'?'<section id="monthly-monitor"><h2>月度监测</h2>'+comparison(d)+coverage(month)+socialCoverage(month)+'</section>'+octoberIoiMonitor():comparison(d)+coverage(month)+socialCoverage(month)+(month==='08'?augustGeo():''));
+ return d===blankMonth ? '<section class="card">'+empty('所选月份暂无传播数据。')+'</section>' : (month==='10'?'<section id="monthly-monitor"><h2>月度监测</h2>'+comparison(d)+coverage(month)+socialCoverage(month)+'</section>'+octoberIoiMonitor()+octoberGeo():comparison(d)+coverage(month)+socialCoverage(month)+(month==='08'?augustGeo():''));
 }
 function monitorPage(d){
  const title=heading('传播监测');
@@ -273,6 +273,7 @@ function monitorPage(d){
  ];
  if(month==='10'&&typeof octoberIoiMonitor==='function')sections.push(['ioi','IOI 活动专题监测',octoberIoiMonitor]);
  if(month==='08')sections.push(['geo','GEO 监测',augustGeo]);
+ if(month==='10')sections.push(['geo','GEO 监测',octoberGeo]);
  const selection=sections.find(([id])=>id===activeMonitorSection)??sections[0];
  const tabs='<div class="company-tabs" role="group" aria-label="传播监测视图">'+
   sections.map(([id,label])=>'<button type="button" data-action="monitor-section" data-value="'+id+'" aria-pressed="'+(id===selection[0])+'">'+label+'</button>').join('')+'</div>';
@@ -351,7 +352,7 @@ function reports(){
    const attachments=monitoringReports[key]||[];
    return '<section class="history-row"><div class="history-month"><h3>'+label+'</h3>'+
     '<div class="report-actions">'+btn('查看月报','report-month',m,'button report-view')+
-    reportPdfLink('下载月报 PDF',key+'.pdf?v='+(key==='2026-11'?'a868-statement':key==='2026-08'||key==='2026-10'?'ioi-august-supplement':'competitor-cards'),'button upload-button report-download',key+'-舆情月报.pdf')+'</div></div>'+
+    reportPdfLink('下载月报 PDF',key+'.pdf?v='+(key==='2026-11'?'a868-statement':key==='2026-10'?'october-geo':key==='2026-08'?'ioi-august-supplement':'competitor-cards'),'button upload-button report-download',key+'-舆情月报.pdf')+'</div></div>'+
     '<details class="monitoring-archive"><summary>新浪舆情通原始报告</summary>'+
     (attachments.length?'<ul>'+attachments.map(([brand,slug])=>{
      const path='yqt/'+key+'/'+slug+'.pdf';

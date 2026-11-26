@@ -1,22 +1,6 @@
 'use strict';
 
 const octoberIoi = {
- media:[
-  ['马新社 BERNAMA','10.09','E20 首展与商业化合作','https://web26.bernama.com/en/business/news.php?id=2617572'],
-  ['南洋商报','10.09','马来西亚市场专访'],
-  ['星洲日报','10.09','时的科技与 SIDEC 合作','https://www.sinchew.com.my/news/20261009/nation/7929052'],
-  ['东方日报','10.09','E20 首展与安全议题','https://www.orientaldaily.com.my/news/central/2026/10/09/854038'],
-  ['当今大马','10.09','E20 首展与合作备忘录'],
-  ['Digital News Asia','10.09','E20 首展与合作备忘录','https://www.digitalnewsasia.com/digital-economy/malaysians-get-first-look-five-seat-flying-taxi-sidec-and-tcab-tech-sign-mou'],
-  ['The Star','10.10','雪兰莪布局电动航空','https://www.thestar.com.my/metro/metro-news/2026/10/10/sgor-eyes-electric-aviation'],
-  ['eVTOL Insights','10.12','时的科技与 SIDEC 探索 E20 商业化','https://evtolinsights.com/tcab-tech-and-sidec-sign-mou-to-explore-e20-evtol-commercialisation-in-malaysia/'],
-  ['Urban Air Mobility News','10.13','时的科技与 SIDEC 推进 AAM 项目','https://www.urbanairmobilitynews.com/uam-infrastructure/tcab-tech-and-sidec-partner-to-advanced-aam-projects-in-malaysia/'],
-  ['VoltDigest','10.13','时的科技与 SIDEC 探索 E20 商业化','https://voltdigest.com/news/1188-tcab-tech-and-sidec-sign-mou-to-explore-e20-evtol-commercialisation-in-malaysia'],
-  ['AeroTime','10.14','E20 商业化与区域合作'],
-  ['The Edge','10.15','SIDEC 与 NCT 的机器人制造产业合作'],
-  ['Astro Awani','10.25','AWANI Review 创始人专访','https://international.astroawani.com/video/awani-review-flying-taxis-malaysian-founders-push-bring-them-market'],
-  ['时的科技官网','10.09','首展及与 SIDEC 合作备忘录','https://www.tcabtech.com/en/tcab-tech-sidec-mou-e20-evtol-commercialization-malaysia-southeast-asia/']
- ],
  creators:[
   {name:'Pandulaju / Abang Gan YL',total:'100.7 万',cpm:'RM 10.7',cpe:'RM 0.36',breakdown:'Instagram 38.1 万、Facebook 37 万、TikTok 25.6 万，超过承诺保底播放量的 5 倍。',
    comments:[
@@ -57,7 +41,6 @@ function octoberIoiMonitor(){
    comments.map(([platform,positive,neutral,negative,topics])=>'<section><h4>'+esc(platform)+'</h4><p>'+
    (positive==='—'?'':esc('正面 '+positive+' · 中性 '+neutral+' · 负面 '+negative)+'<br>')+esc(topics)+'</p></section>').join('')+
    '</div></details></article>').join('');
- const coverage=octoberIoi.media.map(([outlet,date,title,url])=>'<li><time datetime="2026-'+date.replace('.','-')+'">'+esc(date)+'</time><strong>'+esc(outlet)+'</strong><span>'+(url?articleLink(title,url):esc(title))+'</span></li>').join('');
  const slides=octoberIoi.slides.map(([label,file])=>{
   const path='event-photos/ioi-2026-'+file+'.webp';
   return '<figure><a href="'+path+'" target="_blank" rel="noopener"><img src="'+path+'" alt="'+esc(label)+'原始截图" loading="lazy"><figcaption>'+esc(label)+'</figcaption></a></figure>';
@@ -65,7 +48,7 @@ function octoberIoiMonitor(){
  return '<section class="card monitor-block ioi-monitor" id="ioi"><h2>IOI 活动专题监测</h2>'+
   '<p>马来西亚 IOI City Mall E20 展示 · 媒体统计截至 11 月 3 日，KOL 投放统计截至 10 月 26 日。</p>'+
   '<dl class="ioi-metrics">'+[['海外媒体','30+ 家'],['海外媒体报道','50+ 条'],['政企相关方','8 家'],['相关方报道及推文','20+ 条']].map(([label,value])=>'<div><dt>'+label+'</dt><dd>'+value+'</dd></div>').join('')+
-  '</dl><p>传播覆盖马来西亚主要中文、英文和马来文媒体。</p><h3>媒体报道与相关方传播</h3><ul class="ioi-media">'+coverage+'</ul>'+
+  '</dl><p>传播覆盖马来西亚主要中文、英文和马来文媒体。</p>'+
   '<h3>KOL 投放与评论反馈</h3><div class="ioi-creators">'+cards+'</div>'+
   '<details class="ioi-archive"><summary>查看原始汇报页和链接登记截图</summary><div class="ioi-slides">'+slides+'</div></details></section>';
 }
