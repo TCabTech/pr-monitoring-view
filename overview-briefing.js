@@ -368,6 +368,13 @@ function briefSources(event,key) {
  return [...sources];
 }
 
+function privateEventEditorUrl(key) {
+ const editorUrl = new URL('https://tcab-report-draft-mwsw9fvs.jazzy-squid-3481.chatgpt.site/');
+ editorUrl.searchParams.set('month',key.split('|')[0]);
+ editorUrl.searchParams.set('editSource',key);
+ return editorUrl.href;
+}
+
 function briefSourceList(event,key) {
  return briefSources(event,key).map(([url,[name,type]])=>'<li>'+articleLink(name,url)+(type?'<span>'+esc(type)+'</span>':'')+'</li>').join('');
 }
@@ -410,7 +417,7 @@ function showBriefEvent(id) {
  $('brief-detail-content').innerHTML = '<p class="brief-meta">'+esc(event.date)+' · '+esc(event.region)+' <span>'+esc(event.topic || '融资')+'</span></p>'+
   (event.summary?'<p class="brief-detail-summary">'+esc(event.summary)+'</p>':'')+(visual?'<div class="brief-detail-photo">'+visual+'</div>':'')+
   (details.length?'<section><h3>事件要点</h3>'+details.map(copy=>'<p>'+esc(copy)+'</p>').join('')+'</section>':'')+funding+
-  '<section><div class="brief-source-head"><h3>参考资料</h3>'+btn('编辑链接或图片','source',key)+'</div>'+(sources?'<ul class="brief-sources">'+sources+'</ul>':'')+'</section>';
+  '<section><div class="brief-source-head"><h3>参考资料</h3>'+articleLink('在私有工作台编辑',privateEventEditorUrl(key),'link')+'</div>'+(sources?'<ul class="brief-sources">'+sources+'</ul>':'')+'</section>';
  if (!dialog.open) dialog.showModal();
  dialog.scrollTop=scrollTop;
 }
