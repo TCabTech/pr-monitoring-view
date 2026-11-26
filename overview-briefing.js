@@ -259,6 +259,10 @@ function judgmentParagraphs(judgment){
  return judgment.regions.map(([region,copy])=>'<p><strong>'+esc(region)+'</strong> '+esc(copy)+'</p>').join('');
 }
 
+function overviewMetricsNote(hasData) {
+ return (hasData?'数据来源：新浪舆情通<br>':'')+'备注：品牌声量占比以时的科技、沃飞长空、峰飞航空和沃兰特四家品牌的总声量为分母。';
+}
+
 function overviewBriefing(d) {
  const edition = year === 2026 ? editions[month] : undefined;
  if (!edition) return overview(d);
@@ -272,7 +276,7 @@ function overviewBriefing(d) {
   '<div class="brief-judgment">'+judgmentParagraphs(judgment)+'</div></div>'+
   '<figure><img src="event-photos/'+esc(edition.photo)+'" alt="'+esc(edition.photoAlt)+'" width="640" height="360"><figcaption>'+articleLink('图源 · '+edition.photoCredit,edition.photoUrl)+'</figcaption></figure></section>'+
   '<div class="brief-columns"><section class="brief-events"><h2>本月重点事件</h2><ul>'+items+'</ul></section>'+
-  '<section class="brief-metrics"><h2>时的科技数据表现</h2><dl>'+d.metrics.map(([name,value,_,label])=>'<div><dt>'+esc(name)+(label?'<small>（'+esc(label)+'）</small>':'')+'</dt><dd>'+esc(value)+'</dd></div>').join('')+'</dl>'+(d.stats.length?'<p>数据来源：新浪舆情通</p>':'')+'</section></div></div>';
+  '<section class="brief-metrics"><h2>时的科技数据表现</h2><dl>'+d.metrics.map(([name,value])=>'<div><dt>'+esc(name)+'</dt><dd>'+esc(value)+'</dd></div>').join('')+'</dl>'+'<p>'+overviewMetricsNote(d.stats.length)+'</p>'+'</section></div></div>';
 }
 
 function reportOverview(d) {

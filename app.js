@@ -128,7 +128,7 @@ function eventGroup(title, rows) {
 
 function overview(d){
  return '<div class="report-heading"><h1>'+Number(month)+'月舆情概览</h1><small>'+year+' 年 '+Number(month)+' 月'+(d.cutoff?' · '+esc(d.cutoff):'')+'</small></div>'+
- '<section class="overview-metrics" aria-labelledby="performance-heading"><h2 id="performance-heading">时的科技数据表现</h2><div class="metrics">'+d.metrics.map(([name,val,foot,detail])=>'<article class="metric"><span>'+esc(name)+(detail?'<span class="metric-detail">（'+esc(detail)+'）</span>':'')+'</span><b>'+val+'</b><small>'+esc(foot)+'</small></article>').join('')+'</div></section>'+overviewSummaries(d)+(d.stats.length?'<p class="footnote">数据来源：新浪舆情通</p>':'');
+ '<section class="overview-metrics" aria-labelledby="performance-heading"><h2 id="performance-heading">时的科技数据表现</h2><div class="metrics">'+d.metrics.map(([name,val,foot])=>'<article class="metric"><span>'+esc(name)+'</span><b>'+val+'</b><small>'+esc(foot)+'</small></article>').join('')+'</div>'+'<p class="footnote">'+overviewMetricsNote(d.stats.length)+'</p>'+'</section>'+overviewSummaries(d);
 }
 function overviewSummaries(d){
  return '<div class="summary-grid">'+(d.summaries.length?d.summaries.map(([label,destination,paragraphs])=>
