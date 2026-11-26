@@ -250,20 +250,16 @@ Object.assign(eventPhotos, {
   "article": "https://www.catl.com/news/10367.html"
  },
  "2026-11|时的科技|11.09|品牌传播": {
-  "file": "event-photos/article-tcab-talent.webp",
-  "article": "/social-samples/november-2026/tcab-talent.webp"
+  "file": "event-photos/article-tcab-talent.webp"
  },
  "2026-11|时的科技|11.23|品牌传播": {
-  "file": "event-photos/article-tcab-routes.webp",
-  "article": "/social-samples/november-2026/tcab-routes.webp"
+  "file": "event-photos/article-tcab-routes.webp"
  },
  "2026-11|沃飞长空|11.18|品牌传播": {
-  "file": "event-photos/article-aerofugia-wechat.webp",
-  "article": "/social-samples/november-2026/aerofugia-wechat.webp"
+  "file": "event-photos/article-aerofugia-wechat.webp"
  },
  "2026-11|亿航智能|11.03–11.05|品牌传播": {
-  "file": "event-photos/article-ehang-barcelona.webp",
-  "article": "/social-samples/november-2026/ehang-barcelona.webp"
+  "file": "event-photos/article-ehang-barcelona.webp"
  },
  "2026-11|Vertical|11.23|适航与技术": {
   "file": "event-photos/article-vertical-powercentre.webp",
@@ -305,8 +301,7 @@ Object.assign(eventPhotos, {
  "2026-11|国际|11.09|监管准备": {"file": "event-photos/cover-thailand-caat.webp", "article": "https://www.caat.or.th/caat-media/221899/", "alt": "泰国民航局先进空中交通资料图"},
  "2026-10|国际|10.22|监管标准": {"file": "event-photos/cover-us-dot.webp", "article": "https://www.faa.gov/newsroom/faa-releases-draft-design-standards-vertical-flight-facilities", "alt": "美国交通部标识"},
  "2026-09|国内|09.08|地方政策": {"file": "event-photos/cover-hangzhou-policy.webp", "article": "https://www.thepaper.cn/newsDetail_forward_34103463", "alt": "杭州低空经济政策征求意见公告截图"},
- "2026-09|沃飞长空|09.15|品牌传播": {"file": "social-samples/aerofugia-september.webp", "alt": "沃飞长空《飞行试验室》原帖截图", "article": "https://mp.weixin.qq.com/s/3JEnWb65-nnvV8rlGwj1zg"},
- "2026-10|沃飞长空|10.14–19|品牌传播": {"file": "social-samples/aerofugia.webp", "alt": "沃飞长空赛博财经联动发文截图"},
+ "2026-09|沃飞长空|09.15|品牌传播": {"article": "https://mp.weixin.qq.com/s/3JEnWb65-nnvV8rlGwj1zg"},
  "2026-09|追梦空天|09.03|资本与经营": {"file": "event-photos/cover-dreamfly-df600.webp", "article": "https://www.parkworld.net/Post/8ddcc814b9cb3bd", "alt": "追梦空天 DF600 系列机型资料图"},
  "2026-09|蓝色向量|9月 · 数贸会|订单与合作": {"file": "event-photos/cover-skyla-v30.webp", "article": "https://www.ceweekly.cn/finance/macro/2026/0924/500793.html", "alt": "第五届数贸会上的 SKYLA V30"},
  "2026-09|Joby|09.25|品牌传播": {"file": "event-photos/event-40.webp", "article": "https://www.jobyaviation.com/news/joby-completes-first-ever-fully-autonomous-flight-across-the-united-states", "alt": "Joby J208 跨美国自主飞行资料图"},
