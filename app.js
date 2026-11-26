@@ -534,20 +534,49 @@ document.addEventListener('click',e=>{if(!$('monthPicker').hidden&&!e.target.clo
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('monthPicker').hidden){e.preventDefault();closePicker(true)}});
 
 
-if(typeof fetch==='function' && typeof document.baseURI==='string'){
- fetch(new URL('published-photos.json',document.baseURI),{cache:'no-cache'})
-  .then(reply=>reply.ok?reply.json():null)
-  .then(photos=>{
-   if(!photos||typeof photos!=='object'||Array.isArray(photos))return;
-   for(const [key,photo] of Object.entries(photos)){
-    const match=typeof photo==='string'&&photo.match(/^data:(image\/(?:webp|png));base64,([A-Za-z0-9+/]+={0,2})$/);
-    if(!match)continue;
+let loadedPhotoManifest='';
+let loadingPhotoManifest=false;
+async function refreshPublishedPhotos(){
+ if(loadingPhotoManifest)return;
+ loadingPhotoManifest=true;
+ try{
+  const url=new URL('published-photos.json',document.baseURI);
+  url.searchParams.set('refresh',String(Math.floor(Date.now()/30000)));
+  const reply=await fetch(url,{cache:'no-store'});
+  if(!reply.ok)return;
+  const manifest=await reply.text();
+  if(manifest===loadedPhotoManifest)return;
+  const photos=JSON.parse(manifest);
+  if(!photos||typeof photos!=='object'||Array.isArray(photos))return;
+  const next=new Map();
+  for(const [key,photo] of Object.entries(photos)){
+   const match=typeof photo==='string'&&photo.match(/^data:(image\/(?:webp|png));base64,([A-Za-z0-9+/]+={0,2})$/);
+   if(!match)continue;
+   try{
     const bytes=Uint8Array.from(atob(match[2]),char=>char.charCodeAt(0));
-    publishedPhotos.set(key,URL.createObjectURL(new Blob([bytes],{type:match[1]})));
-   }
-   render();
-  })
-  .catch(()=>{});
+    next.set(key,URL.createObjectURL(new Blob([bytes],{type:match[1]})));
+   }catch{}
+  }
+  const previous=[...publishedPhotos.values()];
+  publishedPhotos.clear();
+  for(const [key,url] of next)publishedPhotos.set(key,url);
+  loadedPhotoManifest=manifest;
+  render();
+  if($('brief-detail')?.open&&typeof activeBriefEvent==='string'&&activeBriefEvent)showBriefEvent(activeBriefEvent);
+  for(const url of previous)URL.revokeObjectURL(url);
+ }catch{}finally{
+  loadingPhotoManifest=false;
+ }
+}
+
+if(typeof fetch==='function' && typeof document.baseURI==='string'){
+ refreshPublishedPhotos();
+ document.addEventListener('visibilitychange',()=>{
+  if(document.visibilityState==='visible')refreshPublishedPhotos();
+ });
+ window.addEventListener('pageshow',event=>{
+  if(event.persisted)refreshPublishedPhotos();
+ });
  fetch(new URL('published-links.json',document.baseURI),{cache:'no-cache'})
   .then(reply=>reply.ok?reply.json():null)
   .then(links=>{
