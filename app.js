@@ -374,16 +374,18 @@ function monthlyReport(d){
   section('传播监测',propagation(d));
 }
 
+const publishedPhotos=new Map();
 function renderEventPhoto(key,brand,detail){
  const visual=eventPhotoMarkup(key,brand);
  if(detail)return '<button type="button" class="event-photo" data-action="brief-event" data-value="'+esc(detail)+'" aria-label="'+esc(brand)+' · 查看事件详情">'+visual+'</button>';
  const isImage=visual.startsWith('<img');
- const imageUrl=isImage?eventPhotos[key]?.file:null;
+ const imageUrl=isImage?(publishedPhotos.get(key)||eventPhotos[key]?.file):null;
  return imageUrl?'<a class="event-photo detail-media" href="'+esc(imageUrl)+'" target="_blank" rel="noopener noreferrer" aria-label="'+esc(brand)+' · 查看原图">'+visual+'</a>':
   '<div class="event-photo detail-media">'+visual+'</div>';
 }
 function eventPhotoMarkup(key,alt=''){
- const photo=eventPhotos[key];
+ const custom=publishedPhotos.get(key);
+ const photo=custom?{file:custom}:eventPhotos[key];
  if(photo?.file&&!photo.alt?.endsWith('资料卡')&&!photo.alt?.endsWith('标识')){
   const description=photo.alt||alt;
   const caption=description.endsWith('资料图')?'<small class="event-photo-caption">资料图</small>':'';
@@ -533,6 +535,19 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('monthPicker').h
 
 
 if(typeof fetch==='function' && typeof document.baseURI==='string'){
+ fetch(new URL('published-photos.json',document.baseURI),{cache:'no-cache'})
+  .then(reply=>reply.ok?reply.json():null)
+  .then(photos=>{
+   if(!photos||typeof photos!=='object'||Array.isArray(photos))return;
+   for(const [key,photo] of Object.entries(photos)){
+    const match=typeof photo==='string'&&photo.match(/^data:(image\/(?:webp|png));base64,([A-Za-z0-9+/]+={0,2})$/);
+    if(!match)continue;
+    const bytes=Uint8Array.from(atob(match[2]),char=>char.charCodeAt(0));
+    publishedPhotos.set(key,URL.createObjectURL(new Blob([bytes],{type:match[1]})));
+   }
+   render();
+  })
+  .catch(()=>{});
  fetch(new URL('published-links.json',document.baseURI),{cache:'no-cache'})
   .then(reply=>reply.ok?reply.json():null)
   .then(links=>{
