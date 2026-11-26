@@ -152,8 +152,8 @@ function industry(d,selectedRegion=region,showControls=true){
  (showControls?'<div class="controls">'+segmented('地区','region',{all:'全部',国际:'海外',国内:'国内'},selectedRegion)+'</div>':'')+
  '<section class="card">'+(groups||empty('本月暂无此地区的行业事件。'))+'</section>';
 }
-function table(columns, rows){
- return '<div class="table-wrap" tabindex="0" role="region" aria-label="声量数据明细"><table><thead><tr>'+columns.map(label=>'<th scope="col">'+esc(label)+'</th>').join('')+'</tr></thead><tbody>'+rows.map(row=>'<tr>'+row.map(cell=>'<td>'+esc(cell)+'</td>').join('')+'</tr>').join('')+'</tbody></table></div>';
+function table(columns, rows, label='声量数据明细'){
+ return '<div class="table-wrap" tabindex="0" role="region" aria-label="'+esc(label)+'"><table><thead><tr>'+columns.map(label=>'<th scope="col">'+esc(label)+'</th>').join('')+'</tr></thead><tbody>'+rows.map(row=>'<tr>'+row.map(cell=>'<td>'+esc(cell)+'</td>').join('')+'</tr>').join('')+'</tbody></table></div>';
 }
 const brandLogos={'时的科技':'tcab','亿航智能':'ehang','峰飞航空':'autoflight','沃飞长空':'aerofugia','沃兰特':'volant',Joby:'joby',Archer:'archer',Vertical:'vertical',BETA:'beta'};
 const numeric = value => Number(value.replaceAll(',','').replace('%','').replace('−','-'));
@@ -195,53 +195,6 @@ function coverage(reportMonth){
  }).join('');
  return '<section class="card monitor-block" id="press"><div class="card-head"><h2>媒体报道</h2><span class="muted">2026 年 '+Number(reportMonth)+' 月</span></div><div class="coverage-grid">'+cards+'</div></section>';
 }
-const monthlySocialSamples = {
- '09': [['沃飞长空','《如何养飞机更省心》','aerofugia-september',eventSources['2026-09|沃飞长空|09.15|品牌传播'].url]],
- '10': [
-  ['峰飞航空','广交会参展帖','autoflight'],
-  ['沃飞长空','赛博财经联动','aerofugia'],
-  ['沃兰特','AC102试飞视频','volant'],
-  ['时的科技','E20马来西亚首展海报','tcab']
- ],
- '11': [
-  ['峰飞航空','11.06 · 斯坦福校友参访与五机编队','november-2026/autoflight-formation'],
-  ['峰飞航空','11.25 · 亚太 eVTOL 出行展望','november-2026/autoflight-apec'],
-  ['时的科技','11.09 · UniKL MIAT 航空职业交流','november-2026/tcab-talent'],
-  ['时的科技','11.23 · E20 马来西亚区域出行场景','november-2026/tcab-routes']
- ]
-};
-function socialSamples(reportMonth){
- const samples=monthlySocialSamples[reportMonth];
- if(!samples)return '';
- return '<details class="social-samples"><summary>查看当月发文截图</summary><div class="social-sample-grid">'+samples.filter(([brand])=>monitoredBrands.has(brand)).map(([brand,topic,file,url])=>{
-  const src='social-samples/'+file+'.webp';
-  const label=brand+' · '+topic;
-  return '<figure><a href="'+src+'" target="_blank" rel="noopener" aria-label="'+esc('查看截图 · '+label)+'"><img src="'+src+'" alt="'+esc(label)+'" decoding="async"></a><figcaption>'+(url?articleLink(label,url):esc(label))+'</figcaption></figure>';
- }).join('')+'</div></details>';
-}
-const autoflightLinkedInScreenshots = {
- '09': [
-  ['09.18','适航取证的重要性', '09-18', true],
-  ['09.25','峰飞 eVTOL 亮相宁德时代挪威服务中心', '09-25', true]
- ],
- '10': [
-  ['10.21','峰飞与 Sunway 探索马来西亚电动航空合作', '10-21', true],
-  ['10.27','国际熊猫日：低空运输鲜竹', '10-27', false]
- ]
-};
-
-function autoflightLinkedInGallery(reportMonth){
- const posts=autoflightLinkedInScreenshots[reportMonth];
- if(!posts)return '';
- return '<details class="social-samples linkedin-samples"><summary>峰飞航空 LinkedIn 发帖截图（'+posts.length+' 条已存档）</summary>'+
-  '<p class="footnote">按原帖发布日期归档。点击图片可查看原尺寸。</p>'+
-  '<div class="social-sample-grid">'+posts.map(([date,title,file,excerpt])=>{
-   const src='social-samples/autoflight-linkedin/'+file+'.png';
-   const label=date+' · '+title;
-   return '<figure><a href="'+src+'" target="_blank" rel="noopener" aria-label="'+esc('查看截图 · '+label)+'"><img src="'+src+'" alt="'+esc(label)+'" loading="lazy"></a><figcaption>'+
-    esc(label)+(excerpt?'<small>原截图正文未展开</small>':'')+'</figcaption></figure>';
-  }).join('')+'</div></details>';
-}
 function socialCoverage(reportMonth){
  const social=monthlySocial[reportMonth].filter(([brand])=>reportMonth==='08'||monitoredBrands.has(brand));
  const columns=['品牌','公众号','视频号','领英','抖音','小红书','主要内容'];
@@ -251,7 +204,7 @@ function socialCoverage(reportMonth){
   return '<tr><th scope="row">'+esc(brand)+'</th>'+fields.map(value=>'<td class="heat-cell">'+(!value?'<span class="muted" aria-label="无发文或暂无统计">—</span>':'<strong style="--heat:'+(0.07+Number(value)/max*0.23).toFixed(3)+'">'+esc(value)+'</strong>')+'</td>').join('')+'<td>'+esc(theme)+'</td></tr>';
  }).join('');
  return '<section class="card monitor-block" id="social"><div class="card-head"><h2>社媒发文</h2><span class="muted">2026 年 '+Number(reportMonth)+' 月</span></div>'+
-  '<div class="table-wrap" tabindex="0" role="region" aria-label="社媒发文数据"><table class="social-table"><thead><tr>'+columns.map(label=>'<th scope="col">'+esc(label)+'</th>').join('')+'</tr></thead><tbody>'+rows+'</tbody></table></div>'+(reportMonth==='11'?'':'<p class="footnote">— 表示无发文或暂无统计。主要内容根据当月品牌动态归纳。</p>')+socialSamples(reportMonth)+autoflightLinkedInGallery(reportMonth)+'</section>';
+  '<div class="table-wrap" tabindex="0" role="region" aria-label="社媒发文数据"><table class="social-table"><thead><tr>'+columns.map(label=>'<th scope="col">'+esc(label)+'</th>').join('')+'</tr></thead><tbody>'+rows+'</tbody></table></div>'+(reportMonth==='11'?'':'<p class="footnote">— 表示无发文或暂无统计。主要内容根据当月品牌动态归纳。</p>')+(reportMonth==='09'?'<p>'+articleLink('沃飞长空｜如何养飞机更省心',eventSources['2026-09|沃飞长空|09.15|品牌传播'].url)+'</p>':'')+'</section>';
 }
 function augustGeo(){
  const rows=[['提及率','37.50%','66.18%'],['平均排名','6.60','4.71'],['Top 1','0%','13.24%'],['Top 3','5%','30.88%'],['Top 10','32.50%','61.76%']];

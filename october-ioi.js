@@ -27,8 +27,7 @@ const octoberIoi = {
     ['10.15','Facebook','E20 展示短片','https://www.facebook.com/share/r/1Dci4fSg6D/'],
     ['10.15','Instagram','E20 展示短片','https://www.instagram.com/p/DegVAe2S2XG/']
    ]}
- ],
- slides:[['覆盖总览','media'],['Pandulaju 投放与评论','pandulaju'],['JR Song 投放与评论','jr-song'],['KOL 原帖登记','posts']]
+ ]
 };
 
 function octoberIoiMonitor(){
@@ -41,14 +40,9 @@ function octoberIoiMonitor(){
    comments.map(([platform,positive,neutral,negative,topics])=>'<section><h4>'+esc(platform)+'</h4><p>'+
    (positive==='—'?'':esc('正面 '+positive+' · 中性 '+neutral+' · 负面 '+negative)+'<br>')+esc(topics)+'</p></section>').join('')+
    '</div></details></article>').join('');
- const slides=octoberIoi.slides.map(([label,file])=>{
-  const path='event-photos/ioi-2026-'+file+'.webp';
-  return '<figure><a href="'+path+'" target="_blank" rel="noopener"><img src="'+path+'" alt="'+esc(label)+'原始截图" loading="lazy"><figcaption>'+esc(label)+'</figcaption></a></figure>';
- }).join('');
  return '<section class="card monitor-block ioi-monitor" id="ioi"><h2>IOI 活动专题监测</h2>'+
   '<p>马来西亚 IOI City Mall E20 展示 · 媒体统计截至 11 月 3 日，KOL 投放统计截至 10 月 26 日。</p>'+
   '<dl class="ioi-metrics">'+[['海外媒体','30+ 家'],['海外媒体报道','50+ 条'],['政企相关方','8 家'],['相关方报道及推文','20+ 条']].map(([label,value])=>'<div><dt>'+label+'</dt><dd>'+value+'</dd></div>').join('')+
   '</dl><p>传播覆盖马来西亚主要中文、英文和马来文媒体。</p>'+
-  '<h3>KOL 投放与评论反馈</h3><div class="ioi-creators">'+cards+'</div>'+
-  '<details class="ioi-archive"><summary>查看原始汇报页和链接登记截图</summary><div class="ioi-slides">'+slides+'</div></details></section>';
+  '<h3>KOL 投放与评论反馈</h3><div class="ioi-creators">'+cards+'</div>'+'</section>';
 }
