@@ -122,39 +122,32 @@
 #brief-detail-content section { margin-top: 18px; }
 #brief-detail-content h3 { margin: 0 0 6px; font-size: 1.08rem; }
 #brief-detail-content p { margin: 0 0 8px; }
-.brief-detail-photo { width: 100%; min-width: 0; margin: 14px auto 0; }
+.brief-detail-photo { width: min(100%, 36rem, 80svh); min-width: 0; margin: 14px auto 0; }
 .brief-detail-photo .detail-media {
   width: 100%;
   margin: 0;
-  aspect-ratio: auto;
+  aspect-ratio: 16 / 9;
   min-height: 0;
   background: transparent;
 }
 .brief-detail-photo .detail-media img {
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: min(70svh, 620px);
-  margin-inline: auto;
   object-fit: contain;
 }
-.brief-detail-photo .industry-cover-card {
-  height: auto;
+.brief-detail-photo .event-cover-card {
   padding: 7px;
 }
-.brief-detail-photo .industry-cover-sheet {
+.brief-detail-photo .event-cover-sheet {
   gap: 4px;
   padding: 8px 10px;
 }
-.brief-detail-photo .industry-cover-card small { font-size: .75rem; }
-.brief-detail-photo .industry-cover-card b {
+.brief-detail-photo .event-cover-sheet small { font-size: .75rem; }
+.brief-detail-photo .event-cover-sheet b {
   display: block;
   overflow: visible;
   font-size: 1rem;
   overflow-wrap: anywhere;
 }
-.brief-detail-photo .industry-cover-card small:last-child { margin-top: 4px; }
-.brief-detail-photo .event-cover-card:not(.industry-cover-card) { min-height: 100px; }
+.brief-detail-photo .event-cover-sheet small:last-child { margin-top: 4px; }
 .brief-source-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px; }
 .brief-history, .brief-sources { list-style: none; margin: 0; padding: 0; }
 .brief-sources li { border-bottom: 1px solid var(--brief-line); padding: 7px 0; }

@@ -167,7 +167,7 @@ const eventSources = {
  },
  "2026-09|Archer|09.22|试飞进展": {
   "label": "Archer",
-  "url": "https://www.investors.archer.com/news/news-details/2026/Archer-Completes-Historic-Electric-Air-Taxi-Flights-Over-San-Francisco-Bay/default.aspx"
+  "url": "https://investors.archer.com/news/news-details/2026/Archer-to-Showcase-Midnight-Flights-at-2026-California-International-Air-Show-as-Part-of-Its-No-Roads-Flight-Tour/default.aspx"
  },
  "2026-09|Vertical|09.25|海外进展": {
   "label": "Vertical",
@@ -309,6 +309,14 @@ const eventSources = {
   "label": "Vertical",
   "url": "https://vertical-aerospace.com/wp-content/uploads/2026/10/ANH-Northrop-Grumman-Litef-Press-Release.pdf"
  },
+ "2026-10|Vertical|10.21|适航与技术": {
+  "label": "Vertical Mag",
+  "url": "https://verticalmag.com/news/vertical-aerospaces-next-moves-ceo-stuart-simpson-on-certification-growth-and-strategic-partners/"
+ },
+ "2026-10|Vertical|10.22|试飞进展": {
+  "label": "Vertical Aerospace",
+  "url": "https://dk.linkedin.com/company/vertical-aerospace-ltd"
+ },
  "2026-10|BETA|10.20–21|适航与技术": {
   "label": "BETA",
   "url": "https://beta.team/stories/beta-becomes-first-company-to-secure-landmark-faa-authorization-to-conduct-flight-operations-with-prospective-customers-in-electric-vtol-aircraft"
@@ -386,6 +394,7 @@ const eventKeyAliases = {
  "2026-10|Archer|10.19|试飞进展": "2026-10|Archer|10月|试飞进展",
  "2026-10|Archer|10.23|品牌传播": "2026-10|Archer|10月下旬|品牌传播",
  "2026-10|Vertical|10.15–10.16|订单与合作": "2026-10|Vertical|10.15–16|订单与合作",
+ "2026-10|Vertical|10.22|海外进展": "2026-10|Vertical|10.22|试飞进展",
  "2026-10|齐飞航空|10.09|资本与经营": "2026-10|齐飞航空|10月|资本与经营",
  "2026-10|御风未来|10.13|品牌传播": "2026-10|御风未来|10月 · 工博会|品牌传播",
  "2026-10|小鹏汇天|10.26|品牌传播": "2026-10|小鹏汇天|10月|品牌传播"

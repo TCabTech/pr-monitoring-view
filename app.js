@@ -66,7 +66,7 @@ const data={
    '亿航智能':[['09.29','海外进展','亿航宣布将 <strong>Global Fast Track 计划扩展至越南</strong>。']],
    'BETA':[['09.24','试飞进展','BETA 在得州以 ALIA CTOL 演示<strong>应急物资空中运输</strong>。'],['09.25–09.27','品牌传播','BETA 的 <strong>ALIA CX300 在美国 Miramar 航展开展飞行展示</strong>。']],
    'Joby':[['09.10','试飞进展','Joby 在得州参加联邦 eVTOL 整合试点，开展<strong>为期一周的演示飞行</strong>。']],
-   'Archer':[['09.22','试飞进展','Archer 在美国 Salinas 航展开展<strong>有人驾驶飞行演示</strong>。']],
+   'Archer':[['09.22','试飞进展','Archer 披露<strong>Midnight 在加州完成多次有人驾驶航段飞行</strong>，并宣布将参加萨利纳斯航展。']],
    'Vertical':[['09.25','海外进展','Vertical 在英国 Cotswold 机场<strong>启用 Valo 总装中心</strong>。']],
    '齐飞航空':[['09.01','适航与技术','齐飞航空 W280 <strong>型号合格证申请获民航华东管理局受理</strong>。']]
   },
@@ -120,7 +120,7 @@ function eventRow(date, html, category, scope, brand='', interactive=true){
  const photo=interactive?renderEventPhoto(key,scope,detail):reportEventPhoto(key);
  return '<li'+(photo?' class="with-photo"':'')+'>'+photo+dateLabel+'<p>'+(brand?'<span class="event-brand">'+esc(brand)+'</span>':'')+
  eventDescription(html,source,interactive?detail:'')+'</p>'+
- (interactive?(source?btn('来源','source',key):''):reportEventDetails(resolveBriefEvent(detail),key))+'</li>';
+ (interactive?(source?btn('来源','source',key):''):'')+'</li>';
 }
 function eventGroup(title, rows) {
  return '<section class="event-group"><h3>'+esc(title)+'</h3><ul class="event-list">'+rows.map(row=>eventRow(...row)).join('')+'</ul></section>';
@@ -330,7 +330,7 @@ function reports(){
    const attachments=monitoringReports[key]||[];
    return '<section class="history-row"><div class="history-month"><h3>'+label+'</h3>'+
     '<div class="report-actions">'+btn('查看月报','report-month',m,'button report-view')+
-    reportPdfLink('下载月报 PDF',key+'.pdf?v=inline-judgment-photo','button upload-button report-download',key+'-舆情月报.pdf')+'</div></div>'+
+    reportPdfLink('下载月报 PDF',key+'.pdf?v=competitor-cards','button upload-button report-download',key+'-舆情月报.pdf')+'</div></div>'+
     '<details class="monitoring-archive"><summary>新浪舆情通原始报告</summary>'+
     (attachments.length?'<ul>'+attachments.map(([brand,slug])=>{
      const path='yqt/'+key+'/'+slug+'.pdf';
@@ -403,18 +403,15 @@ function eventPhotoMarkup(key,alt=''){
 }
 function eventCoverCard(key){
  const [period,scope,date,category]=key.split('|');
- const label=eventSources[key]?.label||'舆情工作台';
- const isIndustry=scope==='国际'||scope==='国内';
- if(isIndustry){
-  const summary=eventSourceIndex.get(key)?.summary ?? '';
-  const title=eventDetailTitles[key] || summary.match(/<strong>([^<]+)<\/strong>/)?.[1] || category;
-  const [coverYear,coverMonth]=period.split('-');
-  return '<span class="event-cover-card industry-cover-card"><span class="industry-cover-sheet">'+
-   '<small>资料卡 / '+esc(date)+'</small><small>'+esc(scope==='国际'?'海外行业':'国内行业')+' · '+esc(category)+'</small>'+
-   '<b>'+esc(title)+'</b><small>'+esc(coverYear+' 年 '+Number(coverMonth)+' 月 / 舆情工作台')+'</small></span></span>';
- }
- return '<span class="event-cover-card" aria-label="资料卡 · '+esc(scope)+'"><small>资料卡　'+esc(date)+'</small>'+
-  '<b>'+esc(scope==='国际'?'海外行业':scope==='国内'?'国内行业':scope)+'</b><span>'+esc(category)+'</span><small>'+esc(label)+'</small></span>';
+ const record=eventSourceIndex.get(key);
+ const summary=record?.summary ?? '';
+ const topic=record?.category ?? category;
+ const subject=scope==='国际'?'海外行业':scope==='国内'?'国内行业':scope;
+ const title=eventDetailTitles[key] || summary.match(/<strong>([^<]+)<\/strong>/)?.[1] || summary.replace(/<[^>]+>/g,'').replace(/。$/,'') || topic;
+ const [coverYear,coverMonth]=period.split('-');
+ return '<span class="event-cover-card"><span class="event-cover-sheet">'+
+  '<small>资料卡 / '+esc(record?.date ?? date)+'</small><small>'+esc(subject)+' · '+esc(topic)+'</small>'+
+  '<b>'+esc(title)+'</b><small>'+esc(coverYear+' 年 '+Number(coverMonth)+' 月 / 舆情工作台')+'</small></span></span>';
 }
 function reportEventPhoto(key){
  return '<div class="report-thumb">'+eventPhotoMarkup(key)+'</div>';

@@ -75,7 +75,7 @@ const archiveAdditions = {
    'Vertical': [
     ['10.15','品牌传播','Vertical 首席试飞员在克兰菲尔德大学就<strong>eVTOL 试飞验证</strong>发表演讲。'],
     ['10.15–10.16','订单与合作','Vertical 签署<strong>座椅与惯性导航系统长期供应协议</strong>。'],
-    ['10.22','试飞进展','Bristow 飞行员到访 Vertical，体验<strong>模拟器和真机操作</strong>。']
+    ['10.22','海外进展','Bristow 飞行员到访 Vertical，<strong>体验飞行模拟器并了解原型机</strong>。']
    ],
    '齐飞航空': [['10.09','资本与经营','齐飞航空完成<strong>近亿元战略轮融资</strong>，由苏州创新投资集团领投。']],
    '零重力': [

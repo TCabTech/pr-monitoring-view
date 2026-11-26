@@ -251,19 +251,19 @@ Object.assign(eventPhotos, {
  },
  "2026-11|时的科技|11.09|品牌传播": {
   "file": "event-photos/article-tcab-talent.webp",
-  "article": "social-samples/november-2026/tcab-talent.webp"
+  "article": "/social-samples/november-2026/tcab-talent.webp"
  },
  "2026-11|时的科技|11.23|品牌传播": {
   "file": "event-photos/article-tcab-routes.webp",
-  "article": "social-samples/november-2026/tcab-routes.webp"
+  "article": "/social-samples/november-2026/tcab-routes.webp"
  },
  "2026-11|沃飞长空|11.18|品牌传播": {
   "file": "event-photos/article-aerofugia-wechat.webp",
-  "article": "social-samples/november-2026/aerofugia-wechat.webp"
+  "article": "/social-samples/november-2026/aerofugia-wechat.webp"
  },
  "2026-11|亿航智能|11.03–11.05|品牌传播": {
   "file": "event-photos/article-ehang-barcelona.webp",
-  "article": "social-samples/november-2026/ehang-barcelona.webp"
+  "article": "/social-samples/november-2026/ehang-barcelona.webp"
  },
  "2026-11|Vertical|11.23|适航与技术": {
   "file": "event-photos/article-vertical-powercentre.webp",
@@ -297,6 +297,10 @@ Object.assign(eventPhotos, {
 });
 
 Object.assign(eventPhotos, {
+ "2026-10|Vertical|10.15|品牌传播": {"file": "event-photos/vertical-cranfield-lecture.webp", "article": "https://www.youtube.com/watch?v=J04kweM5ue8", "alt": "英国皇家航空学会 Handley Page 讲座官方录像封面"},
+ "2026-10|Vertical|10.15–16|订单与合作": {"file": "event-photos/vertical-valo-suppliers.webp", "article": "https://www.airframer.com/news/release/vertical-aerospace-strengthens-supplier-network-with-anh-structure-and-northrop", "alt": "Vertical 供应协议公告所配的 Valo 飞机"},
+ "2026-10|Vertical|10.21|适航与技术": {"file": "event-photos/vertical-design-review.webp", "article": "https://verticalmag.com/news/vertical-aerospaces-next-moves-ceo-stuart-simpson-on-certification-growth-and-strategic-partners/", "alt": "Vertical Aerospace 原型机资料图"},
+ "2026-10|Vertical|10.22|试飞进展": {"file": "event-photos/vertical-bristow-valo.webp", "article": "https://www.bristowgroup.com/news-media/press-releases/detail/587/vertical-aerospace-to-launch-uks-first-electric-air-taxi", "alt": "Bristow 与 Vertical 合作公告中的 Valo 机型资料图"},
  "2026-11|国内|11.24|地方政策": {"file": "event-photos/cover-chengdu-aerospace.webp", "article": "https://news.ifeng.com/c/8yK7i853SYW", "alt": "成都航空航天产业建圈强链发布活动"},
  "2026-11|国际|11.09|监管准备": {"file": "event-photos/cover-thailand-caat.webp", "article": "https://www.caat.or.th/caat-media/221899/", "alt": "泰国民航局先进空中交通资料图"},
  "2026-10|国际|10.22|监管标准": {"file": "event-photos/cover-us-dot.webp", "article": "https://www.faa.gov/newsroom/faa-releases-draft-design-standards-vertical-flight-facilities", "alt": "美国交通部标识"},
@@ -316,6 +320,6 @@ Object.assign(eventPhotos, {
  "2026-09|国内|09.28起|地方政策": {"file": "event-photos/september-note-08.webp", "alt": "地方政策资料卡", "article": "https://www.longyan.gov.cn/gk/flgk/gg/202609/t20260928_2316053.htm"},
  "2026-10|峰飞航空|10月|品牌传播": {"file": "event-photos/september-note-09.webp", "alt": "品牌传播资料卡", "article": "https://de.linkedin.com/company/autoflight-official"},
  "2026-09|亿航智能|09.24|品牌传播": {"file": "event-photos/september-note-10.webp", "alt": "品牌传播资料卡", "article": "https://g.pconline.com.cn/x/2182/21827901.html"},
- "2026-09|Archer|09.22|试飞进展": {"file": "event-photos/september-note-11.webp", "alt": "试飞进展资料卡", "article": "https://www.investors.archer.com/news/news-details/2026/Archer-Completes-Historic-Electric-Air-Taxi-Flights-Over-San-Francisco-Bay/default.aspx"},
+ "2026-09|Archer|09.22|试飞进展": {"file": "event-photos/archer-salinas-midnight.webp", "alt": "Archer 公布的 Midnight 在萨利纳斯飞行的资料图", "article": "https://investors.archer.com/news/news-details/2026/Archer-to-Showcase-Midnight-Flights-at-2026-California-International-Air-Show-as-Part-of-Its-No-Roads-Flight-Tour/default.aspx"},
  "2026-09|齐飞航空|09.01|适航与技术": {"file": "event-photos/september-note-12.webp", "alt": "适航与技术资料卡", "article": "https://www.ne-time.cn/web/article/39594"}
 });
