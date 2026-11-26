@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="时的科技品牌舆情月报">
+<title>品牌舆情月报 · 时的科技</title>
+<link rel="stylesheet" href="style.css?v=illustrated-flow"><script src="archive.js?v=details-pdf" defer></script><script src="sources.js?v=monthly-judgment" defer></script><script src="event-photos.js?v=illustrated-flow" defer></script><script src="briefing-preview/briefing-data.js?v=illustrated-flow" defer></script><script src="november-2026.js?v=illustrated-flow" defer></script><script src="event-detail-notes.js" defer></script><script src="overview-briefing.js?v=read-only" defer></script><script src="app.js?v=read-only" defer></script>
+<script>
+const displayLayout = new URLSearchParams(location.search).get('layout');
+document.documentElement.dataset.theme = displayLayout === 'editorial' ? 'editorial' : 'soft';
+</script>
+<link rel="stylesheet" href="soft-ui.css?v=pdf-download">
+<link rel="stylesheet" href="overview-briefing.css?v=illustrated-flow">
+</head>
+<body>
+<a class="skip-link" href="#view">跳到正文</a>
+<div class="shell">
+<aside>
+  <div class="brand"><img class="workbench-logo" src="logos/tcab.png" alt="时的科技 TCab Tech"></div>
+  <div class="nav-caption">舆情工作台</div>
+  <nav aria-label="主菜单">
+    <button data-page="overview"><i aria-hidden="true">◫</i>本月概览</button>
+    <button data-page="industry"><i aria-hidden="true">▤</i>行业动态</button>
+    <button data-page="companies"><i aria-hidden="true">◈</i>竞品动态</button>
+    <button data-page="monitor"><i aria-hidden="true">▥</i>传播监测</button>
+    <button data-page="reports"><i aria-hidden="true">▧</i>月报与历史</button>
+  </nav>
+</aside>
+<main>
+  <header><div class="breadcrumb">舆情工作台 <span>/</span> <b id="crumb"></b></div>
+    <div class="header-actions">
+      <select id="workbench-style" aria-label="工作台样式">
+        <option value="editorial">管理简报风</option>
+        <option value="soft">工作台原色</option>
+      </select>
+      <div class="month-wrap">
+        <button type="button" class="button month-button" id="month" aria-label="报告月份" aria-expanded="false" aria-controls="monthPicker"><span id="monthLabel"></span><span class="chevron" aria-hidden="true"></span></button>
+        <section id="monthPicker" class="month-picker" aria-label="选择月份" hidden>
+          <div class="year-row"><button type="button" id="prevYear" aria-label="上一年">‹</button><strong id="pickerYear"></strong><button type="button" id="nextYear" aria-label="下一年">›</button></div>
+          <div id="monthGrid" class="month-grid"></div>
+        </section>
+      </div>
+    </div>
+  </header>
+  <div class="content" id="view" tabindex="-1"></div>
+</main>
+</div>
+<dialog id="brief-detail" aria-labelledby="brief-detail-heading">
+  <div class="brief-dialog-head"><h2 id="brief-detail-heading"></h2><form method="dialog"><button class="button" aria-label="关闭事件详情" autofocus>关闭</button></form></div>
+  <div id="brief-detail-content"></div>
+</dialog>
+<dialog id="source" aria-labelledby="sourceHeading"><div class="dialog-top"><h2 id="sourceHeading">事件来源</h2><button id="close" type="button" aria-label="关闭">×</button></div>
+  <p id="sourceText"></p><p id="sourceInfo"></p>
+</dialog>
+<dialog id="pdfDialog" aria-labelledby="pdfHeading">
+  <div class="dialog-top"><h2 id="pdfHeading">PDF 下载</h2><form method="dialog"><button aria-label="关闭下载提示">×</button></form></div>
+  <p id="pdfFileName"></p>
+  <p class="muted">请查看浏览器的下载列表。如果文件没有出现，可打开 PDF，再使用阅读器的下载按钮保存。</p>
+  <a id="openPdfInBrowser" class="button upload-button report-download" target="_blank" rel="noopener">在浏览器打开 PDF</a>
+</dialog>
+</body></html>

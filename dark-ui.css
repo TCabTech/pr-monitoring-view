@@ -1,0 +1,50 @@
+.header-actions .color-mode { width: 38px; padding-inline: 0; flex: 0 0 38px; font-size: 21px; line-height: 1; }
+.color-mode .sun-icon { display: none; }
+@media screen {
+  :root[data-color-mode="dark"] {
+    color-scheme: dark;
+    --bg: #0c0d10;
+    --paper: #181b22;
+    --ink: #f4f1ea;
+    --text: #dedfe6;
+    --muted: #aeb5c4;
+    --quiet: #353b48;
+    --navy: #edba66;
+    --blue: #edba66;
+    --soft-blue: #292b31;
+  }
+
+  [data-color-mode="dark"] .moon-icon { display: none; }
+  [data-color-mode="dark"] .color-mode .sun-icon { display: inline; }
+  [data-color-mode="dark"] :is(aside, header, .event-placeholder, .bar-track, .growth-track) { background: #111319; }
+  [data-color-mode="dark"] :is(.card, .metric, .logo-card, .report-heading, .coverage-card, .voice-charts figure, .segments, .month-picker, .empty, select, input, .file-row pre) {
+    background: var(--paper);
+    border-color: var(--quiet);
+    box-shadow: none;
+  }
+  [data-color-mode="dark"] .report-heading {
+    background: linear-gradient(105deg, #101218 16%, #101218eb 42%, #10121852), url("event-photos/event-13.webp") center 47% / cover;
+    padding: 32px clamp(16px, 4vw, 40px);
+  }
+  [data-color-mode="dark"] :is(.report-heading small, .positive-text, .negative-text, .heat-cell strong, .bar-row.own strong) { color: var(--ink); }
+  [data-color-mode="dark"] :is(nav button[aria-current], .logo-card[aria-pressed=true], .month-grid button[aria-pressed=true], .segments button[aria-pressed=true], .button:hover, .monitor-sections a:hover, .media-chips a:hover, #openFiles:hover, .year-row button:hover, .month-grid button:hover, nav button:hover) {
+    color: var(--ink);
+    background: #2b303b;
+    border-color: #4a5363;
+    box-shadow: none;
+  }
+  [data-color-mode="dark"] :is(.upload-button, .upload-button:hover) { color: #171210; background: #edba66; border-color: #edba66; }
+  [data-color-mode="dark"] :is(.workbench-logo, .logo-card img, .brand-profile img, .event-placeholder img) {
+    background: #f7f7fa;
+    padding: 4px;
+    border-radius: 4px;
+    mix-blend-mode: normal;
+  }
+  [data-color-mode="dark"] :is(.bar-track, .growth-track)::before { opacity: .22; }
+  [data-color-mode="dark"] .bar-track i, [data-color-mode="dark"] .growth-track .negative { background: #9aaad3; }
+  [data-color-mode="dark"] .own .bar-track i, [data-color-mode="dark"] .growth-track .positive { background: #edba66; }
+  [data-color-mode="dark"] .heat-cell strong { background: rgb(173 147 102 / calc(var(--heat) * 1.4)); }
+  [data-color-mode="dark"] :is(.link:hover, .company-tabs button:hover) { color: #ffdb9b; }
+  [data-color-mode="dark"] :focus-visible { outline-color: #edba66; }
+}
+@media print { .color-mode { display: none; } }

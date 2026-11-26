@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>管理简报测试版 · 时的科技</title>
+  <link rel="stylesheet" href="briefing.css">
+  <script src="briefing-data.js?v=illustrated-flow" defer></script>
+  <script src="briefing.js?v=illustrated-flow" defer></script>
+</head>
+<body>
+  <a class="skip" href="#briefing">跳到正文</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="identity"><img src="../logos/tcab.png" alt="时的科技 TCab Tech" width="106" height="38"><span>舆情工作台</span></div>
+      <div class="header-actions"><span class="preview-label">测试版</span><a class="back" href="../">返回现有工作台</a></div>
+    </div>
+  </header>
+  <main id="briefing" class="shell" tabindex="-1">
+    <div class="edition">
+      <h1 id="issue-heading">管理简报</h1>
+      <nav class="months" aria-label="报告月份">
+        <a href="?month=09" data-month="09">9 月</a>
+        <a href="?month=10" data-month="10">10 月</a>
+      </nav>
+    </div>
+    <section id="lead" class="lead" aria-labelledby="lead-title"></section>
+    <div class="layout">
+      <section class="events-panel" aria-labelledby="events-title">
+        <h2 id="events-title">本月重点事件</h2>
+        <ol id="events" class="events"></ol>
+      </section>
+      <aside class="insights" aria-label="内部观察">
+        <section class="follow" aria-labelledby="follow-title">
+          <h2 id="follow-title">后续关注</h2>
+          <ul id="follow-items"></ul>
+        </section>
+        <section class="metrics" aria-labelledby="metric-title">
+          <h2 id="metric-title">国内传播表现</h2>
+          <div id="metrics"></div>
+          <p>数据来源：新浪舆情通。<br>声量份额按监测的四家品牌计算。</p>
+        </section>
+      </aside>
+    </div>
+    <footer class="footer"><p>重点事件按对业务的相关性与公开证据选编。</p><a href="../">查看完整监测工作台</a></footer>
+  </main>
+  <dialog id="event-detail" aria-labelledby="detail-title">
+    <div class="detail-header"><span>事件详情</span><form method="dialog"><button class="close" aria-label="关闭事件详情" autofocus>×</button></form></div>
+    <div id="detail-content" class="detail-content"></div>
+  </dialog>
+</body>
+</html>

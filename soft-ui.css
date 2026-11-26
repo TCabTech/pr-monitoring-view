@@ -1,0 +1,64 @@
+.theme-return { display: none; }
+
+@media screen {
+  :root[data-theme="soft"] {
+    --bg: #edf0fa;
+    --paper: #f5f6fd;
+    --ink: #242a49;
+    --text: #353d60;
+    --muted: #525c7d;
+    --quiet: #dbe1f1;
+    --navy: #453e98;
+    --blue: #3f3991;
+    --soft-blue: #e7e7fb;
+    --radius: 16px;
+    --soft-raised: 8px 8px 20px #a1abd240, -5px -5px 15px #fff9;
+    --soft-inset: inset 2px 2px 6px #a1abd24d, inset -2px -2px 5px #fffc;
+  }
+  [data-theme="soft"] aside,
+  [data-theme="soft"] header { background: var(--bg); }
+  [data-theme="soft"] .theme-return { display: inline-flex; text-decoration: none; }
+  [data-theme="soft"] nav button[aria-current] {
+    background: var(--soft-blue);
+    box-shadow: var(--soft-inset);
+  }
+  [data-theme="soft"] :is(.metric, .card, .logo-card) {
+    border: 1px solid #ffffff90;
+    border-radius: var(--radius);
+    background: var(--paper);
+    box-shadow: var(--soft-raised);
+  }
+  [data-theme="soft"] .metric:first-child {
+    background: linear-gradient(135deg, #f8f6ff, #e6e8fc);
+  }
+  [data-theme="soft"] .report-heading {
+    padding: 23px clamp(16px, 3vw, 32px);
+    border: 1px solid #ffffff90;
+    border-radius: var(--radius);
+    background: linear-gradient(120deg, #f7f6ff, #e3e9fb);
+  }
+  [data-theme="soft"] :is(.button, .segments, .monitor-sections a, select, .year-row button, .month-grid button) {
+    border-radius: 11px;
+  }
+  [data-theme="soft"] :is(.month-button, .segments button[aria-pressed=true], .logo-card[aria-pressed=true], .month-grid button[aria-pressed=true]) {
+    border-color: #c4c5e6;
+    background: var(--soft-blue);
+    box-shadow: var(--soft-inset);
+  }
+  [data-theme="soft"] :is(.voice-charts figure, .coverage-card, .table-wrap, .month-picker, dialog) {
+    border-color: var(--quiet);
+    border-radius: var(--radius);
+    background: var(--paper);
+  }
+  [data-theme="soft"] :is(.voice-charts figure, .coverage-card) {
+    background: #eef0fa;
+    box-shadow: var(--soft-inset);
+  }
+  [data-theme="soft"] :is(.bar-track, .growth-track, .event-placeholder) { background: #e3e7f7; }
+  [data-theme="soft"] .company-tabs button[aria-pressed=true] { border-bottom-color: var(--blue); }
+  [data-theme="soft"] :focus-visible { outline-color: #635bc3; }
+  @media (max-width: 440px) {
+    [data-theme="soft"] header { flex-wrap: wrap; }
+    [data-theme="soft"] .header-actions { margin-left: 0; flex-wrap: wrap; }
+  }
+}
