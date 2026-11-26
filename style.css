@@ -287,6 +287,11 @@ button.event-description {
 .media-chips a { color: var(--blue); background: var(--soft-blue); text-underline-offset: 3px; }
 .media-chips a:hover { background: #dfe9f7; }
 .coverage-card details { margin-top: 9px; }
+.media-chips > button { padding: 3px 8px; border: 0; border-radius: 5px; background: var(--soft-blue); color: var(--blue); font: inherit; font-size: 14px; text-decoration: underline; text-underline-offset: 3px; }
+.media-chips > button:hover { background: #dfe9f7; }
+.media-articles ul { margin: 0; padding-inline-start: 22px; }
+.media-articles li + li { margin-top: 8px; }
+.media-articles li a { display: inline-block; }
 .coverage-card details .media-chips { margin-top: 7px; }
 
 .table-wrap { overflow: auto; border: 1px solid var(--quiet); border-radius: 8px; }

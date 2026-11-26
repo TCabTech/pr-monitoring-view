@@ -185,13 +185,26 @@ function mediaLabel(name){
 }
 function coverage(reportMonth){
  const cards=monthlyMedia[reportMonth].filter(([brand])=>reportMonth==='08'||monitoredBrands.has(brand)).map(([brand,names,copy])=>{
-  const chips=list=>list.map(item=>{
+  const outlets=new Map();
+  for(const item of names){
    const [name,url]=Array.isArray(item)?item:[item,mediaArticles[brand]?.[item]];
    const label=mediaLabel(name).split('｜')[0].trim();
-   return url?articleLink(label,url):'<span>'+esc(label)+'</span>';
-  }).join('');
-  return '<article class="coverage-card"><h3>'+esc(brand)+'</h3><p>'+esc(copy)+'</p><div class="media-chips">'+chips(names.slice(0,5))+'</div>'+
-   (names.length>5?'<details><summary>更多媒体</summary><div class="media-chips">'+chips(names.slice(5))+'</div></details>':'')+'</article>';
+   if(!outlets.has(label))outlets.set(label,new Map());
+   const articles=outlets.get(label);
+   if(url&&!articles.has(url))articles.set(url,name.split('｜').slice(1).join('｜').trim());
+  }
+  const chips=[...outlets].map(([label,articles],index)=>{
+   const links=[...articles];
+   if(!links.length)return '<span>'+esc(label)+'</span>';
+   if(links.length===1)return articleLink(label,links[0][0]);
+   const id='media-'+reportMonth+'-'+brand+'-'+index;
+   return '<button type="button" data-action="media-articles" data-value="'+esc(id)+'" aria-haspopup="dialog">'+esc(label)+'</button>'+
+    '<dialog class="media-articles" id="'+esc(id)+'" aria-labelledby="'+esc(id)+'-title">'+
+    '<div class="dialog-top"><h3 id="'+esc(id)+'-title">'+esc(label)+'</h3><form method="dialog"><button aria-label="关闭">×</button></form></div>'+
+    '<ul>'+links.map(([url,title],i)=>'<li>'+articleLink(title||'报道 '+(i+1),url)+'</li>').join('')+'</ul></dialog>';
+  });
+  return '<article class="coverage-card"><h3>'+esc(brand)+'</h3><p>'+esc(copy)+'</p><div class="media-chips">'+chips.slice(0,5).join('')+'</div>'+
+   (chips.length>5?'<details><summary>更多媒体</summary><div class="media-chips">'+chips.slice(5).join('')+'</div></details>':'')+'</article>';
  }).join('');
  return '<section class="card monitor-block" id="press"><div class="card-head"><h2>媒体报道</h2><span class="muted">2026 年 '+Number(reportMonth)+' 月</span></div><div class="coverage-grid">'+cards+'</div></section>';
 }
@@ -434,6 +447,7 @@ document.addEventListener('click',e=>{
  const b=e.target.closest('button');if(!b)return;
  if(b.dataset.page){navigate(b.dataset.page);return}
  const {action,value}=b.dataset;
+ if(action==='media-articles'){$(value)?.showModal();return}
  if(action==='nav'){navigate(value);return}
  if(action==='brief-event'){showBriefEvent(value);return}
  if(action==='source'){openSource(value);return}
