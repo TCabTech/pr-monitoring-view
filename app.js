@@ -187,7 +187,7 @@ function coverage(reportMonth){
  const cards=monthlyMedia[reportMonth].filter(([brand])=>reportMonth==='08'||monitoredBrands.has(brand)).map(([brand,names,copy])=>{
   const chips=list=>list.map(item=>{
    const [name,url]=Array.isArray(item)?item:[item,mediaArticles[brand]?.[item]];
-   const label=mediaLabel(name);
+   const label=mediaLabel(name).split('｜')[0].trim();
    return url?articleLink(label,url):'<span>'+esc(label)+'</span>';
   }).join('');
   return '<article class="coverage-card"><h3>'+esc(brand)+'</h3><p>'+esc(copy)+'</p><div class="media-chips">'+chips(names.slice(0,5))+'</div>'+
@@ -290,7 +290,9 @@ function companyPage(d){
  return header+brandCards(brands)+brandProgress(d,company,true);
 }
 const monitoringReports = {
- '2026-09': [['时的科技','tcab'],['沃飞长空','aerofugia'],['峰飞航空','autoflight'],['沃兰特','volant']]
+ '2026-08': [['时的科技','tcab'],['沃飞长空','aerofugia'],['峰飞航空','autoflight'],['沃兰特','volant']],
+ '2026-09': [['时的科技','tcab'],['沃飞长空','aerofugia'],['峰飞航空','autoflight'],['沃兰特','volant']],
+ '2026-10': [['时的科技','tcab']]
 };
 
 function reportPdfLink(label, path, className, filename){
