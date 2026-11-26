@@ -426,7 +426,12 @@ document.addEventListener('error',({target})=>{
  else target.outerHTML=fallback;
 },true);
 let currentSourceKey='';
+let publishedLinks={};
 function readSource(key){
+ if(Object.hasOwn(publishedLinks,key)){
+  const url=publishedLinks[key];
+  return url?{url,label:'来源'}:null;
+ }
  return eventSources[key]??null;
 }
 function showSourceLink(){
@@ -529,3 +534,14 @@ $('monthGrid').addEventListener('click',e=>{
 document.addEventListener('click',e=>{if(!$('monthPicker').hidden&&!e.target.closest('.month-wrap'))closePicker()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('monthPicker').hidden){e.preventDefault();closePicker(true)}});
 
+
+if(typeof fetch==='function' && typeof document.baseURI==='string'){
+ fetch(new URL('published-links.json',document.baseURI),{cache:'no-cache'})
+  .then(reply=>reply.ok?reply.json():null)
+  .then(links=>{
+   if(!links || typeof links!=='object' || Array.isArray(links))return;
+   publishedLinks=links;
+   render();
+  })
+  .catch(()=>{});
+}
