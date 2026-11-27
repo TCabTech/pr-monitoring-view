@@ -129,3 +129,50 @@ const eventDetailTitles = {
  "2026-10|Archer|10.06|品牌传播": "Archer 入选 Fast Company 交通领域年度榜单",
  "2026-10|小鹏汇天|10.15|品牌传播": "汇天 A868 获红点设计概念奖 Best of the Best"
 };
+
+const organizationProfiles = {
+ wisk:['Wisk Aero','美国加州的自主飞行航空企业，披露交易时是波音全资子公司。它研发的 Gen 6 是一款可搭载四名乘客、机上无需飞行员的纯电 eVTOL，由地面人员监督飞行。','https://wisk.aero/about'],
+ skygrid:['SkyGrid','总部位于美国得克萨斯州奥斯汀，2025 年并入 Wisk。它提供数字空域集成服务，帮助低空和自主飞行器接入现有空中交通体系。','https://www.skygrid.com/skygrid-joins-wisk-to-accelerate-autonomy-and-airspace-integration/'],
+ insitu:['Insitu','总部位于美国华盛顿州宾根的无人航空系统厂商，披露交易时由波音全资持有。它负责无人机系统的研发、生产和运营，代表产品包括 ScanEagle。','https://www.insitu.com/about'],
+ aeg:['AEG（Anschutz Entertainment Group）','美国体育和现场娱乐集团，经营赛事、演出和场馆。它拥有洛杉矶市中心的 L.A. LIVE 娱乐区和相邻的 Crypto.com Arena。此次合作的拟建起降场位于 L.A. LIVE，Archer 是该园区的独家空中出租车合作伙伴。','https://www.aeggp.com/press/aeg-and-archer-to-develop-vertiport-at-l-a-live'],
+ rvConnex:['R V Connex','2016 年成立的泰国工程与航空航天企业，业务涉及防务与安防系统。它与 Eve 在泰国开展行业和监管沟通，协助对接当地公共部门和企业，共同推进先进空中交通的监管框架。','https://www.rvconnex.com/en/who-we-are/our-story'],
+ skyDrive:['SkyDrive','2018 年成立的日本 eVTOL 企业，在爱知县丰田市设有总部及研发中心，业务覆盖电动垂直起降飞机的开发、制造和销售。它在澳大利亚合作中推进的是 SD-05 机型。','https://skydrive.co.jp/en/company/'],
+ goldCoastHelitours:['Gold Coast Helitours','澳大利亚黄金海岸的直升机运营商。它是 SkyDrive 在当地探索商业运营的合作方，曾签署引入 SD-05 的意向书；黄金海岸市政府这次参与的是起降场及运行环境的可行性研究。','https://skydrive.co.jp/en/news/73279/'],
+ atoms:['Atoms','由 Uber 联合创始人 Travis Kalanick 创办的工业 AI 与智慧城市基础设施企业，业务涉及交通等领域。它与 Joby 合作规划的交通枢纽拟同时接入空中出租车和地面交通。','https://www.jobyaviation.com/news/atoms-and-joby-aviation-form-strategic-partnership-to-build-americas-vertiport-network'],
+ resonant:['Resonant Sciences','美国俄亥俄州代顿的国防科技企业，向美国政府项目及防务供应链提供机载电子系统和工程制造服务。按交易公告，若收购交割，它将成为 Joby 的专门防务业务部门。','https://www.jobyaviation.com/news/joby-aviation-to-scale-defense-business-through-acquisition-of-resonant-sciences'],
+ whitesky:['Whitesky Aviation','印度尼西亚航空服务商，持有当地航空运营人许可证，经营直升机服务及雅加达苏加诺－哈达国际机场旁的 Cengkareng 直升机场。它是此次框架采购备忘录中的当地合作方。','https://www.autoflight.com/en/news/duplicate-of-autoflight-showcases-advanced-air-mobility-during-games-o/'],
+ zeroBoundary:['零界航空','安徽天泽零界航空科技有限公司，提供 eVTOL 交易和运力服务。在峰飞与皖江金租的三方合作中，它是航空器使用和运营一侧的参与方。','https://www.cs.com.cn/ssgs/01/2026/09/11/detail_2026091110038606.html'],
+ wanjiang:['皖江金租','全称皖江金融租赁股份有限公司，是中国的金融租赁机构，在这笔峰飞凯瑞鸥采购中提供融资租赁。','https://www.cs.com.cn/ssgs/01/2026/09/11/detail_2026091110038606.html'],
+ sidec:['SIDEC','马来西亚雪兰莪州资讯科技及数码经济机构（Selangor Information Technology and Digital Economy Corporation），负责推动州内科技与数字经济发展。在 E20 展示项目中，它参与联合主办，并与时的科技交换合作备忘录。','https://www.tcabtech.com/en/tcab-tech-sidec-mou-e20-evtol-commercialization-malaysia-southeast-asia/'],
+ ioi:['IOI City Mall','位于马来西亚布城的购物中心，是 E20 当地公开静态展示的场地和联合主办方之一。','https://www.tcabtech.com/en/tcab-tech-sidec-mou-e20-evtol-commercialization-malaysia-southeast-asia/'],
+ jcAviation:['JC Aviation','新加坡投资控股公司 Makrana Holdings 旗下的航空业务企业。其集团航空业务涵盖飞机与直升机销售、包机、维修及培训。它是峰飞此次首批采购承诺及海外部署合作的对接方。','https://www.autoflight.com/en/news/autoflight-and-jc-aviation-sign-mou-to-accelerate-evtol-deployment-acr/'],
+ anh:['ANH Structure','总部位于韩国晋州的航空供应商，专长是飞机座椅、客舱方案和工程制造。它将为 Vertical 的 Valo 开发和生产座椅。','https://www.sec.gov/Archives/edgar/data/1867102/000110465926116373/tm2627657d1_ex99-1.htm'],
+ litef:['Northrop Grumman LITEF','总部位于德国弗赖堡的导航和传感器供应商，从事惯性导航等系统的开发与制造。它在合作中为 Valo 提供惯性基准系统。','https://www.sec.gov/Archives/edgar/data/1867102/000110465926116373/tm2627657d1_ex99-1.htm'],
+ sunway:['Sunway Group（双威集团）','马来西亚综合企业集团，业务包括地产开发、建筑、医疗与教育。它在此次合作中参与探讨峰飞机型在马来西亚的试验、潜在采购和分销。','https://www.sunway.com.my/sunway-at-a-glance/'],
+ ita:['ITA Airways','意大利的国家旗舰航空公司，经营客运航线网络。在这项合作中，它与 Archer 共同研究意大利空中出租车服务的落地。','https://investors.archer.com/news/news-details/2026/Archer-and-ITA-Airways-Partner-on-the-Development-of-Air-Taxi-Services-in-Italy/default.aspx'],
+ alpine:['Alpine Air Express','总部位于美国犹他州普罗沃的区域货运航空公司，提供合同货运服务。在当地 eIPP 试点中，它与 BETA 一起验证时效敏感货物的配送流程。','https://www.alpine-air.com/about'],
+ fortySevenG:['47G','美国犹他州的航空航天和先进制造行业组织，也是此次犹他州电动航空试点的参与方之一。','https://beta.team/stories/beta-completes-utah-eipp-operations-to-support-the-future-of-radiopharmaceutical-delivery-and-treatment'],
+ skyports:['Skyports Infrastructure','一家专门开发、建设和运营垂直起降设施的企业。迪拜项目中，它负责起降场基础设施，与迪拜道路与交通管理局及拟运营空中出租车的 Joby 分工合作。','https://skyports.net/about-us'],
+ ascendance:['Ascendance','法国图卢兹的航空技术企业。它同时研发 ATEA 混合动力垂直起降飞机，以及可用于其他航空器的 Sterna 混合电动动力系统。','https://www.ascendance-ft.com/fr-fr/resources/news/ascendance-joins-toulouse-pioneers-collective']
+};
+
+const eventOrganizationProfiles = {
+ '2026-08|Archer|08.10|资本与经营':['wisk','skygrid','insitu'],
+ '2026-08|Archer|08.24|订单与合作':['aeg'],
+ '2026-08|Joby|08.04|订单与合作':['atoms'],
+ '2026-08|Joby|08.11|资本与经营':['resonant'],
+ '2026-08|Eve|08.17|海外进展':['rvConnex'],
+ '2026-08|峰飞航空|08.12|订单与合作':['whitesky'],
+ '2026-09|峰飞航空|09.10|订单与合作':['zeroBoundary','wanjiang'],
+ '2026-10|时的科技|10.09|海外进展':['sidec','ioi'],
+ '2026-10|峰飞航空|10月|海外进展':['sunway'],
+ '2026-10|峰飞航空|10.15|订单与合作':['jcAviation'],
+ '2026-10|Vertical|10.15–16|订单与合作':['anh','litef'],
+ '2026-10|BETA|10.07|试飞进展':['alpine','fortySevenG'],
+ '2026-10|国际|10.07|监管试点':['alpine','fortySevenG'],
+ '2026-10|Archer|10.29|海外进展':['ita'],
+ '2026-11|Archer|11.09|资本与经营':['wisk','skygrid','insitu'],
+ '2026-11|国际|11.18|基础设施':['skyports'],
+ '2026-11|SkyDrive|11.17|海外进展':['skyDrive','goldCoastHelitours'],
+ '2026-11|Ascendance|11.19|适航与技术':['ascendance']
+};

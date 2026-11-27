@@ -346,12 +346,25 @@ const briefAdditionalSources = {
  ]
 };
 
+function briefOrganizationProfiles(key) {
+ return (eventOrganizationProfiles[key]||[]).map(id=>organizationProfiles[id]);
+}
+
+function briefOrganizationBackground(key,heading='h3') {
+ const profiles=briefOrganizationProfiles(key);
+ return profiles.length?'<section><'+heading+'>相关机构背景</'+heading+'>'+profiles.map(([name,description])=>
+  '<p><strong>'+esc(name)+'</strong>　'+esc(description)+'</p>').join('')+'</section>':'';
+}
+
 function briefSources(event,key) {
  const sources = new Map();
  const custom = readSource(key);
  if (custom?.label === '自定义链接') sources.set(custom.url,[custom.label,'']);
  for (const [name,type,url] of [...event.sources,...(briefAdditionalSources[key]||[])]) {
   if (!sources.has(url)) sources.set(url,[type==='媒体报道'?mediaLabel(name):name,type]);
+ }
+ for (const [name,,url] of briefOrganizationProfiles(key)) {
+  if (!sources.has(url)) sources.set(url,[name,'机构背景']);
  }
  const defaultSource = eventSources[key];
  if (defaultSource && !sources.has(defaultSource.url)) sources.set(defaultSource.url,[defaultSource.label,'事件来源']);
@@ -379,7 +392,7 @@ function reportEventDetails(event,key) {
   '<p><strong>'+esc([date,round,amount].join(' · '))+'</strong>　投资方 '+esc(investors)+'　'+
   articleLink('查看来源',link)+(extra?'　'+articleLink('投资方来源',extra):'')+'</p>').join('') : '';
  const sources = briefSources(event,key).filter(([url])=>/^https?:\/\//i.test(url));
- return '<div class="report-event-details">'+details+funding+
+ return '<div class="report-event-details">'+details+briefOrganizationBackground(key,'h4')+funding+
   (sources.length?'<p class="report-event-sources"><strong>参考资料　</strong>'+sources.map(([url,[name]])=>articleLink(name,url)).join('　·　')+'</p>':'')+'</div>';
 }
 
@@ -409,7 +422,7 @@ function showBriefEvent(id) {
  const sources = briefSourceList(event,key);
  $('brief-detail-content').innerHTML = '<p class="brief-meta">'+esc(event.date)+' · '+esc(event.region)+' <span>'+esc(event.topic || '融资')+'</span></p>'+
   (event.summary?'<p class="brief-detail-summary">'+esc(event.summary)+'</p>':'')+(visual?'<div class="brief-detail-photo">'+visual+'</div>':'')+
-  (details.length?'<section><h3>事件要点</h3>'+details.map(copy=>'<p>'+esc(copy)+'</p>').join('')+'</section>':'')+funding+
+  (details.length?'<section><h3>事件要点</h3>'+details.map(copy=>'<p>'+esc(copy)+'</p>').join('')+'</section>':'')+briefOrganizationBackground(key)+funding+
   '<section><h3>参考资料</h3>'+(sources?'<ul class="brief-sources">'+sources+'</ul>':'')+'</section>';
  if (!dialog.open) dialog.showModal();
  dialog.scrollTop=scrollTop;
