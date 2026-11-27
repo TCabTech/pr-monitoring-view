@@ -217,7 +217,7 @@ function socialCoverage(reportMonth){
   return '<tr><th scope="row">'+esc(brand)+'</th>'+fields.map(value=>'<td class="heat-cell">'+(!value?'<span class="muted" aria-label="无发文或暂无统计">—</span>':'<strong style="--heat:'+(0.07+Number(value)/max*0.23).toFixed(3)+'">'+esc(value)+'</strong>')+'</td>').join('')+'<td>'+esc(theme)+'</td></tr>';
  }).join('');
  return '<section class="card monitor-block" id="social"><div class="card-head"><h2>社媒发文</h2><span class="muted">2026 年 '+Number(reportMonth)+' 月</span></div>'+
-  '<div class="table-wrap" tabindex="0" role="region" aria-label="社媒发文数据"><table class="social-table"><thead><tr>'+columns.map(label=>'<th scope="col">'+esc(label)+'</th>').join('')+'</tr></thead><tbody>'+rows+'</tbody></table></div>'+(reportMonth==='11'?'':'<p class="footnote">— 表示无发文或暂无统计。主要内容根据当月品牌动态归纳。</p>')+(reportMonth==='09'?'<p>'+articleLink('沃飞长空｜如何养飞机更省心',eventSources['2026-09|沃飞长空|09.15|品牌传播'].url)+'</p>':'')+'</section>';
+  '<div class="table-wrap" tabindex="0" role="region" aria-label="社媒发文数据"><table class="social-table"><thead><tr>'+columns.map(label=>'<th scope="col">'+esc(label)+'</th>').join('')+'</tr></thead><tbody>'+rows+'</tbody></table></div>'+(reportMonth==='11'?'':'<p class="footnote">— 表示无发文或暂无统计。主要内容根据当月品牌动态归纳。</p>')+'</section>';
 }
 function augustGeo(){
  const rows=[['提及率','37.50%','66.18%'],['平均排名','6.60','4.71'],['Top 1','0%','13.24%'],['Top 3','5%','30.88%'],['Top 10','32.50%','61.76%']];
