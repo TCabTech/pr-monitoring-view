@@ -177,16 +177,6 @@ const november2026 = (() => {
    sources:[['迪拜道路与交通管理局','官方公告',links.dubai]],
   },
   {
-   id:'nov-ascendance', scope:'Ascendance', category:'适航与技术', date:'11.19', region:'法国', topic:'样机发布',
-   title:'Ascendance 发布全尺寸 ATEA 混合动力垂直起降样机',
-   summary:'首架全尺寸样机在图卢兹亮相，展示 ATEA 与 Sterna 混合动力系统的整机集成。',
-   details:[
-    '法国 Ascendance 于 11 月 19 日在图卢兹展示首架全尺寸 ATEA。其自研 Sterna 混合动力系统把机载发电、储能和电力管理整合在一起，企业希望让这套系统也能用于其他航空器。',
-    '发布时，首架全尺寸样机已开始地面测试。公司接下来拟申请 EASA 试飞许可，取得许可后再开展有人飞行测试。Sterna 的生产扩充计划从 2027 年推进，既支持 ATEA 项目，也面向潜在产业伙伴。'
-   ],
-   sources:[['Ascendance','企业公告','https://www.ascendance-ft.com/resources/news/ascendance-joins-choose-france-2026'],['Aviation International News','航空媒体报道',links.ascendance]],
-  },
-  {
    id:'nov-battery-lab', scope:'国内', category:'供应链', date:'11.11', region:'中国', topic:'供应链',
    title:'中国民航大学与宁德时代签约共建航空电池适航实验室',
    summary:'联合开展航空电池安全测试、适航标准和符合性验证方法研究，覆盖纯电及混合动力系统。',
@@ -279,6 +269,16 @@ const november2026 = (() => {
  ];
 
  const otherDetails = [
+  {
+   id:'nov-ascendance', scope:'Ascendance', category:'适航与技术', date:'11.19', region:'法国', topic:'样机发布',
+   title:'Ascendance 发布全尺寸 ATEA 混合动力垂直起降样机',
+   summary:'首架全尺寸样机在图卢兹亮相，展示 ATEA 与 Sterna 混合动力系统的整机集成。',
+   details:[
+    '法国 Ascendance 于 11 月 19 日在图卢兹展示首架全尺寸 ATEA。其自研 Sterna 混合动力系统把机载发电、储能和电力管理整合在一起，企业希望让这套系统也能用于其他航空器。',
+    '发布时，首架全尺寸样机已开始地面测试。公司接下来拟申请 EASA 试飞许可，取得许可后再开展有人飞行测试。Sterna 的生产扩充计划从 2027 年推进，既支持 ATEA 项目，也面向潜在产业伙伴。'
+   ],
+   sources:[['Ascendance','企业公告','https://www.ascendance-ft.com/resources/news/ascendance-joins-choose-france-2026'],['Aviation International News','航空媒体报道',links.ascendance]],
+  },
   {
    id:'nov-aridge-expo', scope:'小鹏汇天', category:'品牌传播', date:'11.05–11.10', region:'中国', topic:'展会展示',
    title:'小鹏汇天「陆地航母」亮相第九届进博会',
