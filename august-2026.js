@@ -79,34 +79,6 @@ const august2026 = (() => {
     "亿航智能",
     [
       [
-        "亿航投资者关系｜新闻稿列表",
-        "https://ir.ehang.com/news-releases/"
-      ],
-      [
-        "亿航投资者关系｜08.25 二季度财报 PDF",
-        "https://ir.ehang.com/static-files/ade3ff1e-c16a-463e-9b55-db55ef452d07"
-      ],
-      [
-        "GlobeNewswire｜08.25 二季度财报",
-        "https://www.globenewswire.com/news-release/2026/08/25/3350237/0/en/ehang-reports-second-quarter-2026-unaudited-financial-results.html"
-      ],
-      [
-        "GlobeNewswire｜08.28 香港公开首飞",
-        "https://www.globenewswire.com/news-release/2026/08/28/3352829/0/en/ehang-eh216-s-completes-first-public-flight-in-hong-kong-advancing-regulatory-sandbox-x-project-with-hksar-government.html"
-      ],
-      [
-        "GlobeNewswire｜08.20 与中建六局合作",
-        "https://www.globenewswire.com/news-release/2026/08/20/3348113/0/en/ehang-partners-with-cscec-sixth-engineering-bureau-on-low-altitude-infrastructure-with-hainan-lingao-corridor-project-underway.html"
-      ],
-      [
-        "亿航官网｜08.28 香港公开首飞",
-        "https://www.ehang.com/cn/news/1386.html"
-      ],
-      [
-        "亿航官网｜08.19 全球快速通道计划",
-        "https://www.ehang.com/cn/news/1381.html"
-      ],
-      [
         "新华财经｜08.26 二季度财报",
         "https://www.cnfin.com/gs-lb/detail/20260826/4460459_1.html"
       ],
@@ -229,10 +201,6 @@ const august2026 = (() => {
       [
         "中国航空报｜SOI#1 审查，新浪转载",
         "https://k.sina.cn/article_5953466437_162dab0450670bax1e.html"
-      ],
-      [
-        "中国航空工业集团｜此前收录",
-        "https://m.weibo.cn/detail/5338337411859047"
       ]
     ],
     "E20 飞控电子与综合航电系统通过 SOI#1 审查，AP340 首台总装下线交付。"

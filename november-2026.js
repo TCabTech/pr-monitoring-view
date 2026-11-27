@@ -121,8 +121,7 @@ const november2026 = (() => {
    ['新浪财经（11.20，谢嘉发言）','https://finance.sina.com.cn/jjxw/2026-11-20/doc-inizkyww7116448.shtml'],
    ['中国经营网','http://www.cb.com.cn/index/show/jr/cv/cv135278482418'],
    ['上海证券报（东方财富转载）','https://finance.eastmoney.com/a/202611043921923029.html'],
-   ['新浪科技','https://finance.sina.com.cn/tech/shenji/2026-11-05/doc-inixsezu8876804.shtml'],
-   ['美通社（峰飞航空通稿）','https://www.prnewswire.com/apac/zh/news-releases/evtol-302930403.html']
+   ['新浪科技','https://finance.sina.com.cn/tech/shenji/2026-11-05/doc-inixsezu8876804.shtml']
   ],'央视网、财经媒体和航空专业媒体报道昆山五机编队，关注多机型、跨吨级协同飞行。另有报道聚焦峰飞航空谢嘉谈大型 eVTOL 和全球化布局。'],
   ['沃兰特',[
    ['人民网四川频道',links.volant]

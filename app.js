@@ -89,7 +89,7 @@ for (const [key, additional] of Object.entries(archiveAdditions)) {
   (report.events[brand] ??= []).push(...rows);
  }
 }
-const companies={domestic:['时的科技','沃飞长空','峰飞航空','沃兰特','亿航智能'],overseas:['Joby','Archer','Vertical','BETA'],others:['齐飞航空','广汽高域','追梦空天','览翌航空','零重力','奇瑞','蓝霄航空','蓝色向量','御风未来','小鹏汇天','亿维特','华羽先翔','倍飞智航']};
+const companies={domestic:['时的科技','沃飞长空','峰飞航空','沃兰特'],overseas:['Joby','Archer','Vertical','BETA'],others:['亿航智能','齐飞航空','广汽高域','追梦空天','览翌航空','零重力','奇瑞','蓝霄航空','蓝色向量','御风未来','小鹏汇天','亿维特','华羽先翔','倍飞智航']};
 const overseasOtherBrands = d => Object.keys(d.events).filter(brand =>
  d.events[brand].length && !Object.values(companies).some(brands => brands.includes(brand))
 );
@@ -320,7 +320,7 @@ function reports(){
    const attachments=monitoringReports[key]||[];
    return '<section class="history-row"><div class="history-month"><h3>'+label+'</h3>'+
     '<div class="report-actions">'+btn('查看月报','report-month',m,'button report-view')+
-    reportPdfLink('下载月报 PDF',key+'.pdf?v='+(key==='2026-11'?'a868-statement':key==='2026-10'?'october-geo':key==='2026-08'?'ioi-august-supplement':'competitor-cards'),'button upload-button report-download',key+'-舆情月报.pdf')+'</div></div>'+
+    reportPdfLink('下载月报 PDF',key+'.pdf?v=third-party-media','button upload-button report-download',key+'-舆情月报.pdf')+'</div></div>'+
     '<details class="monitoring-archive"><summary>新浪舆情通原始报告</summary>'+
     (attachments.length?'<ul>'+attachments.map(([brand,slug])=>{
      const path='yqt/'+key+'/'+slug+'.pdf';
