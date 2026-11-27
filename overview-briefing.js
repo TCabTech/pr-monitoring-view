@@ -321,11 +321,26 @@ const briefAdditionalSources = {
    "榜单原文",
    "https://time.com/collection/best-inventions/2026/joby-aviation-aircraft/"
   ],
+  ["TIME","评选方法","https://time.com/article/2026/10/15/best-inventions-2026-list/"],
   [
    "加州大学",
    "同届入选项目",
    "https://www.universityofcalifornia.edu/news/uc-innovations-among-times-best-inventions-2026"
   ]
+ ],
+ "2026-10|Archer|10.06|品牌传播": [
+  ["Fast Company","交通类别榜单","https://www.fastcompany.com/91612660/transportation-next-big-things-in-tech-2026"],
+  ["Fast Company","评选方法","https://www.fastcompany.com/91612669/methodology-next-big-things-in-tech-2026"]
+ ],
+ "2026-10|小鹏汇天|10.15|品牌传播": [
+  ["Red Dot","红点设计概念奖奖级","https://www.red-dot.org/design-concept/distinctions"]
+ ],
+ "2026-10|时的科技|10.15|品牌传播": [
+  ["SIDEC","AiSEM 峰会介绍","https://www.sidec.com.my/aisemselangor/"]
+ ],
+ "2026-11|沃飞长空|11.03|品牌传播": [
+  ["四川省人民政府","四川省科学技术奖励办法","https://www.sc.gov.cn/10462/zfwjts/2024/5/16/bc1b71a2947f4583b685e97e1afa76d6/files/863b2f8e5c834fe497ba4dc93d550069.pdf"],
+  ["四川日报","同届获奖信息","https://sc.people.com.cn/n2/2026/1104/c345167-41740859.html"]
  ],
  "2026-09|峰飞航空|09.10|订单与合作": [
   [
